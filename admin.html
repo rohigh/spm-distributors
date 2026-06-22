@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel — SPM Distributors</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>" />
+</head>
+<body>
+  <div class="admin-container">
+
+    <!-- Admin Header -->
+    <header class="admin-header">
+      <div class="admin-header-inner">
+        <h1>⚙️ Admin Panel</h1>
+        <a href="index.html" class="admin-back-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+          Back to Store
+        </a>
+      </div>
+    </header>
+
+    <!-- Login Gate -->
+    <div id="admin-login-section">
+      <div class="admin-login">
+        <div class="lock-icon">🔐</div>
+        <h2>Admin Access</h2>
+        <p>Enter the admin password to manage delivery slots</p>
+        <input type="password" id="admin-password" placeholder="Enter password" autocomplete="off" />
+        <button class="admin-login-btn" id="admin-login-btn">Unlock</button>
+        <div class="admin-error" id="admin-error">❌ Incorrect password. Try again.</div>
+      </div>
+    </div>
+
+    <!-- Admin Panel (hidden until authenticated) -->
+    <div id="admin-panel-section" style="display: none;">
+      <div class="admin-panel">
+
+        <!-- Delivery Day Toggles -->
+        <div class="admin-card">
+          <h3>📅 Delivery Day Schedule</h3>
+          <p style="font-size: 0.85rem; color: var(--neutral-500); margin-bottom: var(--space-4);">
+            Toggle which days are available for customer delivery. Changes take effect immediately on the storefront.
+          </p>
+          <ul class="slot-toggle-list" id="slot-toggle-list">
+            <!-- Rendered by JS -->
+          </ul>
+        </div>
+
+        <!-- Actions -->
+        <div class="admin-card">
+          <button class="admin-save-btn" id="admin-save-btn">
+            💾 Save Changes
+          </button>
+          <button class="admin-reset-btn" id="admin-reset-btn">
+            Reset to Default Schedule
+          </button>
+        </div>
+
+        <!-- Logout -->
+        <div class="admin-card" style="text-align: center;">
+          <button class="admin-reset-btn" onclick="Admin.logout()" style="border-color: var(--error); color: var(--error);">
+            🚪 Log Out
+          </button>
+        </div>
+
+      </div>
+      
+      <div class="admin-panel" style="margin-top: 2rem;">
+        <!-- Orders Dashboard -->
+        <div class="admin-card" style="max-width: 100%;">
+          <h3>📦 Order Receipts Dashboard</h3>
+          <p style="font-size: 0.85rem; color: var(--neutral-500); margin-bottom: var(--space-4);">
+            All customer orders placed on the storefront are tracked here in real-time.
+          </p>
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;" id="admin-orders-table">
+              <thead>
+                <tr style="border-bottom: 2px solid #333; text-align: left;">
+                  <th style="padding: 10px;">Date</th>
+                  <th style="padding: 10px;">Order ID</th>
+                  <th style="padding: 10px;">Customer</th>
+                  <th style="padding: 10px;">Type</th>
+                  <th style="padding: 10px;">Total</th>
+                  <th style="padding: 10px;">Items</th>
+                </tr>
+              </thead>
+              <tbody id="orders-tbody">
+                <tr><td colspan="6" style="padding: 20px; text-align: center; color: var(--neutral-500);">Loading orders...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast notification -->
+    <div class="save-toast" id="save-toast"></div>
+
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
