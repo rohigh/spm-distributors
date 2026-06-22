@@ -426,11 +426,11 @@ const PRODUCTS_DATA = [
       {
         "id": "acp_51",
         "name": "GRANDMA'S FROZEN GRATED COCONUT   ( BUY TWO GET ONE FREE) 400GM",
-        "price": 3.15,
+        "price": 3.19,
         "unit": "nounit",
         "image": "GRANDMA'S FROZEN GRATED COCONUT ( BUY TWO GET ONE FREE) 400GM.png",
         "desc": "",
-        "mrp": 3.15
+        "mrp": 3.19
       },
       {
         "id": "acp_52",
