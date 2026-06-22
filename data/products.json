@@ -29,6 +29,24 @@
         "image": "family box.jpeg",
         "desc": "<div style='display:flex; flex-wrap:wrap; gap:20px;'><div style='flex:1; min-width:200px;'><strong>\ud83e\udd55 Vegetables</strong><ul style='margin-top:8px; padding-left:20px; line-height:1.6;'><li>2kg Standard Loose Potatoes</li><li>Broccoli (~300g)</li><li>Cauliflower (~800g)</li><li>1kg Onions</li><li>1kg Sweet Potatoes</li><li>1kg New Potatoes</li><li>1kg Tomatoes</li><li>Cherry Tomatoes (~500g)</li><li>1 Lettuce</li><li>1 Cucumber</li><li>Mushrooms (~500g)</li><li>2 Leeks</li></ul></div><div style='flex:1; min-width:200px;'><strong>\ud83c\udf4e Fruit</strong><ul style='margin-top:8px; padding-left:20px; line-height:1.6;'><li>1kg Bananas</li><li>1kg Green Apples</li><li>1kg Pears</li></ul><br><strong>\ud83e\udd5a Eggs</strong><ul style='margin-top:8px; padding-left:20px; line-height:1.6;'><li>15 Free Range Eggs</li></ul></div></div>",
         "mrp": 30.0
+      },
+      {
+        "id": "deal_freerange_egg_30",
+        "name": "30 Free Range Eggs",
+        "price": 10.0,
+        "unit": "pack",
+        "image": "free_range_eggs.png",
+        "desc": "",
+        "mrp": 10.0
+      },
+      {
+        "id": "deal_classa_egg_30",
+        "name": "30 Class A Caged Eggs",
+        "price": 7.0,
+        "unit": "pack",
+        "image": "caged_eggs.png",
+        "desc": "",
+        "mrp": 7.0
       }
     ]
   },
@@ -895,15 +913,6 @@
     "icon": "\ud83d\udce6",
     "items": [
       {
-        "id": "deal_freerange_egg_30",
-        "name": "30 Free Range Eggs",
-        "price": 10.0,
-        "unit": "pack",
-        "image": "free_range_eggs.png",
-        "desc": "",
-        "mrp": 10.0
-      },
-      {
         "id": "deal_potato_25kg",
         "name": "Washed Potato 25kg",
         "price": 17.0,
@@ -911,15 +920,6 @@
         "image": "washed_potato_25kg.png",
         "desc": "",
         "mrp": 17.0
-      },
-      {
-        "id": "deal_classa_egg_30",
-        "name": "30 Class A Caged Eggs",
-        "price": 7.0,
-        "unit": "pack",
-        "image": "caged_eggs.png",
-        "desc": "",
-        "mrp": 7.0
       },
       {
         "id": "6a04175584e6de290d48dc06",
