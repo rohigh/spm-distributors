@@ -557,7 +557,7 @@
     "items": [
       {
         "id": "69f3bd1584e6de290d258db9",
-        "name": "Maagi  8 for 2 offer",
+        "name": "Maagi 5 for £2",
         "price": 2,
         "unit": "piece",
         "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/15237f7b0a7fca71_Maagi.jpg?width=300",
@@ -566,7 +566,7 @@
       },
       {
         "id": "69f3bcf184e6de290d258b4d",
-        "name": "Maagi  3 for 1 offer",
+        "name": "Maagi 2 for £1",
         "price": 1,
         "unit": "piece",
         "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/786c92fb91d58242_Maagi.jpg?width=300",
@@ -926,7 +926,7 @@
         "name": "Coriander + Mint",
         "price": 1.89,
         "unit": "nounit",
-        "image": "image.png",
+        "image": "coriander and mint.png",
         "desc": "",
         "mrp": 1.89
       },

@@ -26,11 +26,11 @@ const STORE_CONFIG = {
 
   // Default delivery day availability
   defaultSlots: {
-    Monday: true,
-    Tuesday: true,
-    Wednesday: true,
-    Thursday: true,
-    Friday: true,
+    Monday: false,
+    Tuesday: false,
+    Wednesday: false,
+    Thursday: false,
+    Friday: false,
     Saturday: true,
     Sunday: false
   },
