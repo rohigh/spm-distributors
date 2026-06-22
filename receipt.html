@@ -148,23 +148,34 @@
       // Populate Items
       const tbody = document.getElementById('receipt-items');
       orderData.items.forEach((item, idx) => {
+        const itemTotal = item.totalPrice !== undefined ? item.totalPrice : (item.price * item.qty);
         tbody.innerHTML += `
           <tr>
             <td>${idx + 1}.</td>
             <td>${item.name} (${item.unit || ''})</td>
             <td>${item.qty}</td>
             <td>${formatPrice(item.price)}</td>
-            <td>${formatPrice(item.price * item.qty)}</td>
+            <td>${formatPrice(itemTotal)}</td>
           </tr>
         `;
       });
       
       // Populate Summary
-      document.getElementById('receipt-summary').innerHTML = `
+      let summaryHtml = `
         <div class="summary-row" style="font-weight:bold; color:#333;">
           <span>Subtotal</span>
           <span>${formatPrice(orderData.subtotal)}</span>
-        </div>
+        </div>`;
+      
+      if (orderData.discount && orderData.discount > 0) {
+        summaryHtml += `
+        <div class="summary-row" style="color:#22a660; font-weight:bold;">
+          <span>10% Launch Discount</span>
+          <span>-${formatPrice(orderData.discount)}</span>
+        </div>`;
+      }
+      
+      summaryHtml += `
         <div class="summary-row">
           <span>Delivery charges</span>
           <span>${formatPrice(orderData.deliveryFee)}</span>
@@ -178,6 +189,7 @@
           <span>${formatPrice(orderData.finalTotal)}</span>
         </div>
       `;
+      document.getElementById('receipt-summary').innerHTML = summaryHtml;
     });
   </script>
 </body>

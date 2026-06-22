@@ -336,6 +336,25 @@ const App = (() => {
     if (cartFooter) cartFooter.style.display = 'block';
 
     cartItemsEl.innerHTML = state.items.map(item => {
+      let offerNotice = '';
+      if (item.id === 'acp_51') {
+        const rem = item.qty % 3;
+        if (rem === 2) {
+          offerNotice = `<div class="item-offer-notice" style="color: #22a660; font-size: 0.8rem; margin-top: 4px; font-weight: bold;">🎉 Add 1 more to get 1 FREE!</div>`;
+        } else if (rem === 1) {
+          offerNotice = `<div class="item-offer-notice" style="color: #e67e22; font-size: 0.8rem; margin-top: 4px;">💡 Buy 2 get 1 FREE! Add 2 more.</div>`;
+        } else if (item.qty > 0) {
+          offerNotice = `<div class="item-offer-notice" style="color: #22a660; font-size: 0.8rem; margin-top: 4px; font-weight: bold;">✅ Buy 2 Get 1 Free applied!</div>`;
+        }
+      } else if (item.id === 'acp_52' || item.id === 'acp_53') {
+        const rem = item.qty % 2;
+        if (rem === 1) {
+          offerNotice = `<div class="item-offer-notice" style="color: #22a660; font-size: 0.8rem; margin-top: 4px; font-weight: bold;">🎉 Add 1 more to get 1 FREE!</div>`;
+        } else if (item.qty > 0) {
+          offerNotice = `<div class="item-offer-notice" style="color: #22a660; font-size: 0.8rem; margin-top: 4px; font-weight: bold;">✅ Buy 1 Get 1 Free applied!</div>`;
+        }
+      }
+
       return `
         <div class="cart-item">
           <div class="cart-item-image">
@@ -344,9 +363,10 @@ const App = (() => {
           <div class="cart-item-details">
             <div class="cart-item-name">${item.name}</div>
             <div class="cart-item-meta">${Cart.formatPrice(item.price)} / ${item.unit}</div>
+            ${offerNotice}
           </div>
           <div class="cart-item-right">
-            <div class="cart-item-price">${Cart.formatPrice(item.price * item.qty)}</div>
+            <div class="cart-item-price">${Cart.formatPrice(item.totalPrice)}</div>
             <div class="cart-item-qty">
               <button class="ciq-minus" onclick="App.decrement('${item.id}')">−</button>
               <span>${item.qty}</span>
@@ -360,6 +380,17 @@ const App = (() => {
     // Update Totals
     document.getElementById('cart-subtotal').textContent = Cart.formatPrice(state.subtotal);
     document.getElementById('cart-total').textContent = Cart.formatPrice(state.finalTotal);
+    
+    // Discount row
+    const discountRow = document.getElementById('cart-discount-row');
+    if (discountRow) {
+      if (state.discount > 0) {
+        discountRow.style.display = 'flex';
+        document.getElementById('cart-discount').textContent = `-${Cart.formatPrice(state.discount)}`;
+      } else {
+        discountRow.style.display = 'none';
+      }
+    }
     
     // Tax row
     const taxRow = document.getElementById('cart-tax-row');

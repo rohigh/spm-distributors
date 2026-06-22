@@ -57,7 +57,15 @@ const Cart = (() => {
 
   // Calculations
   function calculateSubtotal() {
-    return state.items.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    return state.items.reduce((sum, item) => {
+      let qtyToPay = item.qty;
+      if (item.id === 'acp_51') {
+        qtyToPay = item.qty - Math.floor(item.qty / 3);
+      } else if (item.id === 'acp_52' || item.id === 'acp_53') {
+        qtyToPay = item.qty - Math.floor(item.qty / 2);
+      }
+      return sum + (item.price * qtyToPay);
+    }, 0);
   }
 
   function calculateTaxes(taxableAmount) {
@@ -89,19 +97,35 @@ const Cart = (() => {
 
   // Get comprehensive state
   function getState() {
-    const items = [...state.items];
+    const items = state.items.map(item => {
+      let qtyToPay = item.qty;
+      if (item.id === 'acp_51') {
+        qtyToPay = item.qty - Math.floor(item.qty / 3);
+      } else if (item.id === 'acp_52' || item.id === 'acp_53') {
+        qtyToPay = item.qty - Math.floor(item.qty / 2);
+      }
+      return {
+        ...item,
+        totalPrice: item.price * qtyToPay,
+        hasOffer: item.id === 'acp_51' || item.id === 'acp_52' || item.id === 'acp_53'
+      };
+    });
     const totalItems = items.reduce((sum, item) => sum + item.qty, 0);
-    const subtotal = calculateSubtotal();
+    const subtotal = items.reduce((sum, item) => sum + item.totalPrice, 0);
     
-    const taxes = calculateTaxes(subtotal);
+    // 10% Launch Discount on subtotal
+    const discount = subtotal * 0.10;
+    
+    const taxes = calculateTaxes(subtotal - discount);
     const deliveryFee = calculateDeliveryFee(subtotal);
     
-    const finalTotal = subtotal + taxes + deliveryFee;
+    const finalTotal = Math.max(0, subtotal - discount + taxes + deliveryFee);
 
     return {
       items,
       totalItems,
       subtotal,
+      discount,
       taxes,
       deliveryFee,
       finalTotal,

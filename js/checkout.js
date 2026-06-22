@@ -62,7 +62,7 @@ const Checkout = (() => {
         ${state.items.map(item => `
           <div class="order-summary-item">
             <span>${item.name} × ${item.qty}</span>
-            <span>${Cart.formatPrice(item.price * item.qty)}</span>
+            <span>${Cart.formatPrice(item.totalPrice)}</span>
           </div>
         `).join('')}
         
@@ -71,6 +71,11 @@ const Checkout = (() => {
             <span>Subtotal</span>
             <span>${Cart.formatPrice(state.subtotal)}</span>
           </div>
+          ${state.discount > 0 ? `
+          <div class="order-summary-item" style="color: #22a660; font-weight: bold;">
+            <span>10% Launch Discount</span>
+            <span>-${Cart.formatPrice(state.discount)}</span>
+          </div>` : ''}
           ${isDelivery ? `
           <div class="order-summary-item" style="color: #666;">
             <span>Delivery Fee</span>
@@ -209,11 +214,12 @@ const Checkout = (() => {
     message += `🏷️ *Service Type:* ${isDelivery ? 'Delivery' : 'Pickup'}\n\n`;
     message += `📦 *Items:*\n`;
     state.items.forEach(item => {
-      message += `• ${item.name} (${item.unit}) × ${item.qty} — ${Cart.formatPrice(item.price * item.qty)}\n`;
+      message += `• ${item.name} (${item.unit}) × ${item.qty} — ${Cart.formatPrice(item.totalPrice)}\n`;
     });
     
     message += `\n🧾 *Order Summary:*\n`;
     message += `Subtotal: ${Cart.formatPrice(state.subtotal)}\n`;
+    if (state.discount > 0) message += `Launch Discount (10%): -${Cart.formatPrice(state.discount)}\n`;
     if (isDelivery) message += `Delivery Fee: ${state.deliveryFee === 0 ? 'Free' : Cart.formatPrice(state.deliveryFee)}\n`;
     if (state.taxes > 0) message += `Taxes: ${Cart.formatPrice(state.taxes)}\n`;
     message += `*Total to Pay: ${Cart.formatPrice(state.finalTotal)}*\n`;
@@ -241,6 +247,7 @@ const Checkout = (() => {
       date: new Date().toLocaleString('en-GB'),
       items: state.items,
       subtotal: state.subtotal,
+      discount: state.discount || 0,
       deliveryFee: state.deliveryFee,
       taxes: state.taxes,
       finalTotal: state.finalTotal,
