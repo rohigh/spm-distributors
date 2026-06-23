@@ -860,51 +860,6 @@ const PRODUCTS_DATA = [
         "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/IMG_2689-Recovered.jpg?v=1670496888",
         "desc": "",
         "mrp": 6.29
-      },
-      {
-        "id": "acp_21",
-        "name": "KITCHEN TREASURES (KTS) CUT MANGO PICKLE 400 GM",
-        "price": 2.59,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/TenderMangoPicklecopy.jpg?v=1657536767",
-        "desc": "",
-        "mrp": 2.59
-      },
-      {
-        "id": "acp_22",
-        "name": "KITCHEN TREASURES (KTS) LIME PICKLE 400 GM",
-        "price": 2.59,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/LemonBottle3D.jpg?v=1657784171",
-        "desc": "",
-        "mrp": 2.59
-      },
-      {
-        "id": "acp_23",
-        "name": "KITCHEN TREASURES (KTS) GOOSEBERRY PICKLE 400 GM",
-        "price": 2.59,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/NellikkaGoosberryPickle.jpg?v=1657783869",
-        "desc": "",
-        "mrp": 2.59
-      },
-      {
-        "id": "acp_24",
-        "name": "KITCHEN TREASURES (KTS) GARLIC PICKLE 400 GM",
-        "price": 3.09,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/image_d539a78f-a692-4c52-b518-7fa93895dddc.jpg?v=1673255571",
-        "desc": "",
-        "mrp": 3.09
-      },
-      {
-        "id": "acp_25",
-        "name": "KITCHEN TREASURES (KTS) PULI INJI PICKLE 400 GM",
-        "price": 2.69,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/PuliInjiPickle.jpg?v=1657536526",
-        "desc": "",
-        "mrp": 2.69
       }
     ]
   },
@@ -929,33 +884,6 @@ const PRODUCTS_DATA = [
         "image": "coriander and mint.png",
         "desc": "",
         "mrp": 1.89
-      },
-      {
-        "id": "69fb2a3e84e6de290dade454",
-        "name": "Double Horse White Puttu Podi 1kg (2)",
-        "price": 5.69,
-        "unit": "kilogram",
-        "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/4395a2c7280dda2a_Double-Horse-White-Puttu-Podi-1kg.jpg?width=300",
-        "desc": "",
-        "mrp": 5.69
-      },
-      {
-        "id": "69f797db84e6de290d74f023",
-        "name": "Prince Kerala Murukku - 2",
-        "price": 2.29,
-        "unit": "piece",
-        "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/8bf3c56736027e3c_Prince-Murukku.jpg?width=300",
-        "desc": "",
-        "mrp": 2.29
-      },
-      {
-        "id": "69f796f184e6de290d74e160",
-        "name": "Kerala Taste Banana Chips - 3",
-        "price": 4.49,
-        "unit": "piece",
-        "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/d75a456419c08ca9_KT-Banana-Chips.jpg?width=300",
-        "desc": "",
-        "mrp": 4.49
       }
     ]
   },
