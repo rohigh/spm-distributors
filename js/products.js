@@ -1432,7 +1432,35 @@ const PRODUCTS_DATA = [
   },
   {
     "category": "New Arrivals",
-    "icon": "\ud83c\udd95",
-    "items": []
+    "icon": "🆕",
+    "items": [
+      {
+        "id": "new_arr_1",
+        "name": "Boost 500g",
+        "price": 6.99,
+        "unit": "nounit",
+        "image": "boost.jfif",
+        "desc": "",
+        "mrp": 6.99
+      },
+      {
+        "id": "new_arr_2",
+        "name": "Yellow plantain each",
+        "price": 0.89,
+        "unit": "nounit",
+        "image": "Yellow plantain each.jfif",
+        "desc": "",
+        "mrp": 0.89
+      },
+      {
+        "id": "new_arr_3",
+        "name": "Green curry mango 500g",
+        "price": 2.9,
+        "unit": "nounit",
+        "image": "Green curry mango.jfif",
+        "desc": "",
+        "mrp": 2.9
+      }
+    ]
   }
 ];
