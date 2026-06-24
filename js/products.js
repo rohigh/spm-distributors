@@ -617,7 +617,7 @@ const PRODUCTS_DATA = [
         "name": "GRANDMA'S PULIYINCHI PICKLE",
         "price": 2.92,
         "unit": "nounit",
-        "image": "Grandma's puliyinchi.png",
+        "image": "Grandma's puliyinchi.jpeg",
         "desc": "200g",
         "mrp": 2.92
       }
