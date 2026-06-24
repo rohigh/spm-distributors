@@ -566,6 +566,60 @@ const PRODUCTS_DATA = [
         "image": "Drumstick leaves packet.jfif",
         "desc": "",
         "mrp": 3.99
+      },
+      {
+        "id": "new_pickle_1",
+        "name": "GRANDMA'S AVAKKAI MANGO PICKLE (BUY ONE GET ONE FREE)",
+        "price": 2.80,
+        "unit": "nounit",
+        "image": "Grandma's avakkai mango.png",
+        "desc": "400g",
+        "mrp": 2.80
+      },
+      {
+        "id": "new_pickle_2",
+        "name": "GRANDMA'S BITTER GOURD PICKLE (BUY ONE GET ONE FREE)",
+        "price": 2.92,
+        "unit": "nounit",
+        "image": "Grandma's bitter gourd.png",
+        "desc": "400g",
+        "mrp": 2.92
+      },
+      {
+        "id": "new_pickle_3",
+        "name": "GRANDMA'S GINGER PICKLE (BUY ONE GET ONE FREE)",
+        "price": 2.80,
+        "unit": "nounit",
+        "image": "Grandma's ginger pickle.png",
+        "desc": "400g",
+        "mrp": 2.80
+      },
+      {
+        "id": "new_pickle_4",
+        "name": "GRANDMA'S GREEN CHILLI PICKLE (BUY ONE GET ONE FREE)",
+        "price": 3.03,
+        "unit": "nounit",
+        "image": "Grandma's green chilli.png",
+        "desc": "400g",
+        "mrp": 3.03
+      },
+      {
+        "id": "new_pickle_5",
+        "name": "GRANDMA'S HOT SWEET LIME PICKLE (BUY ONE GET ONE FREE)",
+        "price": 2.80,
+        "unit": "nounit",
+        "image": "Grandma's hot sweet lime.png",
+        "desc": "400g",
+        "mrp": 2.80
+      },
+      {
+        "id": "new_pickle_6",
+        "name": "GRANDMA'S PULIYINCHI PICKLE",
+        "price": 2.92,
+        "unit": "nounit",
+        "image": "Grandma's puliyinchi.png",
+        "desc": "200g",
+        "mrp": 2.92
       }
     ]
   },
