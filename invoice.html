@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice - #001</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+            background-color: #f9f9f9;
+        }
+        .invoice-box {
+            max-width: 800px;
+            margin: auto;
+            padding: 40px;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+            background-color: #fff;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            margin: 0;
+            color: #22a660;
+            font-size: 36px;
+        }
+        .details-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        .details h4 {
+            margin: 0 0 5px 0;
+            color: #555;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+        .details p {
+            margin: 0;
+            font-size: 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f8f8f8;
+            font-weight: bold;
+        }
+        .total-row td {
+            font-weight: bold;
+            font-size: 18px;
+            border-bottom: none;
+            border-top: 2px solid #333;
+        }
+        .total-amount {
+            color: #22a660;
+        }
+        .payment-info {
+            background-color: #fdfdfd;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+        .payment-info h4 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .payment-info p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        @media print {
+            body {
+                background-color: #fff;
+                padding: 0;
+            }
+            .invoice-box {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body onload="window.print()">
+
+<div class="invoice-box">
+    <div class="header">
+        <h1>INVOICE</h1>
+        <div style="text-align: right;">
+            <strong>Invoice Number:</strong> #001<br>
+            <strong>Date:</strong> July 6, 2026
+        </div>
+    </div>
+
+    <div class="details-container">
+        <div class="details">
+            <h4>From:</h4>
+            <p><strong>Rohigh G</strong></p>
+            <p>rohigh28@gmail.com</p>
+            <p>7708389895</p>
+        </div>
+        <div class="details" style="text-align: right;">
+            <h4>To:</h4>
+            <p><strong>SPM Distributors</strong></p>
+            <p>Gowtham S</p>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th style="text-align: right;">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <strong>Web Development</strong><br>
+                    <span style="font-size: 13px; color: #666;">
+                        • Adding new products and updating the catalog<br>
+                        • Processing and organizing product images<br>
+                        • Deploying updates to the live website
+                    </span>
+                </td>
+                <td style="text-align: right; vertical-align: top;">£500.00</td>
+            </tr>
+            <tr class="total-row">
+                <td style="text-align: right;">Total Due</td>
+                <td style="text-align: right;" class="total-amount">£500.00</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="payment-info">
+        <h4>Payment Details</h4>
+        <p>Please deposit the total amount to the following bank account at your earliest convenience:</p>
+        <p><strong>Bank Name:</strong> State Bank of India</p>
+        <p><strong>Account Name:</strong> Rohigh G</p>
+        <p><strong>Account Number:</strong> 37811254349</p>
+        <p><strong>IFSC Code:</strong> SBIN0000853</p>
+    </div>
+    
+    <p style="text-align: center; margin-top: 40px; font-style: italic; color: #777;">
+        Thank you for your business!
+    </p>
+</div>
+
+</body>
+</html>
