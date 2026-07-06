@@ -55,6 +55,384 @@ const PRODUCTS_DATA = [
     "icon": "\ud83d\udce6",
     "items": [
       {
+        "id": "new_brahmins_asafoetida",
+        "name": "BRAHMINS ASAFOETIDA 50 G",
+        "price": 2.37,
+        "unit": "pack",
+        "image": "img/processed/brahmins_asafoetida_1783346320009.png",
+        "desc": "",
+        "mrp": 2.37
+      },
+      {
+        "id": "new_brahmins_black_gram",
+        "name": "BRAHMINS BLACK GRAM 500 G",
+        "price": 2.38,
+        "unit": "pack",
+        "image": "img/processed/brahmins_black_gram_1783346332878.png",
+        "desc": "",
+        "mrp": 2.38
+      },
+      {
+        "id": "new_brahmins_ginger_garlic_paste",
+        "name": "BRAHMINS GINGER GARLIC PASTE 100 G",
+        "price": 1.25,
+        "unit": "pack",
+        "image": "img/processed/brahmins_ginger_garlic_paste_1783346342848.png",
+        "desc": "",
+        "mrp": 1.25
+      },
+      {
+        "id": "new_brahmins_red_lentils",
+        "name": "BRAHMINS RED LENTILS (MASOOR DAL)500 G",
+        "price": 1.75,
+        "unit": "pack",
+        "image": "img/processed/brahmins_red_lentils_1783346355677.png",
+        "desc": "",
+        "mrp": 1.75
+      },
+      {
+        "id": "new_brahmins_split_chickpeas",
+        "name": "BRAHMINS SPLIT CHICKPEAS 500 G",
+        "price": 1.89,
+        "unit": "pack",
+        "image": "img/processed/brahmins_split_chickpeas_1783346377840.png",
+        "desc": "",
+        "mrp": 1.89
+      },
+      {
+        "id": "new_kt_palakkadan_matta_rice",
+        "name": "KT PALAKKADAN MATTA RICE 10 KG",
+        "price": 19.59,
+        "unit": "pack",
+        "image": "img/processed/kerala_taste_palakkadan_matta_rice_1783346390894.png",
+        "desc": "",
+        "mrp": 19.59
+      },
+      {
+        "id": "new_niru_plain_appalam",
+        "name": "NIRU PLAIN APPALAM (MADRAS PAPPADOM) 100 G",
+        "price": 1.19,
+        "unit": "pack",
+        "image": "img/processed/niru_poppadom_1783346402717.png",
+        "desc": "",
+        "mrp": 1.19
+      },
+      {
+        "id": "new_tata_salt",
+        "name": "TATA SALT 1KG",
+        "price": 1.54,
+        "unit": "pack",
+        "image": "img/processed/tata_salt_1783346414921.png",
+        "desc": "",
+        "mrp": 1.54
+      },
+      {
+        "id": "new_thekkans_chick_peas_white",
+        "name": "THEKKANS CHICK PEAS WHITE 500G",
+        "price": 2.37,
+        "unit": "pack",
+        "image": "img/processed/thekkans_chick_peas_white_1783346435189.png",
+        "desc": "",
+        "mrp": 2.37
+      },
+      {
+        "id": "new_thekkans_chick_peas_brown",
+        "name": "THEKKANS CHICK PEAS BROWN 500 G",
+        "price": 1.75,
+        "unit": "pack",
+        "image": "img/processed/thekkans_chickpeas_brown_1783346446925.png",
+        "desc": "",
+        "mrp": 1.75
+      },
+      {
+        "id": "new_thekkans_coconut_oil",
+        "name": "THEKKANS COCONUT OIL ROASTED 1 LTR",
+        "price": 6.29,
+        "unit": "pack",
+        "image": "img/processed/thekkans_coconut_oil_1783346458700.png",
+        "desc": "",
+        "mrp": 6.29
+      },
+      {
+        "id": "new_thekkans_garcinia_cambogia",
+        "name": "THEKKANS GARCINIA CAMBOGIA (KUDAMPULI) 200G",
+        "price": 3.63,
+        "unit": "pack",
+        "image": "img/processed/thekkans_garcinia_cambogia_1783346471333.png",
+        "desc": "",
+        "mrp": 3.63
+      },
+      {
+        "id": "new_thekkans_idly_rice",
+        "name": "THEKKANS IDLY RICE 1 KG",
+        "price": 2.23,
+        "unit": "pack",
+        "image": "img/processed/thekkans_idly_rice_1783346492184.png",
+        "desc": "",
+        "mrp": 2.23
+      },
+      {
+        "id": "new_thekkans_maida",
+        "name": "THEKKANS MAIDA 1 KG",
+        "price": 1.82,
+        "unit": "pack",
+        "image": "img/processed/thekkans_maida_1783346506781.png",
+        "desc": "",
+        "mrp": 1.82
+      },
+      {
+        "id": "new_thekkans_ragi_whole",
+        "name": "THEKKANS RAGI WHOLE 500G",
+        "price": 1.19,
+        "unit": "pack",
+        "image": "img/processed/thekkans_ragi_whole_1783346516293.png",
+        "desc": "",
+        "mrp": 1.19
+      },
+      {
+        "id": "new_thekkans_ribbon_ada",
+        "name": "THEKKANS RIBBON ADA 200 G",
+        "price": 1.95,
+        "unit": "pack",
+        "image": "img/processed/thekkans_ribbon_ada_1783346527857.png",
+        "desc": "",
+        "mrp": 1.95
+      },
+      {
+        "id": "new_thekkans_toor_dal",
+        "name": "THEKKANS TOOR DAL 500 G",
+        "price": 2.09,
+        "unit": "pack",
+        "image": "img/processed/thekkans_toor_dal_1783346538084.png",
+        "desc": "",
+        "mrp": 2.09
+      },
+      {
+        "id": "new_dh_idli_rava",
+        "name": "DH IDLI RAVA 1 KG",
+        "price": 3.22,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 3.22
+      },
+      {
+        "id": "new_melam_easy_idli_mix",
+        "name": "MELAM EASY IDILI MIX 1 KG",
+        "price": 3.63,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 3.63
+      },
+      {
+        "id": "new_tn_apm_idypm",
+        "name": "TN APM IDYPM PTHIRI R/RFLOUR 1 KG",
+        "price": 3.43,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 3.43
+      },
+      {
+        "id": "new_melam_puttu_podi",
+        "name": "MELAM PUTTU PODI 1KG",
+        "price": 3.21,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 3.21
+      },
+      {
+        "id": "new_melam_chemba_puttu_podi",
+        "name": "MELAM CHEMBA PUTTU PODI 1 KG",
+        "price": 3.21,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 3.21
+      },
+      {
+        "id": "new_dh_roasted_vermicelli",
+        "name": "DH ROASTED VERMICELLI 500 G",
+        "price": 1.82,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 1.82
+      },
+      {
+        "id": "new_tn_all_purpose_white",
+        "name": "TN ALL PURPOSE WHITE R/P 1KG",
+        "price": 2.87,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 2.87
+      },
+      {
+        "id": "new_kt_rasam_powder",
+        "name": "KT RASAM POWDER 200G",
+        "price": 2.17,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 2.17
+      },
+      {
+        "id": "new_kt_chicken_fry_masala",
+        "name": "KT CHICKEN FRY MASALA 200G",
+        "price": 2.65,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 2.65
+      },
+      {
+        "id": "new_kt_egg_roast_masala",
+        "name": "KT EGG ROAST MASALA 200G",
+        "price": 2.59,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 2.59
+      },
+      {
+        "id": "new_kt_sambar_powder",
+        "name": "KT SAMBAR POWDER 200 G",
+        "price": 2.37,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 2.37
+      },
+      {
+        "id": "new_kt_meat_masala",
+        "name": "KT MEAT MASALA 200G",
+        "price": 2.59,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 2.59
+      },
+      {
+        "id": "new_kt_garam_masala",
+        "name": "KT GARAM MASALA 200 G",
+        "price": 2.87,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 2.87
+      },
+      {
+        "id": "new_kt_beef_ularthu_masala",
+        "name": "KT BEEF ULARTHU MASALA 200 G",
+        "price": 2.73,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 2.73
+      },
+      {
+        "id": "new_kt_biriyani_masala",
+        "name": "KT BIRIYANI MASALA 200 G",
+        "price": 3.15,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 3.15
+      },
+      {
+        "id": "new_kt_mutton_masala",
+        "name": "KT MUTTON MASALA 200G",
+        "price": 2.59,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 2.59
+      },
+      {
+        "id": "new_kt_pulinji_pickle",
+        "name": "KT PULINJI PICKLE",
+        "price": 2.59,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 2.59
+      },
+      {
+        "id": "new_kt_cut_mango_pickle",
+        "name": "KT CUT MANGO PICKLE",
+        "price": 2.59,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 2.59
+      },
+      {
+        "id": "new_kt_lime_pickle",
+        "name": "KT LIME PICKLE",
+        "price": 2.59,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 2.59
+      },
+      {
+        "id": "new_kt_hot_sweet_pickle",
+        "name": "KT HOT & SWEET PICKLE",
+        "price": 2.59,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 2.59
+      },
+      {
+        "id": "new_kt_fish_pickle",
+        "name": "KT FISH PICKLE",
+        "price": 3.15,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 3.15
+      },
+      {
+        "id": "new_kt_dates_pickle",
+        "name": "KT DATES PICKLE",
+        "price": 2.59,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 2.59
+      },
+      {
+        "id": "new_kt_gooseberry_pickle",
+        "name": "KT GOOSEBERRY PICKLE",
+        "price": 2.59,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 2.59
+      },
+      {
+        "id": "new_kt_prawn_pickle",
+        "name": "KT PRAWN PICKLE",
+        "price": 3.15,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 3.15
+      },
+      {
+        "id": "new_dh_roasted_ragi_powder",
+        "name": "DH ROASTED RAGI POWDER 1KG",
+        "price": 3.22,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 3.22
+      },
+      {
         "id": "6a038df684e6de290d44c0d8",
         "name": "Everest Paneer",
         "price": 2.29,
@@ -258,6 +636,42 @@ const PRODUCTS_DATA = [
     "category": "Snacks",
     "icon": "\ud83d\udce6",
     "items": [
+      {
+        "id": "new_kt_achappam",
+        "name": "KT ACHAPPAM 150 G",
+        "price": 2.17,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 2.17
+      },
+      {
+        "id": "new_kt_banana_chips",
+        "name": "KT BANANA CHIPS 200 G",
+        "price": 2.51,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 2.51
+      },
+      {
+        "id": "new_kt_roasted_masala_peanut",
+        "name": "KT ROASTED MASALA PEANUT 200 G",
+        "price": 2.38,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 2.38
+      },
+      {
+        "id": "new_kt_spicy_kerala_mixture",
+        "name": "KT SPICY KERALA MIXTURE",
+        "price": 2.51,
+        "unit": "pack",
+        "image": "",
+        "desc": "",
+        "mrp": 2.51
+      },
       {
         "id": "69f3bd1584e6de290d258db9",
         "name": "Maagi 5 for \u00a32",
@@ -1027,501 +1441,6 @@ const PRODUCTS_DATA = [
         "image": "img/Green curry mango.jfif",
         "desc": "",
         "mrp": 2.9
-      },
-      {
-        "id": "new_101",
-        "name": "Viswas sambar masala 200g",
-        "price": 2.51,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 2.51
-      },
-      {
-        "id": "new_102",
-        "name": "Viswas Rasam powder 200g",
-        "price": 2.1,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 2.1
-      },
-      {
-        "id": "new_103",
-        "name": "Viswas Garam masala 100g",
-        "price": 2.65,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 2.65
-      },
-      {
-        "id": "new_104",
-        "name": "Viswas Fish fry masala 100g",
-        "price": 1.95,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 1.95
-      },
-      {
-        "id": "new_105",
-        "name": "Viswas Chicken fry masala 100g",
-        "price": 1.95,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 1.95
-      },
-      {
-        "id": "new_106",
-        "name": "Viswas Briyani masala 100g",
-        "price": 1.95,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 1.95
-      },
-      {
-        "id": "new_107",
-        "name": "Viswas Chana masala 100g",
-        "price": 1.67,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 1.67
-      },
-      {
-        "id": "new_108",
-        "name": "Viswas Coriander powder 400g",
-        "price": 2.8,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 2.8
-      },
-      {
-        "id": "new_109",
-        "name": "Viswas Turmeric powder 400g",
-        "price": 4.46,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 4.46
-      },
-      {
-        "id": "new_110",
-        "name": "Viswas Red chilli powder 400g",
-        "price": 4.2,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 4.2
-      },
-      {
-        "id": "new_111",
-        "name": "Viswas Kashmiri chilli powder 400g",
-        "price": 5.6,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 5.6
-      },
-      {
-        "id": "new_112",
-        "name": "Viswas Fenugreek seed 250g",
-        "price": 1.49,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 1.49
-      },
-      {
-        "id": "new_113",
-        "name": "Viswas Cumin whole 200g",
-        "price": 2.99,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 2.99
-      },
-      {
-        "id": "new_114",
-        "name": "Viswas Garam whole 100g",
-        "price": 2.99,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 2.99
-      },
-      {
-        "id": "new_115",
-        "name": "Viswas Puttu podi white 1kg",
-        "price": 2.09,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 2.09
-      },
-      {
-        "id": "new_116",
-        "name": "Viswas Chembu puttu podi 1kg",
-        "price": 2.09,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 2.09
-      },
-      {
-        "id": "new_117",
-        "name": "Viswas Ragi puttu podi 1kg",
-        "price": 2.79,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 2.79
-      },
-      {
-        "id": "new_118",
-        "name": "Viswas Corn puttu podi 1kg",
-        "price": 2.79,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 2.79
-      },
-      {
-        "id": "new_119",
-        "name": "Viswas Wheat puttu podi 1kg",
-        "price": 2.09,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 2.09
-      },
-      {
-        "id": "new_120",
-        "name": "Viswas Dosa powder 1kg",
-        "price": 2.79,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 2.79
-      },
-      {
-        "id": "new_121",
-        "name": "Viswas Idly powder 1kg",
-        "price": 2.79,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 2.79
-      },
-      {
-        "id": "new_122",
-        "name": "Viswas Easy palappam 1kg",
-        "price": 3.21,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 3.21
-      },
-      {
-        "id": "new_123",
-        "name": "Viswas Appam idiyappam powder 1kg",
-        "price": 2.65,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 2.65
-      },
-      {
-        "id": "new_124",
-        "name": "Viswas Roasted rava 1kg",
-        "price": 3.07,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 3.07
-      },
-      {
-        "id": "new_125",
-        "name": "Viswas pathiri podi 1kg",
-        "price": 2.09,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 2.09
-      },
-      {
-        "id": "new_126",
-        "name": "Viswas Guruvayoor pappadam 150g",
-        "price": 1.57,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 1.57
-      },
-      {
-        "id": "new_127",
-        "name": "Viswas Tamarind 200g",
-        "price": 1.26,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 1.26
-      },
-      {
-        "id": "new_128",
-        "name": "Viswas Asefoetida 50g",
-        "price": 1.99,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 1.99
-      },
-      {
-        "id": "new_129",
-        "name": "Viswas coconut grated buy-1",
-        "price": 3.35,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/GratedCoconutByViswas.jpg?v=1622040288",
-        "desc": "",
-        "mrp": 3.35
-      },
-      {
-        "id": "new_130",
-        "name": "Viswas frozen tapioca sliced",
-        "price": 3.07,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/SlicedTapiocaByViswas_75738718-7366-48e2-a87a-fbf6f8fd80a2.jpg?v=1631871586",
-        "desc": "",
-        "mrp": 3.07
-      },
-      {
-        "id": "new_131",
-        "name": "Viswas tapioca whole",
-        "price": 2.97,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/SlicedTapiocaByViswas.jpg?v=1622040210",
-        "desc": "",
-        "mrp": 2.97
-      },
-      {
-        "id": "new_132",
-        "name": "Viswas Banana chips 300g",
-        "price": 3.21,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 3.21
-      },
-      {
-        "id": "new_133",
-        "name": "Viswas Banana chips spicy",
-        "price": 1.75,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 1.75
-      },
-      {
-        "id": "new_134",
-        "name": "Viswas Tapioca chips lightly salted",
-        "price": 2.1,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 2.1
-      },
-      {
-        "id": "new_135",
-        "name": "Viswas Tapioca chips spicy",
-        "price": 1.57,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0633/7445/9037/files/Viswas_Tapioca_Chips_Round_Spicy_175g.webp?v=1757056029",
-        "desc": "",
-        "mrp": 1.57
-      },
-      {
-        "id": "new_136",
-        "name": "Viswas Roasted peanuts 150g",
-        "price": 1.74,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 1.74
-      },
-      {
-        "id": "new_137",
-        "name": "Viswas Spicy masala peanuts",
-        "price": 1.39,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 1.39
-      },
-      {
-        "id": "new_138",
-        "name": "Viswas Dry Kerala hot mixture 400g",
-        "price": 3.35,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 3.35
-      },
-      {
-        "id": "new_139",
-        "name": "Viswas rice powder -1",
-        "price": 2.79,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 2.79
-      },
-      {
-        "id": "new_140",
-        "name": "Viswas coconut oil 1l 1 case",
-        "price": 8.39,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 8.39
-      },
-      {
-        "id": "new_141",
-        "name": "Viswas Prawns pickle 400g",
-        "price": 4.99,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 4.99
-      },
-      {
-        "id": "new_142",
-        "name": "Viswas Fish pickle 400g",
-        "price": 4.99,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 4.99
-      },
-      {
-        "id": "new_143",
-        "name": "Viswas Puli inji pickle-1",
-        "price": 3.0,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 3.0
-      },
-      {
-        "id": "new_144",
-        "name": "Viswas Rice flakes white -1",
-        "price": 1.68,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 1.68
-      },
-      {
-        "id": "new_145",
-        "name": "Viswas Garlic pickle -1",
-        "price": 3.21,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 3.21
-      },
-      {
-        "id": "new_146",
-        "name": "Viswas Cut mango pickle -1",
-        "price": 2.62,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 2.62
-      },
-      {
-        "id": "new_147",
-        "name": "Viswas Gooseberry pickle -1",
-        "price": 2.65,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 2.65
-      },
-      {
-        "id": "new_148",
-        "name": "Viswas Tender mango pickle -1",
-        "price": 3.5,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 3.5
-      },
-      {
-        "id": "new_149",
-        "name": "Viswas Hot lime pickle -1",
-        "price": 2.62,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 2.62
-      },
-      {
-        "id": "new_150",
-        "name": "Viswas Dates cake -1",
-        "price": 7.0,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 7.0
-      },
-      {
-        "id": "new_151",
-        "name": "Viswas Ooty varkey -1",
-        "price": 3.99,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 3.99
-      },
-      {
-        "id": "new_152",
-        "name": "Viswas Cut mango frozen 400g -1",
-        "price": 2.79,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 2.79
-      },
-      {
-        "id": "new_153",
-        "name": "Viswas Drumstick frozen 400g -1",
-        "price": 2.8,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 2.8
-      },
-      {
-        "id": "new_154",
-        "name": "Viswas MARAYOOR JAGGERY 1kg -1",
-        "price": 3.5,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 3.5
-      },
-      {
-        "id": "new_155",
-        "name": "Viswas Sambar mix frozen -1",
-        "price": 2.79,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/sambarmix.png?v=1623262986",
-        "desc": "",
-        "mrp": 2.79
       }
     ]
   }
