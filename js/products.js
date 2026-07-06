@@ -8,7 +8,7 @@ const PRODUCTS_DATA = [
         "name": "Veg and Fruit Box with 6 Class A Eggs",
         "price": 20.0,
         "unit": "box",
-        "image": "veg box with eggs.jpeg",
+        "image": "img/veg box with eggs.jpeg",
         "desc": "<strong>Includes:</strong><ul style='margin-top:8px; padding-left:20px; line-height:1.6;'><li>6 Class A Eggs</li><li>Bananas</li><li>Blueberries</li><li>Cauliflower</li><li>Melon</li><li>Lettuce</li><li>Loose Potatoes</li><li>Cucumbers</li><li>Green Apples</li><li>Oranges</li><li>Spring Onions</li><li>Tomatoes</li></ul>",
         "mrp": 20.0
       },
@@ -17,7 +17,7 @@ const PRODUCTS_DATA = [
         "name": "Fruit Box",
         "price": 20.0,
         "unit": "box",
-        "image": "fruit box.jpeg",
+        "image": "img/fruit box.jpeg",
         "desc": "<strong>Includes:</strong><ul style='margin-top:8px; padding-left:20px; line-height:1.6;'><li>Bananas</li><li>Blueberries</li><li>Green Pears</li><li>Honeydew Melon</li><li>Oranges</li><li>Pineapple</li><li>Red Gala Apple</li><li>Strawberries</li><li>Cantaloupe</li><li>Plums</li></ul>",
         "mrp": 20.0
       },
@@ -26,7 +26,7 @@ const PRODUCTS_DATA = [
         "name": "Family Box",
         "price": 30.0,
         "unit": "box",
-        "image": "family box.jpeg",
+        "image": "img/family box.jpeg",
         "desc": "<div style='display:flex; flex-wrap:wrap; gap:20px;'><div style='flex:1; min-width:200px;'><strong>\ud83e\udd55 Vegetables</strong><ul style='margin-top:8px; padding-left:20px; line-height:1.6;'><li>2kg Standard Loose Potatoes</li><li>Broccoli (~300g)</li><li>Cauliflower (~800g)</li><li>1kg Onions</li><li>1kg Sweet Potatoes</li><li>1kg New Potatoes</li><li>1kg Tomatoes</li><li>Cherry Tomatoes (~500g)</li><li>1 Lettuce</li><li>1 Cucumber</li><li>Mushrooms (~500g)</li><li>2 Leeks</li></ul></div><div style='flex:1; min-width:200px;'><strong>\ud83c\udf4e Fruit</strong><ul style='margin-top:8px; padding-left:20px; line-height:1.6;'><li>1kg Bananas</li><li>1kg Green Apples</li><li>1kg Pears</li></ul><br><strong>\ud83e\udd5a Eggs</strong><ul style='margin-top:8px; padding-left:20px; line-height:1.6;'><li>15 Free Range Eggs</li></ul></div></div>",
         "mrp": 30.0
       },
@@ -35,7 +35,7 @@ const PRODUCTS_DATA = [
         "name": "30 Free Range Eggs",
         "price": 10.0,
         "unit": "pack",
-        "image": "free_range_eggs.png",
+        "image": "img/free_range_eggs.png",
         "desc": "",
         "mrp": 10.0
       },
@@ -44,7 +44,7 @@ const PRODUCTS_DATA = [
         "name": "30 Class A Caged Eggs",
         "price": 7.0,
         "unit": "pack",
-        "image": "caged_eggs.png",
+        "image": "img/caged_eggs.png",
         "desc": "",
         "mrp": 7.0
       }
@@ -136,326 +136,11 @@ const PRODUCTS_DATA = [
         "mrp": 16
       },
       {
-        "id": "acp_2",
-        "name": "KITCHEN TREASURES (KTS) CHICKEN MASALA 200 GM",
-        "price": 2.69,
-        "unit": "nounit",
-        "image": "KITCHEN TREASURES (KTS) CHICKEN MASALA 200 GM.webp",
-        "desc": "",
-        "mrp": 2.69
-      },
-      {
-        "id": "acp_3",
-        "name": "KITCHEN TREASURES (KTS) MEAT MASALA 200 GM",
-        "price": 2.69,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/MeatMasalanewlogo.jpg?v=1655969347",
-        "desc": "",
-        "mrp": 2.69
-      },
-      {
-        "id": "acp_4",
-        "name": "KITCHEN TREASURES (KTS) FISH MASALA 200 GM",
-        "price": 2.69,
-        "unit": "nounit",
-        "image": "KITCHEN TREASURES (KTS) FISH MASALA 200 GM.png",
-        "desc": "",
-        "mrp": 2.69
-      },
-      {
-        "id": "acp_5",
-        "name": "KITCHEN TREASURES (KTS) SAMBAR POWDER 200 GM",
-        "price": 2.69,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/KT-SambarPowder-200g-Fn.jpg?v=1655969720",
-        "desc": "",
-        "mrp": 2.69
-      },
-      {
-        "id": "acp_6",
-        "name": "KITCHEN TREASURES (KTS) RASAM POWDER 200 GM",
-        "price": 2.69,
-        "unit": "nounit",
-        "image": "KITCHEN TREASURES (KTS) RASAM POWDER 200 GM.png",
-        "desc": "",
-        "mrp": 2.69
-      },
-      {
-        "id": "acp_7",
-        "name": "KITCHEN TREASURES (KTS) GARAM MASALA 100 GM",
-        "price": 2.49,
-        "unit": "nounit",
-        "image": "KITCHEN TREASURES (KTS) GARAM MASALA 100 GM.png",
-        "desc": "",
-        "mrp": 2.49
-      },
-      {
-        "id": "acp_8",
-        "name": "KITCHEN TREASURES (KTS) FISH FRY MASALA 100 GM",
-        "price": 1.99,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/FishfryMasalaanewlogoncolorchangecurved.jpg?v=1655970363",
-        "desc": "",
-        "mrp": 1.99
-      },
-      {
-        "id": "acp_9",
-        "name": "KITCHEN TREASURES (KTS) CHICKEN FRY MASALA 100 GM",
-        "price": 1.99,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/100gChickenFryFINALCURVEDfopnaddrscorctionscmykconversion.jpg?v=1655970245",
-        "desc": "",
-        "mrp": 1.99
-      },
-      {
-        "id": "acp_10",
-        "name": "KITCHEN TREASURES (KTS) BIRIYANI MASALA 100 GM",
-        "price": 1.99,
-        "unit": "nounit",
-        "image": "KITCHEN TREASURES (KTS) BIRIYANI MASALA 100 GM.png",
-        "desc": "",
-        "mrp": 1.99
-      },
-      {
-        "id": "acp_11",
-        "name": "KITCHEN TREASURES (KTS) CHANA MASALA 100 GM",
-        "price": 1.99,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 1.99
-      },
-      {
-        "id": "acp_12",
-        "name": "KITCHEN TREASURES (KTS) CORIANDER POWDER 400 GM",
-        "price": 3.29,
-        "unit": "nounit",
-        "image": "KITCHEN TREASURES (KTS) CORIANDER POWDER 400 GM.png",
-        "desc": "",
-        "mrp": 3.29
-      },
-      {
-        "id": "acp_13",
-        "name": "KITCHEN TREASURES (KTS) TURMERIC POWDER 400 GM",
-        "price": 4.09,
-        "unit": "nounit",
-        "image": "KITCHEN TREASURES (KTS) TURMERIC POWDER 400 GM.png",
-        "desc": "",
-        "mrp": 4.09
-      },
-      {
-        "id": "acp_14",
-        "name": "KITCHEN TREASURES (KTS) RED CHILLI POWDER 400 GM",
-        "price": 5.29,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/files/97B5DD3A-863E-4D32-8E1A-665B90F26CDE.jpg?v=1695581464",
-        "desc": "",
-        "mrp": 5.29
-      },
-      {
-        "id": "acp_15",
-        "name": "KITCHEN TREASURES (KTS) KASHMIRI CHILLI POWDER 400 GM",
-        "price": 6.79,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/kashmirichilli1kg_f69e2815-ef7e-4e94-aed2-961e7f5c6b01.jpg?v=1656005420",
-        "desc": "",
-        "mrp": 6.79
-      },
-      {
-        "id": "acp_16",
-        "name": "KITCHEN TREASURES (KTS) FENNUGREEK SEED 250 GM",
-        "price": 1.89,
-        "unit": "nounit",
-        "image": "KITCHEN TREASURES (KTS) FENNUGREEK SEED 250 GM.png",
-        "desc": "",
-        "mrp": 1.89
-      },
-      {
-        "id": "acp_17",
-        "name": "KITCHEN TREASURES (KTS) CUMIN WHOLE 200 GM",
-        "price": 3.29,
-        "unit": "nounit",
-        "image": "KITCHEN TREASURES (KTS) CUMIN WHOLE 200 GM.jpg",
-        "desc": "",
-        "mrp": 3.29
-      },
-      {
-        "id": "acp_18",
-        "name": "KITCHEN TREASURES (KTS) GARAM WHOLE 100 GM",
-        "price": 3.29,
-        "unit": "nounit",
-        "image": "KITCHEN TREASURES (KTS) GARAM WHOLE 100 GM.jpg",
-        "desc": "",
-        "mrp": 3.29
-      },
-      {
-        "id": "acp_26",
-        "name": "KITCHEN TREASURES (KTS) PUTTU PODI WHITE 1 KG",
-        "price": 2.79,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/PuttuPodi.jpg?v=1655972485",
-        "desc": "",
-        "mrp": 2.79
-      },
-      {
-        "id": "acp_27",
-        "name": "KITCHEN TREASURES (KTS) CHEMBA PUTTU PODI 1 KG",
-        "price": 3.29,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/chembaputtupodi.jpg?v=1657534933",
-        "desc": "",
-        "mrp": 3.29
-      },
-      {
-        "id": "acp_28",
-        "name": "KITCHEN TREASURES (KTS) RAGI PUTTU PODI 1 KG",
-        "price": 3.29,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/RagiPuttuPodiPack.jpg?v=1655971682",
-        "desc": "",
-        "mrp": 3.29
-      },
-      {
-        "id": "acp_29",
-        "name": "KITCHEN TREASURES (KTS) CORN PUTTU PODI 1 KG",
-        "price": 3.29,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/CornPuttuPodiPack.jpg?v=1655971550",
-        "desc": "",
-        "mrp": 3.29
-      },
-      {
-        "id": "acp_30",
-        "name": "KITCHEN TREASURES (KTS) WHEAT PUTTU PODI 1 KG",
-        "price": 3.49,
-        "unit": "nounit",
-        "image": "KITCHEN TREASURES (KTS) WHEAT PUTTU PODI 1 KG.avif",
-        "desc": "",
-        "mrp": 3.49
-      },
-      {
-        "id": "acp_31",
-        "name": "KITCHEN TREASURES (KTS) DOSA POWDER 1 KG",
-        "price": 3.49,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/IMG_2693.jpg?v=1670400128",
-        "desc": "",
-        "mrp": 3.49
-      },
-      {
-        "id": "acp_32",
-        "name": "KITCHEN TREASURES (KTS) IDLY POWDER 1 KG",
-        "price": 3.49,
-        "unit": "nounit",
-        "image": "KITCHEN TREASURES (KTS) IDLY POWDER 1 KG.webp",
-        "desc": "",
-        "mrp": 3.49
-      },
-      {
-        "id": "acp_33",
-        "name": "KITCHEN TREASURES (KTS) EASY PALAPPAM 1 KG",
-        "price": 3.19,
-        "unit": "nounit",
-        "image": "KITCHEN TREASURES (KTS) EASY PALAPPAM 1 KG.webp",
-        "desc": "",
-        "mrp": 3.19
-      },
-      {
-        "id": "acp_34",
-        "name": "KITCHEN TREASURES (KTS) APPAM IDIYAPPAM POWDER 1 KG",
-        "price": 2.79,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/AppamIdiyappam_1.jpg?v=1655971390",
-        "desc": "",
-        "mrp": 2.79
-      },
-      {
-        "id": "acp_35",
-        "name": "KITCHEN TREASURES (KTS) ROASTED RAVA 1 KG",
-        "price": 3.19,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/files/RoastedUpmaRava_400x_58dc6c86-a52b-4346-96ad-cc445241913c.jpg?v=1753082003",
-        "desc": "",
-        "mrp": 3.19
-      },
-      {
-        "id": "acp_36",
-        "name": "KITCHEN TREASURES (KTS) MALABAR PATHIRI PODI 1 KG",
-        "price": 2.79,
-        "unit": "nounit",
-        "image": "KITCHEN TREASURES (KTS) MALABAR PATHIRI PODI 1 KG.jpg",
-        "desc": "",
-        "mrp": 2.79
-      },
-      {
-        "id": "acp_38",
-        "name": "KITCHEN TREASURES (KTS) GURUVAYOOR PAPPADAM 150 GM",
-        "price": 1.69,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/files/CC614C23-9720-41E3-B053-2A101A6F83E2.jpg?v=1699996539",
-        "desc": "",
-        "mrp": 1.69
-      },
-      {
-        "id": "acp_39",
-        "name": "KITCHEN TREASURES (KTS) TAMARIND 200 GM",
-        "price": 1.49,
-        "unit": "nounit",
-        "image": "KITCHEN TREASURES (KTS) TAMARIND 200 GM.jpg",
-        "desc": "",
-        "mrp": 1.49
-      },
-      {
-        "id": "acp_40",
-        "name": "KITCHEN TREASURES (KTS) ASEFOETIDA 50 GM",
-        "price": 2.09,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/files/ktasf.jpg?v=1769793300",
-        "desc": "",
-        "mrp": 2.09
-      },
-      {
-        "id": "acp_50",
-        "name": "JACME DRY (JK) NADAN KAAPPI PODI 200GM",
-        "price": 4.69,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 4.69
-      },
-      {
-        "id": "acp_51",
-        "name": "GRANDMA'S FROZEN GRATED COCONUT   ( BUY TWO GET ONE FREE) 400GM",
-        "price": 3.19,
-        "unit": "nounit",
-        "image": "GRANDMA'S FROZEN GRATED COCONUT ( BUY TWO GET ONE FREE) 400GM.png",
-        "desc": "",
-        "mrp": 3.19
-      },
-      {
-        "id": "acp_52",
-        "name": "GRANDMA'S FROZEN TAPIOCA SLICED      (BUY ONE GET ONE FREE) 908GM",
-        "price": 2.79,
-        "unit": "nounit",
-        "image": "GRANDMA'S FROZEN TAPIOCA SLICED (BUY ONE GET ONE FREE) 908GM.webp",
-        "desc": "",
-        "mrp": 2.79
-      },
-      {
-        "id": "acp_53",
-        "name": "GRANDMA'S FROZEN TAPIOCA WHOLE     (BUY ONE GET ONE FREE) 908GM",
-        "price": 2.79,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 2.79
-      },
-      {
         "id": "new_6",
         "name": "TRS Chanadall 2kg",
         "price": 5.49,
         "unit": "nounit",
-        "image": "TRS Chanadall 2kg.webp",
+        "image": "img/TRS Chanadall 2kg.webp",
         "desc": "",
         "mrp": 5.49
       },
@@ -464,7 +149,7 @@ const PRODUCTS_DATA = [
         "name": "TRS Red Lentills 2kg",
         "price": 3.99,
         "unit": "nounit",
-        "image": "TRS Red Lentills 2kg.webp",
+        "image": "img/TRS Red Lentills 2kg.webp",
         "desc": "",
         "mrp": 3.99
       },
@@ -473,7 +158,7 @@ const PRODUCTS_DATA = [
         "name": "TRS ToorDall Plain 2kg",
         "price": 5.99,
         "unit": "nounit",
-        "image": "TRS ToorDall Plain 2kg.jfif",
+        "image": "img/TRS ToorDall Plain 2kg.jfif",
         "desc": "",
         "mrp": 5.99
       },
@@ -482,7 +167,7 @@ const PRODUCTS_DATA = [
         "name": "TRS Kashmiri Chilli Whole 150g",
         "price": 2.49,
         "unit": "nounit",
-        "image": "TRS Kashmiri Chilli Whole 150g.jfif",
+        "image": "img/TRS Kashmiri Chilli Whole 150g.jfif",
         "desc": "",
         "mrp": 2.49
       },
@@ -491,7 +176,7 @@ const PRODUCTS_DATA = [
         "name": "TRS Cardomom Green 750g",
         "price": 35.49,
         "unit": "nounit",
-        "image": "TRS Cardomom Green 750g.jfif",
+        "image": "img/TRS Cardomom Green 750g.jfif",
         "desc": "",
         "mrp": 35.49
       },
@@ -500,7 +185,7 @@ const PRODUCTS_DATA = [
         "name": "TRS Chilli Powder 1kg",
         "price": 6.69,
         "unit": "nounit",
-        "image": "TRS Chilli Powder 1kg.jfif",
+        "image": "img/TRS Chilli Powder 1kg.jfif",
         "desc": "",
         "mrp": 6.69
       },
@@ -509,7 +194,7 @@ const PRODUCTS_DATA = [
         "name": "TRS Garam Masala 1kg",
         "price": 7.99,
         "unit": "nounit",
-        "image": "TRS Garam Masala 1kg.jfif",
+        "image": "img/TRS Garam Masala 1kg.jfif",
         "desc": "",
         "mrp": 7.99
       },
@@ -518,7 +203,7 @@ const PRODUCTS_DATA = [
         "name": "TRS Turmeric Powder 1kg",
         "price": 4.99,
         "unit": "nounit",
-        "image": "TRS Turmeric Powder 1kg.jfif",
+        "image": "img/TRS Turmeric Powder 1kg.jfif",
         "desc": "",
         "mrp": 4.99
       },
@@ -527,7 +212,7 @@ const PRODUCTS_DATA = [
         "name": "TRS Fennel seeds 1kg",
         "price": 6.99,
         "unit": "nounit",
-        "image": "TRS Fennel seeds 1kg.jfif",
+        "image": "img/TRS Fennel seeds 1kg.jfif",
         "desc": "",
         "mrp": 6.99
       },
@@ -536,7 +221,7 @@ const PRODUCTS_DATA = [
         "name": "Heera Tamarind Sauce 1Litre",
         "price": 3.99,
         "unit": "nounit",
-        "image": "Heera Tamarid Sause 1Litre.jfif",
+        "image": "img/Heera Tamarid Sause 1Litre.jfif",
         "desc": "",
         "mrp": 3.99
       },
@@ -545,7 +230,7 @@ const PRODUCTS_DATA = [
         "name": "suvai Dosa batter 1kg packet",
         "price": 2.99,
         "unit": "nounit",
-        "image": "suvai Dosa batter 1kg packet.jfif",
+        "image": "img/suvai Dosa batter 1kg packet.jfif",
         "desc": "",
         "mrp": 2.99
       },
@@ -554,7 +239,7 @@ const PRODUCTS_DATA = [
         "name": "Suvai Appam batter 1kg packet",
         "price": 2.99,
         "unit": "nounit",
-        "image": "Suvai Appam batter 1kg packet.jfif",
+        "image": "img/Suvai Appam batter 1kg packet.jfif",
         "desc": "",
         "mrp": 2.99
       },
@@ -563,63 +248,9 @@ const PRODUCTS_DATA = [
         "name": "Drumstick leaves packet",
         "price": 3.99,
         "unit": "nounit",
-        "image": "Drumstick leaves packet.jfif",
+        "image": "img/Drumstick leaves packet.jfif",
         "desc": "",
         "mrp": 3.99
-      },
-      {
-        "id": "new_pickle_1",
-        "name": "GRANDMA'S AVAKKAI MANGO PICKLE (BUY ONE GET ONE FREE)",
-        "price": 2.80,
-        "unit": "nounit",
-        "image": "Grandma's avakkai mango.png",
-        "desc": "400g",
-        "mrp": 2.80
-      },
-      {
-        "id": "new_pickle_2",
-        "name": "GRANDMA'S BITTER GOURD PICKLE (BUY ONE GET ONE FREE)",
-        "price": 2.92,
-        "unit": "nounit",
-        "image": "Grandma's bitter gourd.png",
-        "desc": "400g",
-        "mrp": 2.92
-      },
-      {
-        "id": "new_pickle_3",
-        "name": "GRANDMA'S GINGER PICKLE (BUY ONE GET ONE FREE)",
-        "price": 2.80,
-        "unit": "nounit",
-        "image": "Grandma's ginger pickle.png",
-        "desc": "400g",
-        "mrp": 2.80
-      },
-      {
-        "id": "new_pickle_4",
-        "name": "GRANDMA'S GREEN CHILLI PICKLE (BUY ONE GET ONE FREE)",
-        "price": 3.03,
-        "unit": "nounit",
-        "image": "Grandma's green chilli.png",
-        "desc": "400g",
-        "mrp": 3.03
-      },
-      {
-        "id": "new_pickle_5",
-        "name": "GRANDMA'S HOT SWEET LIME PICKLE (BUY ONE GET ONE FREE)",
-        "price": 2.80,
-        "unit": "nounit",
-        "image": "Grandma's hot sweet lime.png",
-        "desc": "400g",
-        "mrp": 2.80
-      },
-      {
-        "id": "new_pickle_6",
-        "name": "GRANDMA'S PULIYINCHI PICKLE",
-        "price": 2.92,
-        "unit": "nounit",
-        "image": "Grandma's puliyinchi.jpeg",
-        "desc": "200g",
-        "mrp": 2.92
       }
     ]
   },
@@ -629,7 +260,7 @@ const PRODUCTS_DATA = [
     "items": [
       {
         "id": "69f3bd1584e6de290d258db9",
-        "name": "Maagi 5 for £2",
+        "name": "Maagi 5 for \u00a32",
         "price": 2,
         "unit": "piece",
         "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/15237f7b0a7fca71_Maagi.jpg?width=300",
@@ -638,7 +269,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "69f3bcf184e6de290d258b4d",
-        "name": "Maagi 2 for £1",
+        "name": "Maagi 2 for \u00a31",
         "price": 1,
         "unit": "piece",
         "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/786c92fb91d58242_Maagi.jpg?width=300",
@@ -646,74 +277,11 @@ const PRODUCTS_DATA = [
         "mrp": 1
       },
       {
-        "id": "acp_41",
-        "name": "KITCHEN TREASURES (KTS) BANANA CHIPS (FRESH COCONUT OIL) 300 GM",
-        "price": 3.19,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 3.19
-      },
-      {
-        "id": "acp_42",
-        "name": "KITCHEN TREASURES (KTS) BANANA CHIPS (CHILLI BLAST) 170 GM",
-        "price": 2.09,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 2.09
-      },
-      {
-        "id": "acp_43",
-        "name": "KITCHEN TREASURES (KTS) TAPIOCA CHIPS (LIGHTLY SALTED) 150 GM",
-        "price": 1.89,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 1.89
-      },
-      {
-        "id": "acp_44",
-        "name": "KITCHEN TREASURES (KTS) TAPIOCA CHIPS (CHILLI BLAST) 150 GM",
-        "price": 1.89,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 1.89
-      },
-      {
-        "id": "acp_45",
-        "name": "KITCHEN TREASURES (KTS) ROASTED PEANUT 150 GM",
-        "price": 1.89,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 1.89
-      },
-      {
-        "id": "acp_46",
-        "name": "KITCHEN TREASURES (KTS) SPICY MASALA PEANUT 150 GM",
-        "price": 1.89,
-        "unit": "nounit",
-        "image": "",
-        "desc": "",
-        "mrp": 1.89
-      },
-      {
-        "id": "acp_48",
-        "name": "JACME DRY (JK) KERALA HOT MIXTURE 400 GM",
-        "price": 2.79,
-        "unit": "nounit",
-        "image": "JACME DRY (JK) KERALA HOT MIXTURE 400 GM.jpg",
-        "desc": "",
-        "mrp": 2.79
-      },
-      {
         "id": "new_9",
         "name": "TRS Cashew Kernels 750g",
         "price": 8.99,
         "unit": "nounit",
-        "image": "TRS Cashew Kernels 750g.jfif",
+        "image": "img/TRS Cashew Kernels 750g.jfif",
         "desc": "",
         "mrp": 8.99
       },
@@ -722,7 +290,7 @@ const PRODUCTS_DATA = [
         "name": "TRS Cashew Broken 750g",
         "price": 6.99,
         "unit": "nounit",
-        "image": "TRS Cashew Broken 750g.jfif",
+        "image": "img/TRS Cashew Broken 750g.jfif",
         "desc": "",
         "mrp": 6.99
       },
@@ -731,7 +299,7 @@ const PRODUCTS_DATA = [
         "name": "TRS Papads Madras plain 200",
         "price": 1.99,
         "unit": "nounit",
-        "image": "TRS Papads Madras plain 200.jfif",
+        "image": "img/TRS Papads Madras plain 200.jfif",
         "desc": "",
         "mrp": 1.99
       }
@@ -746,7 +314,7 @@ const PRODUCTS_DATA = [
         "name": "Laila Basmati Rice 10Kg",
         "price": 16.99,
         "unit": "kilogram",
-        "image": "image.png",
+        "image": "img/image.png",
         "desc": "",
         "mrp": 19.0
       },
@@ -823,38 +391,11 @@ const PRODUCTS_DATA = [
         "mrp": 9.99
       },
       {
-        "id": "acp_0",
-        "name": "KITCHEN TREASURES (KTS) PALAKKADAN MATTA RICE 10 KG",
-        "price": 12.59,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/image_eee641fd-65b4-402f-a1c5-76a9c22adb24.jpg?v=1657303973",
-        "desc": "",
-        "mrp": 12.59
-      },
-      {
-        "id": "acp_1",
-        "name": "KITCHEN TREASURES (KTS) JAYA RICE 10 KG",
-        "price": 18.19,
-        "unit": "nounit",
-        "image": "KITCHEN TREASURES (KTS) JAYA RICE 10 KG.png",
-        "desc": "",
-        "mrp": 18.19
-      },
-      {
-        "id": "acp_37",
-        "name": "KITCHEN TREASURES (KTS) RICE POWDER 1 KG",
-        "price": 2.79,
-        "unit": "nounit",
-        "image": "KITCHEN TREASURES (KTS) RICE POWDER 1 KG.png",
-        "desc": "",
-        "mrp": 2.79
-      },
-      {
         "id": "acp_47",
         "name": "NILA (NL) PALAKKADAN MATTA RICE 10 KG",
         "price": 12.59,
         "unit": "nounit",
-        "image": "NILA (NL) PALAKKADAN MATTA RICE 10 KG.webp",
+        "image": "img/NILA (NL) PALAKKADAN MATTA RICE 10 KG.webp",
         "desc": "",
         "mrp": 12.59
       }
@@ -881,41 +422,13 @@ const PRODUCTS_DATA = [
         "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/4a74cb09cf5897ed_Filippo-Berio-Extra-Virgin-Olive-Oil-500ml.jpg?width=300",
         "desc": "",
         "mrp": 5.99
-      },
-      {
-        "id": "acp_49",
-        "name": "JACME DRY (JK) COCONUT OIL 1 LTR",
-        "price": 8.49,
-        "unit": "nounit",
-        "image": "JACME DRY (JK) COCONUT OIL 1 LTR.webp",
-        "desc": "",
-        "mrp": 8.49
       }
     ]
   },
   {
     "category": "Pickles",
     "icon": "\ud83d\udce6",
-    "items": [
-      {
-        "id": "acp_19",
-        "name": "KITCHEN TREASURES (KTS) PRAWNS PICKLE 400 GM",
-        "price": 6.69,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/image_3b7b316f-385f-4b3d-a2c1-95818ee7f96a.jpg?v=1680643373",
-        "desc": "",
-        "mrp": 6.69
-      },
-      {
-        "id": "acp_20",
-        "name": "KITCHEN TREASURES (KTS) FISH PICKLE 400 GM",
-        "price": 6.29,
-        "unit": "nounit",
-        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/IMG_2689-Recovered.jpg?v=1670496888",
-        "desc": "",
-        "mrp": 6.29
-      }
-    ]
+    "items": []
   },
   {
     "category": "Special Deals",
@@ -926,7 +439,7 @@ const PRODUCTS_DATA = [
         "name": "Washed Potato 25kg",
         "price": 17.0,
         "unit": "pack",
-        "image": "washed_potato_25kg.png",
+        "image": "img/washed_potato_25kg.png",
         "desc": "",
         "mrp": 17.0
       },
@@ -935,7 +448,7 @@ const PRODUCTS_DATA = [
         "name": "Coriander + Mint",
         "price": 1.89,
         "unit": "nounit",
-        "image": "coriander and mint.png",
+        "image": "img/coriander and mint.png",
         "desc": "",
         "mrp": 1.89
       }
@@ -1139,7 +652,7 @@ const PRODUCTS_DATA = [
         "name": "Garlic (400g)",
         "price": 2.89,
         "unit": "nounit",
-        "image": "garlic.jpg",
+        "image": "img/garlic.jpg",
         "desc": "",
         "mrp": 2.89
       },
@@ -1148,7 +661,7 @@ const PRODUCTS_DATA = [
         "name": "Ginger (500g)",
         "price": 1.99,
         "unit": "nounit",
-        "image": "ginger.jpg",
+        "image": "img/ginger.jpg",
         "desc": "",
         "mrp": 1.99
       },
@@ -1175,7 +688,7 @@ const PRODUCTS_DATA = [
         "name": "Red Onion 5kg",
         "price": 3.99,
         "unit": "nounit",
-        "image": "red onion.jfif",
+        "image": "img/red onion.jfif",
         "desc": "",
         "mrp": 3.99
       },
@@ -1184,7 +697,7 @@ const PRODUCTS_DATA = [
         "name": "Ponnagani keerai bunch",
         "price": 3.99,
         "unit": "nounit",
-        "image": "Ponnagani keerai bunch.jfif",
+        "image": "img/Ponnagani keerai bunch.jfif",
         "desc": "",
         "mrp": 3.99
       },
@@ -1193,7 +706,7 @@ const PRODUCTS_DATA = [
         "name": "Vallari keerai bunch",
         "price": 3.99,
         "unit": "nounit",
-        "image": "Vallari keerai bunch.jfif",
+        "image": "img/Vallari keerai bunch.jfif",
         "desc": "",
         "mrp": 3.99
       },
@@ -1202,7 +715,7 @@ const PRODUCTS_DATA = [
         "name": "Red spinach packet",
         "price": 3.99,
         "unit": "nounit",
-        "image": "Red spinach packet.jfif",
+        "image": "img/Red spinach packet.jfif",
         "desc": "",
         "mrp": 3.99
       },
@@ -1211,7 +724,7 @@ const PRODUCTS_DATA = [
         "name": "Baby spinach packet",
         "price": 1.49,
         "unit": "nounit",
-        "image": "Baby spinach packet.jfif",
+        "image": "img/Baby spinach packet.jfif",
         "desc": "",
         "mrp": 1.49
       },
@@ -1220,7 +733,7 @@ const PRODUCTS_DATA = [
         "name": "Carrots 500g",
         "price": 0.69,
         "unit": "nounit",
-        "image": "Carrots 500g.jfif",
+        "image": "img/Carrots 500g.jfif",
         "desc": "",
         "mrp": 0.69
       },
@@ -1229,7 +742,7 @@ const PRODUCTS_DATA = [
         "name": "Baby leaf each",
         "price": 1.49,
         "unit": "nounit",
-        "image": "Baby leaf each.jfif",
+        "image": "img/Baby leaf each.jfif",
         "desc": "",
         "mrp": 1.49
       },
@@ -1238,7 +751,7 @@ const PRODUCTS_DATA = [
         "name": "Cucumber each",
         "price": 0.79,
         "unit": "nounit",
-        "image": "Cucumber each.jfif",
+        "image": "img/Cucumber each.jfif",
         "desc": "",
         "mrp": 0.79
       },
@@ -1247,7 +760,7 @@ const PRODUCTS_DATA = [
         "name": "White cabbage each",
         "price": 1.29,
         "unit": "nounit",
-        "image": "White cabbage each.jfif",
+        "image": "img/White cabbage each.jfif",
         "desc": "",
         "mrp": 1.29
       },
@@ -1256,7 +769,7 @@ const PRODUCTS_DATA = [
         "name": "Red cabbage each",
         "price": 1.29,
         "unit": "nounit",
-        "image": "Red cabbage each.jfif",
+        "image": "img/Red cabbage each.jfif",
         "desc": "",
         "mrp": 1.29
       },
@@ -1265,7 +778,7 @@ const PRODUCTS_DATA = [
         "name": "Cauliflower each",
         "price": 1.79,
         "unit": "nounit",
-        "image": "Cauliflower each.jfif",
+        "image": "img/Cauliflower each.jfif",
         "desc": "",
         "mrp": 1.79
       },
@@ -1274,7 +787,7 @@ const PRODUCTS_DATA = [
         "name": "Savoy cabbage each",
         "price": 1.69,
         "unit": "nounit",
-        "image": "Savoy cabbage each.jfif",
+        "image": "img/Savoy cabbage each.jfif",
         "desc": "",
         "mrp": 1.69
       },
@@ -1283,7 +796,7 @@ const PRODUCTS_DATA = [
         "name": "Washed potato 2kg",
         "price": 2.0,
         "unit": "nounit",
-        "image": "Washed potato 2kg.jfif",
+        "image": "img/Washed potato 2kg.jfif",
         "desc": "",
         "mrp": 2.0
       },
@@ -1292,7 +805,7 @@ const PRODUCTS_DATA = [
         "name": "Parsnips kg",
         "price": 2.99,
         "unit": "nounit",
-        "image": "Parsnips kg.jfif",
+        "image": "img/Parsnips kg.jfif",
         "desc": "",
         "mrp": 2.99
       },
@@ -1301,7 +814,7 @@ const PRODUCTS_DATA = [
         "name": "Swede",
         "price": 1.1,
         "unit": "nounit",
-        "image": "Swede.jfif",
+        "image": "img/Swede.jfif",
         "desc": "",
         "mrp": 1.1
       },
@@ -1310,7 +823,7 @@ const PRODUCTS_DATA = [
         "name": "Eddoes 500g",
         "price": 2.99,
         "unit": "nounit",
-        "image": "Eddoes 500g.jfif",
+        "image": "img/Eddoes 500g.jfif",
         "desc": "",
         "mrp": 2.99
       },
@@ -1319,7 +832,7 @@ const PRODUCTS_DATA = [
         "name": "Aubergine each",
         "price": 0.99,
         "unit": "nounit",
-        "image": "Aubergine each.jfif",
+        "image": "img/Aubergine each.jfif",
         "desc": "",
         "mrp": 0.99
       },
@@ -1328,7 +841,7 @@ const PRODUCTS_DATA = [
         "name": "Peeled garlic kg",
         "price": 4.99,
         "unit": "nounit",
-        "image": "Peeled garlic kg.jfif",
+        "image": "img/Peeled garlic kg.jfif",
         "desc": "",
         "mrp": 4.99
       }
@@ -1370,7 +883,7 @@ const PRODUCTS_DATA = [
         "name": "Mango kesar 6s",
         "price": 11.99,
         "unit": "pack",
-        "image": "kesar.jpeg",
+        "image": "img/kesar.jpeg",
         "desc": "",
         "mrp": 11.99
       },
@@ -1379,7 +892,7 @@ const PRODUCTS_DATA = [
         "name": "Alphonso Mango 6s",
         "price": 11.99,
         "unit": "pack",
-        "image": "alphonso.jpeg",
+        "image": "img/alphonso.jpeg",
         "desc": "",
         "mrp": 11.99
       },
@@ -1388,7 +901,7 @@ const PRODUCTS_DATA = [
         "name": "Dominican mango",
         "price": 10.99,
         "unit": "pack",
-        "image": "dominican.jpeg",
+        "image": "img/dominican.jpeg",
         "desc": "",
         "mrp": 10.99
       },
@@ -1397,7 +910,7 @@ const PRODUCTS_DATA = [
         "name": "Apple 4 pieces",
         "price": 1.0,
         "unit": "nounit",
-        "image": "Apple 4 pieces.jfif",
+        "image": "img/Apple 4 pieces.jfif",
         "desc": "",
         "mrp": 1.0
       },
@@ -1406,7 +919,7 @@ const PRODUCTS_DATA = [
         "name": "Honeydew each",
         "price": 2.69,
         "unit": "nounit",
-        "image": "Honeydew each.jfif",
+        "image": "img/Honeydew each.jfif",
         "desc": "",
         "mrp": 2.69
       },
@@ -1415,7 +928,7 @@ const PRODUCTS_DATA = [
         "name": "Cantaloupe each",
         "price": 2.69,
         "unit": "nounit",
-        "image": "Cantaloupe each.jfif",
+        "image": "img/Cantaloupe each.jfif",
         "desc": "",
         "mrp": 2.69
       },
@@ -1424,7 +937,7 @@ const PRODUCTS_DATA = [
         "name": "Pineapple each",
         "price": 2.69,
         "unit": "nounit",
-        "image": "Pineapple each.jfif",
+        "image": "img/Pineapple each.jfif",
         "desc": "",
         "mrp": 2.69
       },
@@ -1433,7 +946,7 @@ const PRODUCTS_DATA = [
         "name": "Mandarin 4 pieces",
         "price": 1.0,
         "unit": "nounit",
-        "image": "Mandarin 4 pieces.jfif",
+        "image": "img/Mandarin 4 pieces.jfif",
         "desc": "",
         "mrp": 1.0
       },
@@ -1442,7 +955,7 @@ const PRODUCTS_DATA = [
         "name": "Banana 5 pieces",
         "price": 1.0,
         "unit": "nounit",
-        "image": "Banana 5 pieces.jfif",
+        "image": "img/Banana 5 pieces.jfif",
         "desc": "",
         "mrp": 1.0
       },
@@ -1451,7 +964,7 @@ const PRODUCTS_DATA = [
         "name": "Green grapes punnet",
         "price": 2.49,
         "unit": "nounit",
-        "image": "Green grapes punnet.jfif",
+        "image": "img/Green grapes punnet.jfif",
         "desc": "",
         "mrp": 2.49
       },
@@ -1460,7 +973,7 @@ const PRODUCTS_DATA = [
         "name": "Red grapes punnet",
         "price": 2.49,
         "unit": "nounit",
-        "image": "Red grapes punnet.jfif",
+        "image": "img/Red grapes punnet.jfif",
         "desc": "",
         "mrp": 2.49
       },
@@ -1469,7 +982,7 @@ const PRODUCTS_DATA = [
         "name": "Strawberry punnet",
         "price": 2.99,
         "unit": "nounit",
-        "image": "Strawberry punnet.jfif",
+        "image": "img/Strawberry punnet.jfif",
         "desc": "",
         "mrp": 2.99
       },
@@ -1478,7 +991,7 @@ const PRODUCTS_DATA = [
         "name": "Blueberry punnet",
         "price": 2.49,
         "unit": "nounit",
-        "image": "Blueberry punnet.jfif",
+        "image": "img/Blueberry punnet.jfif",
         "desc": "",
         "mrp": 2.49
       }
@@ -1486,14 +999,14 @@ const PRODUCTS_DATA = [
   },
   {
     "category": "New Arrivals",
-    "icon": "🆕",
+    "icon": "\ud83c\udd95",
     "items": [
       {
         "id": "new_arr_1",
         "name": "Boost 500g",
         "price": 6.99,
         "unit": "nounit",
-        "image": "boost.jfif",
+        "image": "img/boost.jfif",
         "desc": "",
         "mrp": 6.99
       },
@@ -1502,7 +1015,7 @@ const PRODUCTS_DATA = [
         "name": "Yellow plantain each",
         "price": 0.89,
         "unit": "nounit",
-        "image": "Yellow plantain each.jfif",
+        "image": "img/Yellow plantain each.jfif",
         "desc": "",
         "mrp": 0.89
       },
@@ -1511,9 +1024,504 @@ const PRODUCTS_DATA = [
         "name": "Green curry mango 500g",
         "price": 2.9,
         "unit": "nounit",
-        "image": "Green curry mango.jfif",
+        "image": "img/Green curry mango.jfif",
         "desc": "",
         "mrp": 2.9
+      },
+      {
+        "id": "new_101",
+        "name": "Viswas sambar masala 200g",
+        "price": 2.51,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 2.51
+      },
+      {
+        "id": "new_102",
+        "name": "Viswas Rasam powder 200g",
+        "price": 2.1,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 2.1
+      },
+      {
+        "id": "new_103",
+        "name": "Viswas Garam masala 100g",
+        "price": 2.65,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 2.65
+      },
+      {
+        "id": "new_104",
+        "name": "Viswas Fish fry masala 100g",
+        "price": 1.95,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 1.95
+      },
+      {
+        "id": "new_105",
+        "name": "Viswas Chicken fry masala 100g",
+        "price": 1.95,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 1.95
+      },
+      {
+        "id": "new_106",
+        "name": "Viswas Briyani masala 100g",
+        "price": 1.95,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 1.95
+      },
+      {
+        "id": "new_107",
+        "name": "Viswas Chana masala 100g",
+        "price": 1.67,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 1.67
+      },
+      {
+        "id": "new_108",
+        "name": "Viswas Coriander powder 400g",
+        "price": 2.8,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 2.8
+      },
+      {
+        "id": "new_109",
+        "name": "Viswas Turmeric powder 400g",
+        "price": 4.46,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 4.46
+      },
+      {
+        "id": "new_110",
+        "name": "Viswas Red chilli powder 400g",
+        "price": 4.2,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 4.2
+      },
+      {
+        "id": "new_111",
+        "name": "Viswas Kashmiri chilli powder 400g",
+        "price": 5.6,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 5.6
+      },
+      {
+        "id": "new_112",
+        "name": "Viswas Fenugreek seed 250g",
+        "price": 1.49,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 1.49
+      },
+      {
+        "id": "new_113",
+        "name": "Viswas Cumin whole 200g",
+        "price": 2.99,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 2.99
+      },
+      {
+        "id": "new_114",
+        "name": "Viswas Garam whole 100g",
+        "price": 2.99,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 2.99
+      },
+      {
+        "id": "new_115",
+        "name": "Viswas Puttu podi white 1kg",
+        "price": 2.09,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 2.09
+      },
+      {
+        "id": "new_116",
+        "name": "Viswas Chembu puttu podi 1kg",
+        "price": 2.09,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 2.09
+      },
+      {
+        "id": "new_117",
+        "name": "Viswas Ragi puttu podi 1kg",
+        "price": 2.79,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 2.79
+      },
+      {
+        "id": "new_118",
+        "name": "Viswas Corn puttu podi 1kg",
+        "price": 2.79,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 2.79
+      },
+      {
+        "id": "new_119",
+        "name": "Viswas Wheat puttu podi 1kg",
+        "price": 2.09,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 2.09
+      },
+      {
+        "id": "new_120",
+        "name": "Viswas Dosa powder 1kg",
+        "price": 2.79,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 2.79
+      },
+      {
+        "id": "new_121",
+        "name": "Viswas Idly powder 1kg",
+        "price": 2.79,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 2.79
+      },
+      {
+        "id": "new_122",
+        "name": "Viswas Easy palappam 1kg",
+        "price": 3.21,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 3.21
+      },
+      {
+        "id": "new_123",
+        "name": "Viswas Appam idiyappam powder 1kg",
+        "price": 2.65,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 2.65
+      },
+      {
+        "id": "new_124",
+        "name": "Viswas Roasted rava 1kg",
+        "price": 3.07,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 3.07
+      },
+      {
+        "id": "new_125",
+        "name": "Viswas pathiri podi 1kg",
+        "price": 2.09,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 2.09
+      },
+      {
+        "id": "new_126",
+        "name": "Viswas Guruvayoor pappadam 150g",
+        "price": 1.57,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 1.57
+      },
+      {
+        "id": "new_127",
+        "name": "Viswas Tamarind 200g",
+        "price": 1.26,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 1.26
+      },
+      {
+        "id": "new_128",
+        "name": "Viswas Asefoetida 50g",
+        "price": 1.99,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 1.99
+      },
+      {
+        "id": "new_129",
+        "name": "Viswas coconut grated buy-1",
+        "price": 3.35,
+        "unit": "nounit",
+        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/GratedCoconutByViswas.jpg?v=1622040288",
+        "desc": "",
+        "mrp": 3.35
+      },
+      {
+        "id": "new_130",
+        "name": "Viswas frozen tapioca sliced",
+        "price": 3.07,
+        "unit": "nounit",
+        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/SlicedTapiocaByViswas_75738718-7366-48e2-a87a-fbf6f8fd80a2.jpg?v=1631871586",
+        "desc": "",
+        "mrp": 3.07
+      },
+      {
+        "id": "new_131",
+        "name": "Viswas tapioca whole",
+        "price": 2.97,
+        "unit": "nounit",
+        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/SlicedTapiocaByViswas.jpg?v=1622040210",
+        "desc": "",
+        "mrp": 2.97
+      },
+      {
+        "id": "new_132",
+        "name": "Viswas Banana chips 300g",
+        "price": 3.21,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 3.21
+      },
+      {
+        "id": "new_133",
+        "name": "Viswas Banana chips spicy",
+        "price": 1.75,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 1.75
+      },
+      {
+        "id": "new_134",
+        "name": "Viswas Tapioca chips lightly salted",
+        "price": 2.1,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 2.1
+      },
+      {
+        "id": "new_135",
+        "name": "Viswas Tapioca chips spicy",
+        "price": 1.57,
+        "unit": "nounit",
+        "image": "https://cdn.shopify.com/s/files/1/0633/7445/9037/files/Viswas_Tapioca_Chips_Round_Spicy_175g.webp?v=1757056029",
+        "desc": "",
+        "mrp": 1.57
+      },
+      {
+        "id": "new_136",
+        "name": "Viswas Roasted peanuts 150g",
+        "price": 1.74,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 1.74
+      },
+      {
+        "id": "new_137",
+        "name": "Viswas Spicy masala peanuts",
+        "price": 1.39,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 1.39
+      },
+      {
+        "id": "new_138",
+        "name": "Viswas Dry Kerala hot mixture 400g",
+        "price": 3.35,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 3.35
+      },
+      {
+        "id": "new_139",
+        "name": "Viswas rice powder -1",
+        "price": 2.79,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 2.79
+      },
+      {
+        "id": "new_140",
+        "name": "Viswas coconut oil 1l 1 case",
+        "price": 8.39,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 8.39
+      },
+      {
+        "id": "new_141",
+        "name": "Viswas Prawns pickle 400g",
+        "price": 4.99,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 4.99
+      },
+      {
+        "id": "new_142",
+        "name": "Viswas Fish pickle 400g",
+        "price": 4.99,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 4.99
+      },
+      {
+        "id": "new_143",
+        "name": "Viswas Puli inji pickle-1",
+        "price": 3.0,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 3.0
+      },
+      {
+        "id": "new_144",
+        "name": "Viswas Rice flakes white -1",
+        "price": 1.68,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 1.68
+      },
+      {
+        "id": "new_145",
+        "name": "Viswas Garlic pickle -1",
+        "price": 3.21,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 3.21
+      },
+      {
+        "id": "new_146",
+        "name": "Viswas Cut mango pickle -1",
+        "price": 2.62,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 2.62
+      },
+      {
+        "id": "new_147",
+        "name": "Viswas Gooseberry pickle -1",
+        "price": 2.65,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 2.65
+      },
+      {
+        "id": "new_148",
+        "name": "Viswas Tender mango pickle -1",
+        "price": 3.5,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 3.5
+      },
+      {
+        "id": "new_149",
+        "name": "Viswas Hot lime pickle -1",
+        "price": 2.62,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 2.62
+      },
+      {
+        "id": "new_150",
+        "name": "Viswas Dates cake -1",
+        "price": 7.0,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 7.0
+      },
+      {
+        "id": "new_151",
+        "name": "Viswas Ooty varkey -1",
+        "price": 3.99,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 3.99
+      },
+      {
+        "id": "new_152",
+        "name": "Viswas Cut mango frozen 400g -1",
+        "price": 2.79,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 2.79
+      },
+      {
+        "id": "new_153",
+        "name": "Viswas Drumstick frozen 400g -1",
+        "price": 2.8,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 2.8
+      },
+      {
+        "id": "new_154",
+        "name": "Viswas MARAYOOR JAGGERY 1kg -1",
+        "price": 3.5,
+        "unit": "nounit",
+        "image": "",
+        "desc": "",
+        "mrp": 3.5
+      },
+      {
+        "id": "new_155",
+        "name": "Viswas Sambar mix frozen -1",
+        "price": 2.79,
+        "unit": "nounit",
+        "image": "https://cdn.shopify.com/s/files/1/0511/9239/7999/products/sambarmix.png?v=1623262986",
+        "desc": "",
+        "mrp": 2.79
       }
     ]
   }
