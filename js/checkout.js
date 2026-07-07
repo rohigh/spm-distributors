@@ -181,7 +181,7 @@ const Checkout = (() => {
     options.forEach((opt, i) => opt.classList.toggle('selected', i === index));
   }
 
-  function submitOrder() {
+  async function submitOrder() {
     let valid = true;
     const state = Cart.getState();
     const isDelivery = state.serviceType === 'delivery';
