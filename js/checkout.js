@@ -289,8 +289,12 @@ const Checkout = (() => {
       status: 'pending' // For admin approval
     };
     
-    // Save to Firestore
-    orderRef.set(orderData).catch(err => console.error("Error saving order:", err));
+    // Save to Firestore (Wait for it to finish before redirecting)
+    try {
+      await orderRef.set(orderData);
+    } catch (err) {
+      console.error("Error saving order:", err);
+    }
 
     Cart.clear();
     close();
