@@ -128,7 +128,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_kt_palakkadan_matta_rice",
-        "name": "KT PALAKKADAN MATTA RICE 10 KG",
+        "name": "KERALA TASTE PALAKKADAN MATTA RICE 10 KG",
         "price": 14.69,
         "unit": "pack",
         "image": "img/processed/kerala_taste_palakkadan_matta_rice_1783346390894.png",
@@ -147,11 +147,11 @@ const PRODUCTS_DATA = [
       {
         "id": "new_tata_salt",
         "name": "TATA SALT 1KG",
-        "price": 1.54,
+        "price": 1.59,
         "unit": "pack",
         "image": "img/processed/tata_salt_1783346414921.png",
         "desc": "",
-        "mrp": 1.54
+        "mrp": 1.59
       },
       {
         "id": "new_thekkans_chick_peas_white",
@@ -227,7 +227,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_dh_idli_rava",
-        "name": "DH IDLI RAVA 1 KG",
+        "name": "DOUBLE HORSE IDLI RAVA 1 KG",
         "price": 2.79,
         "unit": "pack",
         "image": "img/processed/Double Horse Idli Rava.png",
@@ -245,7 +245,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_tn_apm_idypm",
-        "name": "TN APM IDYPM PTHIRI R/RFLOUR 1 KG",
+        "name": "TASTY NIBBLES APM IDYPM PTHIRI R/RFLOUR 1 KG",
         "price": 2.51,
         "unit": "pack",
         "image": "img/processed/tn_idiyappam_podi_clean.png",
@@ -272,7 +272,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_dh_roasted_vermicelli",
-        "name": "DH ROASTED VERMICELLI 500 G",
+        "name": "DOUBLE HORSE ROASTED VERMICELLI 500 G",
         "price": 2.93,
         "unit": "pack",
         "image": "img/processed/Double Horse Roasted Vermicelli.png",
@@ -281,7 +281,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_tn_all_purpose_white",
-        "name": "TN ALL PURPOSE WHITE R/P 1KG",
+        "name": "TASTY NIBBLES ALL PURPOSE WHITE R/P 1KG",
         "price": 2.51,
         "unit": "pack",
         "image": "img/processed/tn_white_rice_powder_clean.png",
@@ -299,7 +299,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_kt_chicken_fry_masala",
-        "name": "KT CHICKEN FRY MASALA 80G",
+        "name": "KERALA TASTE CHICKEN FRY MASALA 80G",
         "price": 1.53,
         "unit": "pack",
         "image": "img/processed/Kerala Taste Chicken Fry Masala.png",
@@ -308,7 +308,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_kt_egg_roast_masala",
-        "name": "KT EGG ROAST MASALA 140G",
+        "name": "KERALA TASTE EGG ROAST MASALA 140G",
         "price": 2.23,
         "unit": "pack",
         "image": "img/processed/kt_egg_roast_masala_clean.png",
@@ -317,7 +317,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_kt_sambar_powder",
-        "name": "KT SAMBAR POWDER 140 G",
+        "name": "KERALA TASTE SAMBAR POWDER 140 G",
         "price": 2.23,
         "unit": "pack",
         "image": "img/processed/kt_sambar_powder_clean.png",
@@ -326,7 +326,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_kt_meat_masala",
-        "name": "KT MEAT MASALA 140G",
+        "name": "KERALA TASTE MEAT MASALA 140G",
         "price": 2.23,
         "unit": "pack",
         "image": "img/processed/kt_meat_masala_clean.png",
@@ -335,7 +335,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_kt_garam_masala",
-        "name": "KT GARAM MASALA 80 G",
+        "name": "KERALA TASTE GARAM MASALA 80 G",
         "price": 1.67,
         "unit": "pack",
         "image": "img/processed/kt_garam_masala_clean.png",
@@ -344,7 +344,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_kt_beef_ularthu_masala",
-        "name": "KT BEEF ULARTHU MASALA 80 G",
+        "name": "KERALA TASTE BEEF ULARTHU MASALA 80 G",
         "price": 1.67,
         "unit": "pack",
         "image": "img/processed/Kerala Taste Beef Ulurthu Masala.png",
@@ -353,7 +353,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_kt_biriyani_masala",
-        "name": "KT BIRIYANI MASALA 80 G",
+        "name": "KERALA TASTE BIRIYANI MASALA 80 G",
         "price": 1.25,
         "unit": "pack",
         "image": "img/processed/Kerala Taste Briyani Masala.png",
@@ -362,7 +362,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_kt_mutton_masala",
-        "name": "KT MUTTON MASALA 140G",
+        "name": "KERALA TASTE MUTTON MASALA 140G",
         "price": 2.23,
         "unit": "pack",
         "image": "img/processed/kt_mutton_masala_clean.png",
@@ -371,7 +371,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_kt_pulinji_pickle",
-        "name": "KT PULINJI PICKLE 400G",
+        "name": "KERALA TASTE PULINJI PICKLE 400G",
         "price": 2.65,
         "unit": "pack",
         "image": "img/processed/kt_pulinji_pickle_clean.png",
@@ -380,7 +380,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_kt_cut_mango_pickle",
-        "name": "KT CUT MANGO PICKLE 400G",
+        "name": "KERALA TASTE CUT MANGO PICKLE 400G",
         "price": 2.23,
         "unit": "pack",
         "image": "img/processed/kerala Taste Cut Mango Pickle.png",
@@ -389,7 +389,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_kt_lime_pickle",
-        "name": "KT LIME PICKLE 400G",
+        "name": "KERALA TASTE LIME PICKLE 400G",
         "price": 2.51,
         "unit": "pack",
         "image": "img/processed/kt_lime_pickle_clean.png",
@@ -398,7 +398,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_kt_hot_sweet_pickle",
-        "name": "KT HOT & SWEET PICKLE 400G",
+        "name": "KERALA TASTE HOT & SWEET PICKLE 400G",
         "price": 2.51,
         "unit": "pack",
         "image": "img/processed/kt_hot_sweet_pickle_clean.png",
@@ -407,7 +407,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_kt_fish_pickle",
-        "name": "KT FISH PICKLE 400G",
+        "name": "KERALA TASTE FISH PICKLE 400G",
         "price": 5.59,
         "unit": "pack",
         "image": "img/processed/Kerala Taste Fish Pickle.png",
@@ -416,7 +416,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_kt_dates_pickle",
-        "name": "KT DATES PICKLE 400G",
+        "name": "KERALA TASTE DATES PICKLE 400G",
         "price": 2.65,
         "unit": "pack",
         "image": "img/processed/Kerala Taste Dates Pickle.png",
@@ -425,7 +425,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_kt_gooseberry_pickle",
-        "name": "KT GOOSEBERRY PICKLE 400G",
+        "name": "KERALA TASTE GOOSEBERRY PICKLE 400G",
         "price": 2.23,
         "unit": "pack",
         "image": "img/new/Kerala Taste Gooseberry Pickle.jpeg",
@@ -434,7 +434,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_kt_prawn_pickle",
-        "name": "KT PRAWN PICKLE 400G",
+        "name": "KERALA TASTE PRAWN PICKLE 400G",
         "price": 5.31,
         "unit": "pack",
         "image": "img/new/Kerala Taste Prawn Pickle.jpeg",
@@ -443,7 +443,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_dh_roasted_ragi_powder",
-        "name": "DH ROASTED RAGI POWDER 1KG",
+        "name": "DOUBLE HORSE ROASTED RAGI POWDER 1KG",
         "price": 2.79,
         "unit": "pack",
         "image": "img/processed/Double Horse Ragi Powder.png",
@@ -647,7 +647,7 @@ const PRODUCTS_DATA = [
     "items": [
       {
         "id": "new_kt_achappam",
-        "name": "KT ACHAPPAM 150 G",
+        "name": "KERALA TASTE ACHAPPAM 150 G",
         "price": 1.95,
         "unit": "pack",
         "image": "img/processed/Kerala Taste Achappam.png",
@@ -656,7 +656,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_kt_banana_chips",
-        "name": "KT BANANA CHIPS 150 G",
+        "name": "KERALA TASTE BANANA CHIPS 150 G",
         "price": 2.09,
         "unit": "pack",
         "image": "img/processed/Kerala Taste Banana Chips.png",
@@ -665,7 +665,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_kt_roasted_masala_peanut",
-        "name": "KT ROASTED MASALA PEANUT 200 G",
+        "name": "KERALA TASTE ROASTED MASALA PEANUT 200 G",
         "price": 2.09,
         "unit": "pack",
         "image": "img/processed/Kerala Taste Rosted Masala Peanut.png",
@@ -674,7 +674,7 @@ const PRODUCTS_DATA = [
       },
       {
         "id": "new_kt_spicy_kerala_mixture",
-        "name": "KT SPICY KERALA MIXTURE 300G",
+        "name": "KERALA TASTE SPICY KERALA MIXTURE 300G",
         "price": 2.23,
         "unit": "pack",
         "image": "img/processed/Kerala Taste Spicy Kerala Mixture.png",
