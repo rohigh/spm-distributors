@@ -64,7 +64,13 @@ const Cart = (() => {
       } else if (item.id === 'acp_52' || item.id === 'acp_53') {
         qtyToPay = item.qty - Math.floor(item.qty / 2);
       }
-      return sum + (item.price * qtyToPay);
+      
+      let itemTotal = item.price * qtyToPay;
+      if (item.id === 'new_thekkans_coconut_oil') {
+        itemTotal = (Math.floor(item.qty / 2) * 10.99) + ((item.qty % 2) * item.price);
+      }
+      
+      return sum + itemTotal;
     }, 0);
   }
 
@@ -104,10 +110,16 @@ const Cart = (() => {
       } else if (item.id === 'acp_52' || item.id === 'acp_53') {
         qtyToPay = item.qty - Math.floor(item.qty / 2);
       }
+      
+      let itemTotal = item.price * qtyToPay;
+      if (item.id === 'new_thekkans_coconut_oil') {
+        itemTotal = (Math.floor(item.qty / 2) * 10.99) + ((item.qty % 2) * item.price);
+      }
+      
       return {
         ...item,
-        totalPrice: item.price * qtyToPay,
-        hasOffer: item.id === 'acp_51' || item.id === 'acp_52' || item.id === 'acp_53'
+        totalPrice: itemTotal,
+        hasOffer: item.id === 'acp_51' || item.id === 'acp_52' || item.id === 'acp_53' || item.id === 'new_thekkans_coconut_oil'
       };
     });
     const totalItems = items.reduce((sum, item) => sum + item.qty, 0);
