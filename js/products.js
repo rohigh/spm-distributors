@@ -129,11 +129,11 @@ const PRODUCTS_DATA = [
       {
         "id": "new_kt_palakkadan_matta_rice",
         "name": "KERALA TASTE PALAKKADAN MATTA RICE 10 KG",
-        "price": 14.69,
+        "price": 12.99,
         "unit": "pack",
         "image": "img/processed/kerala_taste_palakkadan_matta_rice_1783346390894.png",
         "desc": "",
-        "mrp": 14.69
+        "mrp": 12.99
       },
       {
         "id": "new_niru_plain_appalam",
