@@ -59,7 +59,7 @@ const PRODUCTS_DATA = [
         "name": "THEKKANS SAMBAR MIX",
         "price": 2.59,
         "unit": "pack",
-        "image": "img/new/thekkans_sambar_mix.jpeg",
+        "image": "img/processed/thekkans_sambar_mix_clean.png",
         "desc": "",
         "mrp": 2.59
       },
@@ -68,7 +68,7 @@ const PRODUCTS_DATA = [
         "name": "THEKKANS GRATED COCONUT",
         "price": 2.99,
         "unit": "pack",
-        "image": "img/new/thekkans crated coconut.jpeg",
+        "image": "img/processed/thekkans_grated_coconut_clean.png",
         "desc": "",
         "mrp": 2.99
       },
@@ -77,7 +77,7 @@ const PRODUCTS_DATA = [
         "name": "THEKKANS GOOSEBERRY",
         "price": 2.89,
         "unit": "pack",
-        "image": "img/new/thekkans gooseberry.jpeg",
+        "image": "img/processed/thekkans_gooseberry_clean.png",
         "desc": "",
         "mrp": 2.89
       },
@@ -239,7 +239,7 @@ const PRODUCTS_DATA = [
         "name": "MELAM EASY IDILI MIX 1 KG",
         "price": 3.63,
         "unit": "pack",
-        "image": "img/new/Melam Easy Idli Mix.jpeg",
+        "image": "img/processed/melam_idli_mix_clean.png",
         "desc": "",
         "mrp": 3.63
       },
@@ -248,7 +248,7 @@ const PRODUCTS_DATA = [
         "name": "TN APM IDYPM PTHIRI R/RFLOUR 1 KG",
         "price": 2.51,
         "unit": "pack",
-        "image": "img/new/Tasty Nibbles Appam Idiyappam Pathiri.jpeg",
+        "image": "img/processed/tn_idiyappam_podi_clean.png",
         "desc": "",
         "mrp": 2.51
       },
@@ -257,7 +257,7 @@ const PRODUCTS_DATA = [
         "name": "MELAM PUTTU PODI 1KG",
         "price": 2.51,
         "unit": "pack",
-        "image": "img/new/Melam Puttu Podi.jpeg",
+        "image": "img/processed/melam_puttu_podi_clean.png",
         "desc": "",
         "mrp": 2.51
       },
@@ -266,7 +266,7 @@ const PRODUCTS_DATA = [
         "name": "MELAM CHEMBA PUTTU PODI 1 KG",
         "price": 2.65,
         "unit": "pack",
-        "image": "img/new/Melam Chemba puttu Podi.jpeg",
+        "image": "img/processed/melam_chemba_puttu_clean.png",
         "desc": "",
         "mrp": 2.65
       },
@@ -284,7 +284,7 @@ const PRODUCTS_DATA = [
         "name": "TN ALL PURPOSE WHITE R/P 1KG",
         "price": 2.51,
         "unit": "pack",
-        "image": "img/new/Tasty Nibbles White Rice Powder.jpeg",
+        "image": "img/processed/tn_white_rice_powder_clean.png",
         "desc": "",
         "mrp": 2.51
       },
@@ -293,7 +293,7 @@ const PRODUCTS_DATA = [
         "name": "KERALA TASTE RASAM POWDER 140G",
         "price": 2.29,
         "unit": "pack",
-        "image": "img/new/Kerala Taste Rasam Powder.jpeg",
+        "image": "img/processed/kt_rasam_powder_clean.png",
         "desc": "",
         "mrp": 2.29
       },
@@ -311,7 +311,7 @@ const PRODUCTS_DATA = [
         "name": "KT EGG ROAST MASALA 140G",
         "price": 2.23,
         "unit": "pack",
-        "image": "img/new/Kerala Taste Egg Roast Masala.jpeg",
+        "image": "img/processed/kt_egg_roast_masala_clean.png",
         "desc": "",
         "mrp": 2.23
       },
@@ -320,7 +320,7 @@ const PRODUCTS_DATA = [
         "name": "KT SAMBAR POWDER 140 G",
         "price": 2.23,
         "unit": "pack",
-        "image": "img/new/Kerala Taste Sambar Powder.jpeg",
+        "image": "img/processed/kt_sambar_powder_clean.png",
         "desc": "",
         "mrp": 2.23
       },
@@ -329,7 +329,7 @@ const PRODUCTS_DATA = [
         "name": "KT MEAT MASALA 140G",
         "price": 2.23,
         "unit": "pack",
-        "image": "img/new/Kerala Taste Meat Masala.jpeg",
+        "image": "img/processed/kt_meat_masala_clean.png",
         "desc": "",
         "mrp": 2.23
       },
@@ -338,7 +338,7 @@ const PRODUCTS_DATA = [
         "name": "KT GARAM MASALA 80 G",
         "price": 1.67,
         "unit": "pack",
-        "image": "img/new/Kerala Taste Garam Masala.jpeg",
+        "image": "img/processed/kt_garam_masala_clean.png",
         "desc": "",
         "mrp": 1.67
       },
@@ -365,7 +365,7 @@ const PRODUCTS_DATA = [
         "name": "KT MUTTON MASALA 140G",
         "price": 2.23,
         "unit": "pack",
-        "image": "img/new/Kerala Taste Mutton Masala.jpeg",
+        "image": "img/processed/kt_mutton_masala_clean.png",
         "desc": "",
         "mrp": 2.23
       },
@@ -374,7 +374,7 @@ const PRODUCTS_DATA = [
         "name": "KT PULINJI PICKLE 400G",
         "price": 2.65,
         "unit": "pack",
-        "image": "img/new/kerala Taste Pulinji Pickle.jpeg",
+        "image": "img/processed/kt_pulinji_pickle_clean.png",
         "desc": "",
         "mrp": 2.65
       },
@@ -392,7 +392,7 @@ const PRODUCTS_DATA = [
         "name": "KT LIME PICKLE 400G",
         "price": 2.51,
         "unit": "pack",
-        "image": "img/new/kerala Taste Lime Pickle.jpeg",
+        "image": "img/processed/kt_lime_pickle_clean.png",
         "desc": "",
         "mrp": 2.51
       },
@@ -401,7 +401,7 @@ const PRODUCTS_DATA = [
         "name": "KT HOT & SWEET PICKLE 400G",
         "price": 2.51,
         "unit": "pack",
-        "image": "img/new/Kerala Taste Hot and Sweet Pickle.jpeg",
+        "image": "img/processed/kt_hot_sweet_pickle_clean.png",
         "desc": "",
         "mrp": 2.51
       },
