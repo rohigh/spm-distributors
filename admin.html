@@ -1,114 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Panel — SPM Distributors</title>
-  <meta name="robots" content="noindex, nofollow" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>" />
+  <meta charset="UTF-8">
+  <title>Admin Dashboard - SPM Distributors</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { background-color: #f4f7f6; padding: 20px; }
+    .admin-container { max-width: 1200px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+    .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 2px solid #eee; padding-bottom: 15px; }
+    
+    #login-screen { text-align: center; padding: 100px 20px; }
+    #login-screen input { padding: 10px; font-size: 16px; margin-right: 10px; border: 1px solid #ccc; border-radius: 4px; }
+    
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { text-align: left; padding: 12px; border-bottom: 1px solid #eee; }
+    th { background: #f8f9fa; font-weight: 600; color: #555; }
+    .status-badge { padding: 5px 10px; border-radius: 20px; font-size: 12px; font-weight: bold; text-transform: uppercase; }
+    .status-pending { background: #fff3cd; color: #856404; }
+    .status-approved { background: #d4edda; color: #155724; }
+    .status-rejected { background: #f8d7da; color: #721c24; }
+    
+    .btn-action { padding: 6px 12px; border: none; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; margin-right: 5px; }
+    .btn-approve { background: #28a745; color: white; }
+    .btn-reject { background: #dc3545; color: white; }
+    .btn-view { background: #007bff; color: white; text-decoration: none; display: inline-block; }
+
+    .delivery-days-section { margin-top: 40px; padding: 20px; background: #f8f9fa; border-radius: 8px; }
+    .day-toggle { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  </style>
 </head>
 <body>
-  <div class="admin-container">
 
-    <!-- Admin Header -->
-    <header class="admin-header">
-      <div class="admin-header-inner">
-        <h1>⚙️ Admin Panel</h1>
-        <a href="index.html" class="admin-back-link">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="15 18 9 12 15 6"></polyline>
-          </svg>
-          Back to Store
-        </a>
-      </div>
-    </header>
-
-    <!-- Login Gate -->
-    <div id="admin-login-section">
-      <div class="admin-login">
-        <div class="lock-icon">🔐</div>
-        <h2>Admin Access</h2>
-        <p>Enter the admin password to manage delivery slots</p>
-        <input type="password" id="admin-password" placeholder="Enter password" autocomplete="off" />
-        <button class="admin-login-btn" id="admin-login-btn">Unlock</button>
-        <div class="admin-error" id="admin-error">❌ Incorrect password. Try again.</div>
-      </div>
-    </div>
-
-    <!-- Admin Panel (hidden until authenticated) -->
-    <div id="admin-panel-section" style="display: none;">
-      <div class="admin-panel">
-
-        <!-- Delivery Day Toggles -->
-        <!-- ⚠️ Static-site limitation warning -->
-        <div style="background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 14px 16px; margin-bottom: 20px; font-size: 0.85rem; color: #7c5600; line-height: 1.5;">
-          ⚠️ <strong>Important:</strong> This site stores settings in your browser only (<em>localStorage</em>). Changes made here will <strong>NOT appear on other devices or for customers</strong>.<br>
-          To apply delivery day changes globally, update the <code style="background:#f0e0a0; padding: 1px 5px; border-radius: 3px;">defaultSlots</code> values in <strong>js/config.js</strong> and re-upload/push the file.
-        </div>
-
-        <div class="admin-card">
-          <h3>📅 Delivery Day Schedule</h3>
-          <p style="font-size: 0.85rem; color: var(--neutral-500); margin-bottom: var(--space-4);">
-            Toggle which days are available for customer delivery. Changes take effect immediately on the storefront.
-          </p>
-          <ul class="slot-toggle-list" id="slot-toggle-list">
-            <!-- Rendered by JS -->
-          </ul>
-        </div>
-
-        <!-- Actions -->
-        <div class="admin-card">
-          <button class="admin-save-btn" id="admin-save-btn">
-            💾 Save Changes
-          </button>
-          <button class="admin-reset-btn" id="admin-reset-btn">
-            Reset to Default Schedule
-          </button>
-        </div>
-
-        <!-- Logout -->
-        <div class="admin-card" style="text-align: center;">
-          <button class="admin-reset-btn" onclick="Admin.logout()" style="border-color: var(--error); color: var(--error);">
-            🚪 Log Out
-          </button>
-        </div>
-
-      </div>
-      
-      <div class="admin-panel" style="margin-top: 2rem;">
-        <!-- Orders Dashboard -->
-        <div class="admin-card" style="max-width: 100%;">
-          <h3>📦 Order Receipts Dashboard</h3>
-          <p style="font-size: 0.85rem; color: var(--neutral-500); margin-bottom: var(--space-4);">
-            All customer orders placed on the storefront are tracked here in real-time.
-          </p>
-          <div style="overflow-x: auto;">
-            <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;" id="admin-orders-table">
-              <thead>
-                <tr style="border-bottom: 2px solid #333; text-align: left;">
-                  <th style="padding: 10px;">Date</th>
-                  <th style="padding: 10px;">Order ID</th>
-                  <th style="padding: 10px;">Customer</th>
-                  <th style="padding: 10px;">Type</th>
-                  <th style="padding: 10px;">Total</th>
-                  <th style="padding: 10px;">Items</th>
-                </tr>
-              </thead>
-              <tbody id="orders-tbody">
-                <tr><td colspan="6" style="padding: 20px; text-align: center; color: var(--neutral-500);">Loading orders...</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Toast notification -->
-    <div class="save-toast" id="save-toast"></div>
-
+  <div id="login-screen">
+    <h2>Admin Login</h2>
+    <input type="password" id="admin-pwd" placeholder="Enter Password">
+    <button class="btn-primary" onclick="login()">Login</button>
   </div>
 
+  <div class="admin-container" id="admin-dashboard" style="display: none;">
+    <div class="admin-header">
+      <h2>SPM Admin Dashboard</h2>
+      <a href="index.html" style="color: #666; text-decoration: none;">&larr; Back to Store</a>
+    </div>
+
+    <!-- Orders Section -->
+    <h3>Recent Orders</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Date</th>
+          <th>Customer</th>
+          <th>Total</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="orders-tbody">
+        <tr><td colspan="6" style="text-align: center;">Loading orders...</td></tr>
+      </tbody>
+    </table>
+
+    <!-- Delivery Days Settings -->
+    <div class="delivery-days-section">
+      <h3>🚚 Manage Delivery Days</h3>
+      <p style="color: #666; font-size: 14px; margin-bottom: 15px;">Turn delivery on or off for specific days. Changes apply immediately for all customers.</p>
+      <div id="days-container">
+        <!-- Rendered by JS -->
+      </div>
+      <button class="btn-primary" style="margin-top: 15px;" onclick="saveDeliveryDays()">Save Delivery Days</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-init.js"></script>
   <script src="js/config.js"></script>
   <script src="js/admin.js"></script>
 </body>

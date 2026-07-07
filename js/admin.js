@@ -1,164 +1,111 @@
-// ============================================
-// SPM Distributors — Admin Panel Logic
-// ============================================
+// Admin Logic
+const formatPrice = (price) => '£' + Number(price).toFixed(2);
+let currentOrders = [];
 
-const Admin = (() => {
-  let isAuthenticated = false;
-
-  function init() {
-    // Check if already authenticated this session
-    try {
-      const auth = sessionStorage.getItem(STORE_CONFIG.adminAuthKey);
-      if (auth === 'true') {
-        isAuthenticated = true;
-        showPanel();
-      }
-    } catch (e) {}
-
-    setupLogin();
-    setupActions();
-  }
-
-  function setupLogin() {
-    const loginBtn = document.getElementById('admin-login-btn');
-    const passwordInput = document.getElementById('admin-password');
-    const errorEl = document.getElementById('admin-error');
-
-    if (loginBtn) {
-      loginBtn.addEventListener('click', () => attemptLogin());
-    }
-
-    if (passwordInput) {
-      passwordInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') attemptLogin();
-      });
-    }
-  }
-
-  function attemptLogin() {
-    const passwordInput = document.getElementById('admin-password');
-    const errorEl = document.getElementById('admin-error');
-    const password = passwordInput.value.trim();
-
-    if (password === STORE_CONFIG.adminPassword) {
-      isAuthenticated = true;
-      sessionStorage.setItem(STORE_CONFIG.adminAuthKey, 'true');
-      showPanel();
-    } else {
-      errorEl.classList.add('show');
-      passwordInput.value = '';
-      passwordInput.focus();
-      setTimeout(() => errorEl.classList.remove('show'), 3000);
-    }
-  }
-
-  function showPanel() {
-    document.getElementById('admin-login-section').style.display = 'none';
-    document.getElementById('admin-panel-section').style.display = 'block';
-    loadCurrentSlots();
+function login() {
+  const pwd = document.getElementById('admin-pwd').value;
+  if (pwd === STORE_CONFIG.adminPassword) {
+    sessionStorage.setItem(STORE_CONFIG.adminAuthKey, 'true');
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('admin-dashboard').style.display = 'block';
     loadOrders();
+    loadSettings();
+  } else {
+    alert("Incorrect password");
   }
+}
 
-  function loadOrders() {
+// Check session on load
+document.addEventListener('DOMContentLoaded', () => {
+  if (sessionStorage.getItem(STORE_CONFIG.adminAuthKey) === 'true') {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('admin-dashboard').style.display = 'block';
+    loadOrders();
+    loadSettings();
+  }
+});
+
+function loadOrders() {
+  db.collection('orders').orderBy('date', 'desc').onSnapshot((snapshot) => {
+    currentOrders = [];
     const tbody = document.getElementById('orders-tbody');
-    if (!tbody) return;
+    tbody.innerHTML = '';
     
-    let mockOrders = [];
-    try {
-      const saved = localStorage.getItem('spm_mock_orders');
-      if (saved) mockOrders = JSON.parse(saved);
-    } catch(e) {}
-    
-    // Sort newest first
-    mockOrders.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-    
-    if (mockOrders.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="6" style="padding: 20px; text-align: center; color: var(--neutral-500);">No orders found on this device yet. (Mockup Mode)</td></tr>';
+    if (snapshot.empty) {
+      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No orders found.</td></tr>';
       return;
     }
-    
-    let html = '';
-    mockOrders.forEach((order) => {
-      html += `
-        <tr style="border-bottom: 1px solid #eee;">
-          <td style="padding: 10px;">${order.date || 'Unknown'}</td>
-          <td style="padding: 10px; font-weight: bold;">${order.orderId || '#---'}</td>
-          <td style="padding: 10px;">${order.customerName || 'Guest'}<br><small style="color: #888;">${order.address || 'Pickup'}</small></td>
-          <td style="padding: 10px;">${order.serviceType || 'Delivery'}</td>
-          <td style="padding: 10px; color: var(--primary);">£${Number(order.finalTotal).toFixed(2)}</td>
-          <td style="padding: 10px;">${order.items ? order.items.length : 0} items</td>
+
+    snapshot.forEach((doc) => {
+      const order = doc.data();
+      order.id = doc.id;
+      currentOrders.push(order);
+      
+      const statusClass = `status-${order.status || 'pending'}`;
+      
+      tbody.innerHTML += `
+        <tr>
+          <td><strong>${order.orderId || '#---'}</strong></td>
+          <td>${new Date(order.date).toLocaleDateString()}</td>
+          <td>${order.customerName || 'N/A'}<br><small>${order.customerPhone || ''}</small></td>
+          <td>${formatPrice(order.finalTotal)}</td>
+          <td><span class="status-badge ${statusClass}">${order.status || 'pending'}</span></td>
+          <td>
+            ${(order.status === 'pending' || !order.status) ? `
+              <button class="btn-action btn-approve" onclick="updateStatus('${doc.id}', 'approved')">Approve</button>
+              <button class="btn-action btn-reject" onclick="updateStatus('${doc.id}', 'rejected')">Reject</button>
+            ` : ''}
+            <a href="receipt.html?id=${doc.id}" target="_blank" class="btn-action btn-view">View Invoice</a>
+          </td>
         </tr>
       `;
     });
-    tbody.innerHTML = html;
-  }
+  }, err => {
+    console.error("Error loading orders:", err);
+    document.getElementById('orders-tbody').innerHTML = '<tr><td colspan="6" style="text-align:center; color:red;">Error loading data</td></tr>';
+  });
+}
 
-  function loadCurrentSlots() {
-    let slots;
-    try {
-      const saved = localStorage.getItem(STORE_CONFIG.slotsStorageKey);
-      slots = saved ? JSON.parse(saved) : { ...STORE_CONFIG.defaultSlots };
-    } catch (e) {
-      slots = { ...STORE_CONFIG.defaultSlots };
+function updateStatus(id, newStatus) {
+  if (confirm(`Are you sure you want to mark this order as ${newStatus}?`)) {
+    db.collection('orders').doc(id).update({
+      status: newStatus
+    }).catch(err => alert("Error updating status: " + err));
+  }
+}
+
+// Delivery Days Logic
+const dayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+function loadSettings() {
+  db.collection('settings').doc('delivery_days').get().then(doc => {
+    let daysConfig = STORE_CONFIG.defaultSlots;
+    if (doc.exists) {
+      daysConfig = doc.data();
     }
-
-    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    const list = document.getElementById('slot-toggle-list');
-
-    list.innerHTML = days.map(day => `
-      <li class="slot-toggle-item">
-        <span class="slot-toggle-label">${day}</span>
-        <label class="toggle-switch">
-          <input type="checkbox" id="toggle-${day}" ${slots[day] !== false ? 'checked' : ''} />
-          <span class="toggle-slider"></span>
-        </label>
-      </li>
-    `).join('');
-  }
-
-  function setupActions() {
-    const saveBtn = document.getElementById('admin-save-btn');
-    const resetBtn = document.getElementById('admin-reset-btn');
-
-    if (saveBtn) saveBtn.addEventListener('click', saveSlots);
-    if (resetBtn) resetBtn.addEventListener('click', resetSlots);
-  }
-
-  function saveSlots() {
-    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    const slots = {};
-
-    days.forEach(day => {
-      const checkbox = document.getElementById('toggle-' + day);
-      slots[day] = checkbox ? checkbox.checked : true;
+    
+    const container = document.getElementById('days-container');
+    container.innerHTML = '';
+    
+    dayNames.forEach(day => {
+      const isChecked = daysConfig[day] !== false; // default true if undefined
+      container.innerHTML += `
+        <div class="day-toggle">
+          <input type="checkbox" id="chk-${day}" ${isChecked ? 'checked' : ''}>
+          <label for="chk-${day}"><strong>${day}</strong></label>
+        </div>
+      `;
     });
+  }).catch(err => console.error("Error loading settings:", err));
+}
 
-    localStorage.setItem(STORE_CONFIG.slotsStorageKey, JSON.stringify(slots));
-    showToast('✅ Delivery days updated successfully!');
-  }
-
-  function resetSlots() {
-    localStorage.setItem(STORE_CONFIG.slotsStorageKey, JSON.stringify(STORE_CONFIG.defaultSlots));
-    loadCurrentSlots();
-    showToast('🔄 Reset to default schedule');
-  }
-
-  function showToast(message) {
-    const toast = document.getElementById('save-toast');
-    toast.textContent = message;
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 2500);
-  }
-
-  function logout() {
-    sessionStorage.removeItem(STORE_CONFIG.adminAuthKey);
-    isAuthenticated = false;
-    document.getElementById('admin-login-section').style.display = 'block';
-    document.getElementById('admin-panel-section').style.display = 'none';
-    document.getElementById('admin-password').value = '';
-  }
-
-  return { init, logout };
-})();
-
-document.addEventListener('DOMContentLoaded', Admin.init);
+function saveDeliveryDays() {
+  const newConfig = {};
+  dayNames.forEach(day => {
+    newConfig[day] = document.getElementById(`chk-${day}`).checked;
+  });
+  
+  db.collection('settings').doc('delivery_days').set(newConfig)
+    .then(() => alert("Delivery days updated successfully!"))
+    .catch(err => alert("Error saving: " + err));
+}

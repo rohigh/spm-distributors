@@ -47,10 +47,16 @@
         <h1>Thank you for order!</h1>
         <p>From : SPM Distributors, London<br>United Kingdom</p>
       </div>
-      <button class="btn-print" onclick="window.print()">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-        Print
-      </button>
+      <div style="display: flex; gap: 10px;">
+        <button class="btn-print" onclick="window.print()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          Print
+        </button>
+        <button class="btn-print" id="download-pdf-btn" style="background: #22a660; color: white;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          Download PDF
+        </button>
+      </div>
     </div>
 
     <div class="receipt-info" id="receipt-info">
@@ -77,60 +83,29 @@
     </div>
   </div>
 
+  <!-- Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-init.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
   <script>
     const formatPrice = (price) => '£' + Number(price).toFixed(2);
     
-    document.addEventListener('DOMContentLoaded', () => {
-      let orderDataStr = null;
-      const urlParams = new URLSearchParams(window.location.search);
-      const dataParam = urlParams.get('data');
-      
-      if (dataParam) {
-        orderDataStr = dataParam;
-      }
-      
-      let orderData;
-      
-      if (!orderDataStr) {
-        // Show placeholder data so you can preview the receipt without an order
-        orderData = {
-          orderId: '#' + Math.floor(100000 + Math.random() * 900000),
-          date: new Date().toLocaleString('en-GB'),
-          items: [
-            { name: 'Everest Paneer', unit: '250 gram', qty: 3, price: 2.29 },
-            { name: 'Fresh Mangoes', unit: '1 kg', qty: 1, price: 4.50 }
-          ],
-          subtotal: 11.37,
-          deliveryFee: 1.99,
-          taxes: 0,
-          finalTotal: 13.36,
-          serviceType: 'Delivery',
-          customerName: 'Guest',
-          address: 'Store Pickup'
-        };
-      } else {
-        try {
-          orderData = JSON.parse(orderDataStr);
-        } catch (e) {
-          // fallback if parsing fails
-          orderData = { orderId: '#ERROR', date: '', items: [], subtotal: 0, deliveryFee: 0, taxes: 0, finalTotal: 0 };
-        }
-      }
-      
-      // Populate Info
+    function renderReceipt(orderData) {
       document.getElementById('receipt-info').innerHTML = `
         <div class="info-group">
           <div class="info-item">
             <label>Order ID</label>
-            <span>${orderData.orderId}</span>
+            <span>${orderData.orderId || '#ERROR'}</span>
           </div>
           <div class="info-item">
             <label>Date</label>
-            <span>${orderData.date}</span>
+            <span>${new Date(orderData.date).toLocaleString('en-GB')}</span>
           </div>
           <div class="info-item">
             <label>Order status</label>
-            <span>Pending</span>
+            <span style="text-transform: capitalize;">${orderData.status || 'pending'}</span>
           </div>
         </div>
         <div class="info-group text-right">
@@ -139,28 +114,29 @@
             <span>Cash on Delivery</span>
           </div>
           <div class="info-item">
-            <label>Payment status</label>
-            <span>Unpaid</span>
+            <label>Customer Name</label>
+            <span>${orderData.customerName || 'N/A'}</span>
           </div>
         </div>
       `;
       
-      // Populate Items
       const tbody = document.getElementById('receipt-items');
-      orderData.items.forEach((item, idx) => {
-        const itemTotal = item.totalPrice !== undefined ? item.totalPrice : (item.price * item.qty);
-        tbody.innerHTML += `
-          <tr>
-            <td>${idx + 1}.</td>
-            <td>${item.name} (${item.unit || ''})</td>
-            <td>${item.qty}</td>
-            <td>${formatPrice(item.price)}</td>
-            <td>${formatPrice(itemTotal)}</td>
-          </tr>
-        `;
-      });
+      tbody.innerHTML = '';
+      if (orderData.items && orderData.items.length) {
+        orderData.items.forEach((item, idx) => {
+          const itemTotal = item.totalPrice !== undefined ? item.totalPrice : (item.price * item.qty);
+          tbody.innerHTML += `
+            <tr>
+              <td>${idx + 1}.</td>
+              <td>${item.name} (${item.unit || ''})</td>
+              <td>${item.qty}</td>
+              <td>${formatPrice(item.price)}</td>
+              <td>${formatPrice(itemTotal)}</td>
+            </tr>
+          `;
+        });
+      }
       
-      // Populate Summary
       let summaryHtml = `
         <div class="summary-row" style="font-weight:bold; color:#333;">
           <span>Subtotal</span>
@@ -178,11 +154,11 @@
       summaryHtml += `
         <div class="summary-row">
           <span>Delivery charges</span>
-          <span>${formatPrice(orderData.deliveryFee)}</span>
+          <span>${formatPrice(orderData.deliveryFee || 0)}</span>
         </div>
         <div class="summary-row">
           <span>Taxes</span>
-          <span>${formatPrice(orderData.taxes)}</span>
+          <span>${formatPrice(orderData.taxes || 0)}</span>
         </div>
         <div class="summary-row total">
           <span>Grand total</span>
@@ -190,6 +166,66 @@
         </div>
       `;
       document.getElementById('receipt-summary').innerHTML = summaryHtml;
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const dataParam = urlParams.get('data');
+      const idParam = urlParams.get('id');
+      
+      if (idParam) {
+        // Fetch from Firestore
+        try {
+          const doc = await db.collection('orders').doc(idParam).get();
+          if (doc.exists) {
+            renderReceipt(doc.data());
+          } else {
+            alert('Order not found!');
+          }
+        } catch (e) {
+          console.error("Error fetching order:", e);
+          alert('Failed to load order from database.');
+        }
+      } else if (dataParam) {
+        // Legacy data param
+        try {
+          renderReceipt(JSON.parse(dataParam));
+        } catch (e) {
+          alert('Invalid legacy order data');
+        }
+      } else {
+        // Mock data
+        renderReceipt({
+          orderId: '#MOCK123',
+          date: new Date().toISOString(),
+          items: [{ name: 'Test Product', qty: 1, price: 10, totalPrice: 10 }],
+          subtotal: 10, finalTotal: 10
+        });
+      }
+
+      // Handle PDF Download
+      document.getElementById('download-pdf-btn').addEventListener('click', () => {
+        const element = document.querySelector('.receipt-container');
+        // Hide print buttons and back link for PDF
+        const buttons = element.querySelectorAll('button');
+        const backLink = element.querySelector('.back-link');
+        buttons.forEach(b => b.style.display = 'none');
+        if (backLink) backLink.style.display = 'none';
+
+        const opt = {
+          margin:       0.5,
+          filename:     'SPM_Invoice.pdf',
+          image:        { type: 'jpeg', quality: 0.98 },
+          html2canvas:  { scale: 2 },
+          jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
+
+        html2pdf().set(opt).from(element).save().then(() => {
+          // Restore buttons
+          buttons.forEach(b => b.style.display = '');
+          if (backLink) backLink.style.display = '';
+        });
+      });
     });
   </script>
 </body>

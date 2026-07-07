@@ -6,17 +6,23 @@ const Checkout = (() => {
   let selectedDay = null;
   let deliverySlots = {};
 
-  function loadSlots() {
+  async function loadSlots() {
     try {
+      const doc = await db.collection('settings').doc('delivery_days').get();
+      if (doc.exists) {
+        deliverySlots = doc.data();
+        localStorage.setItem(STORE_CONFIG.slotsStorageKey, JSON.stringify(deliverySlots));
+      } else {
+        throw new Error("No settings doc");
+      }
+    } catch (e) {
+      // Fallback to local storage or defaults
       const saved = localStorage.getItem(STORE_CONFIG.slotsStorageKey);
       deliverySlots = saved ? JSON.parse(saved) : { ...STORE_CONFIG.defaultSlots };
-    } catch (e) {
-      deliverySlots = { ...STORE_CONFIG.defaultSlots };
     }
   }
 
   function getUpcomingDays() {
-    loadSlots();
     const days = [];
     const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const today = new Date();
@@ -35,13 +41,28 @@ const Checkout = (() => {
     return days;
   }
 
-  function open() {
+  async function open() {
     selectedDay = null;
     const overlay = document.getElementById('checkout-overlay');
     const modal = overlay.querySelector('.checkout-modal');
-    renderCheckoutContent(modal);
+    
+    // Show loading state briefly while fetching slots
+    modal.innerHTML = '<div style="padding: 40px; text-align: center;">Loading checkout...</div>';
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
+
+    await loadSlots();
+    
+    // Re-create body structure for render
+    modal.innerHTML = `
+      <div class="checkout-modal-header">
+        <h2>Complete Your Order</h2>
+        <button class="close-btn" onclick="Checkout.close()">×</button>
+      </div>
+      <div class="checkout-modal-body"></div>
+    `;
+    
+    renderCheckoutContent(modal);
   }
 
   function close() {
@@ -239,12 +260,21 @@ const Checkout = (() => {
     message += `📞 *Phone:* ${phone}\n`;
     if (notes) message += `\n📝 *Notes:* ${notes}\n`;
 
+    const orderRef = db.collection('orders').doc();
+    const orderDocId = orderRef.id;
+    const readableOrderId = '#' + Math.floor(100000 + Math.random() * 900000);
+
+    const baseUrl = window.location.href.replace('index.html', '').split('?')[0];
+    const receiptUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'receipt.html?id=' + orderDocId;
+
+    message += `\n🧾 *Invoice/Receipt:* ${receiptUrl}\n`;
+
     const encoded = encodeURIComponent(message);
     window.open(`https://wa.me/${STORE_CONFIG.whatsappNumber}?text=${encoded}`, '_blank');
 
     const orderData = {
-      orderId: '#' + Math.floor(100000 + Math.random() * 900000),
-      date: new Date().toLocaleString('en-GB'),
+      orderId: readableOrderId,
+      date: new Date().toISOString(), // Use ISO for easier sorting
       items: state.items,
       subtotal: state.subtotal,
       discount: state.discount || 0,
@@ -253,15 +283,19 @@ const Checkout = (() => {
       finalTotal: state.finalTotal,
       serviceType: isDelivery ? 'Delivery' : 'Pickup',
       customerName: name,
-      address: isDelivery ? address : 'Store Pickup'
+      customerPhone: phone,
+      address: isDelivery ? address : 'Store Pickup',
+      notes: notes,
+      status: 'pending' // For admin approval
     };
     
-    const encodedData = encodeURIComponent(JSON.stringify(orderData));
+    // Save to Firestore
+    orderRef.set(orderData).catch(err => console.error("Error saving order:", err));
 
     Cart.clear();
     close();
     
-    // Save to LocalStorage Mockup
+    // Fallback for local testing if needed
     let mockOrders = [];
     try {
       const saved = localStorage.getItem('spm_mock_orders');
@@ -270,11 +304,12 @@ const Checkout = (() => {
     
     mockOrders.push({
       ...orderData,
+      id: orderDocId,
       timestamp: new Date().toISOString()
     });
     localStorage.setItem('spm_mock_orders', JSON.stringify(mockOrders));
 
-    window.location.href = 'receipt.html?data=' + encodedData;
+    window.location.href = 'receipt.html?id=' + orderDocId;
   }
 
   loadSlots();
