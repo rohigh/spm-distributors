@@ -67,7 +67,11 @@ const Cart = (() => {
       
       let itemTotal = item.price * qtyToPay;
       if (item.id === 'new_thekkans_coconut_oil') {
-        itemTotal = (Math.floor(item.qty / 2) * 10.99) + ((item.qty % 2) * item.price);
+        if (item.qty === 1) {
+          itemTotal = 5.99;
+        } else if (item.qty >= 2) {
+          itemTotal = 10.99 + ((item.qty - 2) * 5.49);
+        }
       }
       
       return sum + itemTotal;
@@ -113,7 +117,11 @@ const Cart = (() => {
       
       let itemTotal = item.price * qtyToPay;
       if (item.id === 'new_thekkans_coconut_oil') {
-        itemTotal = (Math.floor(item.qty / 2) * 10.99) + ((item.qty % 2) * item.price);
+        if (item.qty === 1) {
+          itemTotal = 5.99;
+        } else if (item.qty >= 2) {
+          itemTotal = 10.99 + ((item.qty - 2) * 5.49);
+        }
       }
       
       return {
