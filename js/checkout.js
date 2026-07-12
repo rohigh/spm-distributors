@@ -112,7 +112,17 @@ const Checkout = (() => {
             <span>${Cart.formatPrice(state.finalTotal)}</span>
           </div>
         </div>
-        <div class="cod-badge">💵 Payment: Cash on Delivery</div>
+        <div class="payment-method-section" style="margin-top: 15px; padding: 15px; background: #f9f9f9; border: 1px solid #eee; border-radius: 8px;">
+          <h4 style="margin: 0 0 10px 0; font-size: 1rem; color: #333;">💵 Payment Method</h4>
+          <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; cursor: pointer;">
+            <input type="radio" name="payment_method" value="Cash on Delivery" checked style="accent-color: #22a660; width: 18px; height: 18px;" />
+            <span>Cash on Delivery</span>
+          </label>
+          <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+            <input type="radio" name="payment_method" value="Card on Delivery" style="accent-color: #22a660; width: 18px; height: 18px;" />
+            <span>Card on Delivery</span>
+          </label>
+        </div>
       </div>
 
       ${isDelivery ? `
@@ -230,6 +240,9 @@ const Checkout = (() => {
 
     const notes = document.getElementById('customer-notes').value.trim();
     
+    const paymentMethodEl = document.querySelector('input[name="payment_method"]:checked');
+    const paymentMethod = paymentMethodEl ? paymentMethodEl.value : 'Cash on Delivery';
+
     // Build WhatsApp message
     let message = `🛒 *New Order — ${STORE_CONFIG.name}*\n`;
     message += `🏷️ *Service Type:* ${isDelivery ? 'Delivery' : 'Pickup'}\n\n`;
@@ -245,7 +258,7 @@ const Checkout = (() => {
     if (state.taxes > 0) message += `Taxes: ${Cart.formatPrice(state.taxes)}\n`;
     message += `*Total to Pay: ${Cart.formatPrice(state.finalTotal)}*\n`;
     
-    message += `\n💵 *Payment:* Cash on Delivery\n\n`;
+    message += `\n💵 *Payment:* ${paymentMethod}\n\n`;
     
     if (isDelivery) {
       const days = getUpcomingDays();
@@ -286,6 +299,7 @@ const Checkout = (() => {
       customerPhone: phone,
       address: isDelivery ? address : 'Store Pickup',
       notes: notes,
+      paymentMethod: paymentMethod,
       status: 'pending' // For admin approval
     };
     
