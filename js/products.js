@@ -55,411 +55,6 @@ const PRODUCTS_DATA = [
     "icon": "\ud83d\udce6",
     "items": [
       {
-        "id": "new_thekkans_sambar_mix",
-        "name": "THEKKANS SAMBAR MIX",
-        "price": 2.59,
-        "unit": "pack",
-        "image": "img/processed/thekkans_sambar_mix_clean.png",
-        "desc": "",
-        "mrp": 2.59
-      },
-      {
-        "id": "new_thekkans_grated_coconut",
-        "name": "THEKKANS GRATED COCONUT",
-        "price": 2.99,
-        "unit": "pack",
-        "image": "img/processed/thekkans_grated_coconut_clean.png",
-        "desc": "",
-        "mrp": 2.99
-      },
-      {
-        "id": "new_thekkans_gooseberry",
-        "name": "THEKKANS GOOSEBERRY",
-        "price": 2.89,
-        "unit": "pack",
-        "image": "img/processed/thekkans_gooseberry_clean.png",
-        "desc": "",
-        "mrp": 2.89
-      },
-      {
-        "id": "new_brahmins_asafoetida",
-        "name": "BRAHMINS ASAFOETIDA 50 G",
-        "price": 1.89,
-        "unit": "pack",
-        "image": "img/processed/brahmins_asafoetida_1783346320009.png",
-        "desc": "",
-        "mrp": 1.89
-      },
-      {
-        "id": "new_brahmins_black_gram",
-        "name": "BRAHMINS BLACK GRAM 1KG",
-        "price": 4.19,
-        "unit": "pack",
-        "image": "img/processed/brahmins_black_gram_1783346332878.png",
-        "desc": "",
-        "mrp": 4.19
-      },
-      {
-        "id": "new_brahmins_ginger_garlic_paste",
-        "name": "BRAHMINS GINGER GARLIC PASTE 100 G",
-        "price": 1.49,
-        "unit": "pack",
-        "image": "img/processed/brahmins_ginger_garlic_paste_1783346342848.png",
-        "desc": "",
-        "mrp": 1.49
-      },
-      {
-        "id": "new_brahmins_red_lentils",
-        "name": "BRAHMINS RED LENTILS (MASOOR DAL)1KG",
-        "price": 3.99,
-        "unit": "pack",
-        "image": "img/processed/brahmins_red_lentils_1783346355677.png",
-        "desc": "",
-        "mrp": 3.99
-      },
-      {
-        "id": "new_brahmins_split_chickpeas",
-        "name": "BRAHMINS SPLIT CHICKPEAS 1KG",
-        "price": 3.99,
-        "unit": "pack",
-        "image": "img/processed/brahmins_split_chickpeas_1783346377840.png",
-        "desc": "",
-        "mrp": 3.99
-      },
-      {
-        "id": "new_kt_palakkadan_matta_rice",
-        "name": "KERALA TASTE PALAKKADAN MATTA RICE 10 KG",
-        "price": 12.99,
-        "unit": "pack",
-        "image": "img/processed/kerala_taste_palakkadan_matta_rice_1783346390894.png",
-        "desc": "",
-        "mrp": 12.99
-      },
-      {
-        "id": "new_niru_plain_appalam",
-        "name": "NIRU PLAIN APPALAM (MADRAS PAPPADOM) 150 G",
-        "price": 1.19,
-        "unit": "pack",
-        "image": "img/processed/niru_poppadom_1783346402717.png",
-        "desc": "",
-        "mrp": 1.19
-      },
-      {
-        "id": "new_tata_salt",
-        "name": "TATA SALT 1KG",
-        "price": 1.59,
-        "unit": "pack",
-        "image": "img/processed/tata_salt_1783346414921.png",
-        "desc": "",
-        "mrp": 1.59
-      },
-      {
-        "id": "new_thekkans_chick_peas_white",
-        "name": "THEKKANS CHICK PEAS WHITE 1KG",
-        "price": 3.29,
-        "unit": "pack",
-        "image": "img/processed/thekkans_chick_peas_white_1783346435189.png",
-        "desc": "",
-        "mrp": 3.29
-      },
-      {
-        "id": "new_thekkans_chick_peas_brown",
-        "name": "THEKKANS CHICK PEAS BROWN 1KG",
-        "price": 3.29,
-        "unit": "pack",
-        "image": "img/processed/thekkans_chickpeas_brown_1783346446925.png",
-        "desc": "",
-        "mrp": 3.29
-      },
-      {
-        "id": "new_thekkans_coconut_oil",
-        "name": "THEKKANS COCONUT OIL ROASTED 1 LTR (2 for \u00a310.99)",
-        "price": 5.99,
-        "unit": "pack",
-        "image": "img/processed/thekkans_coconut_oil_1783346458700.png",
-        "desc": "<strong>Special Offer:</strong> 2 for \u00a310.99",
-        "mrp": 5.99
-      },
-      {
-        "id": "new_thekkans_garcinia_cambogia",
-        "name": "THEKKANS GARCINIA CAMBOGIA (KUDAMPULI) 200G",
-        "price": 2.29,
-        "unit": "pack",
-        "image": "img/processed/thekkans_garcinia_cambogia_1783346471333.png",
-        "desc": "",
-        "mrp": 2.29
-      },
-      {
-        "id": "new_thekkans_maida",
-        "name": "THEKKANS MAIDA 1 KG",
-        "price": 2.99,
-        "unit": "pack",
-        "image": "img/processed/thekkans_maida_1783346506781.png",
-        "desc": "",
-        "mrp": 2.99
-      },
-      {
-        "id": "new_thekkans_ragi_whole",
-        "name": "THEKKANS RAGI WHOLE 1KG",
-        "price": 2.39,
-        "unit": "pack",
-        "image": "img/processed/thekkans_ragi_whole_1783346516293.png",
-        "desc": "",
-        "mrp": 2.39
-      },
-      {
-        "id": "new_thekkans_ribbon_ada",
-        "name": "THEKKANS RIBBON ADA 300 G",
-        "price": 3.59,
-        "unit": "pack",
-        "image": "img/processed/thekkans_ribbon_ada_1783346527857.png",
-        "desc": "",
-        "mrp": 3.59
-      },
-      {
-        "id": "new_thekkans_toor_dal",
-        "name": "THEKKANS TOOR DAL 1kG",
-        "price": 3.29,
-        "unit": "pack",
-        "image": "img/processed/thekkans_toor_dal_1783346538084.png",
-        "desc": "",
-        "mrp": 3.29
-      },
-      {
-        "id": "new_dh_idli_rava",
-        "name": "DOUBLE HORSE IDLI RAVA 1 KG",
-        "price": 2.79,
-        "unit": "pack",
-        "image": "img/processed/Double Horse Idli Rava.png",
-        "desc": "",
-        "mrp": 2.79
-      },
-      {
-        "id": "new_melam_easy_idli_mix",
-        "name": "MELAM EASY IDILI MIX 1 KG",
-        "price": 3.63,
-        "unit": "pack",
-        "image": "img/processed/melam_idli_mix_clean.png",
-        "desc": "",
-        "mrp": 3.63
-      },
-      {
-        "id": "new_tn_apm_idypm",
-        "name": "TASTY NIBBLES APM IDYPM PTHIRI R/RFLOUR 1 KG",
-        "price": 2.51,
-        "unit": "pack",
-        "image": "img/processed/tn_idiyappam_podi_clean.png",
-        "desc": "",
-        "mrp": 2.51
-      },
-      {
-        "id": "new_melam_puttu_podi",
-        "name": "MELAM PUTTU PODI 1KG",
-        "price": 2.51,
-        "unit": "pack",
-        "image": "img/processed/melam_puttu_podi_clean.png",
-        "desc": "",
-        "mrp": 2.51
-      },
-      {
-        "id": "new_melam_chemba_puttu_podi",
-        "name": "MELAM CHEMBA PUTTU PODI 1 KG",
-        "price": 2.65,
-        "unit": "pack",
-        "image": "img/processed/melam_chemba_puttu_clean.png",
-        "desc": "",
-        "mrp": 2.65
-      },
-      {
-        "id": "new_dh_roasted_vermicelli",
-        "name": "DOUBLE HORSE ROASTED VERMICELLI 500 G",
-        "price": 2.93,
-        "unit": "pack",
-        "image": "img/processed/Double Horse Roasted Vermicelli.png",
-        "desc": "",
-        "mrp": 2.93
-      },
-      {
-        "id": "new_tn_all_purpose_white",
-        "name": "TASTY NIBBLES ALL PURPOSE WHITE R/P 1KG",
-        "price": 2.51,
-        "unit": "pack",
-        "image": "img/processed/tn_white_rice_powder_clean.png",
-        "desc": "",
-        "mrp": 2.51
-      },
-      {
-        "id": "new_kt_rasam_powder",
-        "name": "KERALA TASTE RASAM POWDER 140G",
-        "price": 2.29,
-        "unit": "pack",
-        "image": "img/processed/kt_rasam_powder_clean.png",
-        "desc": "",
-        "mrp": 2.29
-      },
-      {
-        "id": "new_kt_chicken_fry_masala",
-        "name": "KERALA TASTE CHICKEN FRY MASALA 80G",
-        "price": 1.53,
-        "unit": "pack",
-        "image": "img/processed/Kerala Taste Chicken Fry Masala.png",
-        "desc": "",
-        "mrp": 1.53
-      },
-      {
-        "id": "new_kt_egg_roast_masala",
-        "name": "KERALA TASTE EGG ROAST MASALA 140G",
-        "price": 2.23,
-        "unit": "pack",
-        "image": "img/processed/kt_egg_roast_masala_clean.png",
-        "desc": "",
-        "mrp": 2.23
-      },
-      {
-        "id": "new_kt_sambar_powder",
-        "name": "KERALA TASTE SAMBAR POWDER 140 G",
-        "price": 2.23,
-        "unit": "pack",
-        "image": "img/processed/kt_sambar_powder_clean.png",
-        "desc": "",
-        "mrp": 2.23
-      },
-      {
-        "id": "new_kt_meat_masala",
-        "name": "KERALA TASTE MEAT MASALA 140G",
-        "price": 2.23,
-        "unit": "pack",
-        "image": "img/processed/kt_meat_masala_clean.png",
-        "desc": "",
-        "mrp": 2.23
-      },
-      {
-        "id": "new_kt_garam_masala",
-        "name": "KERALA TASTE GARAM MASALA 80 G",
-        "price": 1.67,
-        "unit": "pack",
-        "image": "img/processed/kt_garam_masala_clean.png",
-        "desc": "",
-        "mrp": 1.67
-      },
-      {
-        "id": "new_kt_beef_ularthu_masala",
-        "name": "KERALA TASTE BEEF ULARTHU MASALA 80 G",
-        "price": 1.67,
-        "unit": "pack",
-        "image": "img/processed/Kerala Taste Beef Ulurthu Masala.png",
-        "desc": "",
-        "mrp": 1.67
-      },
-      {
-        "id": "new_kt_biriyani_masala",
-        "name": "KERALA TASTE BIRIYANI MASALA 80 G",
-        "price": 1.25,
-        "unit": "pack",
-        "image": "img/processed/Kerala Taste Briyani Masala.png",
-        "desc": "",
-        "mrp": 1.25
-      },
-      {
-        "id": "new_kt_mutton_masala",
-        "name": "KERALA TASTE MUTTON MASALA 140G",
-        "price": 2.23,
-        "unit": "pack",
-        "image": "img/processed/kt_mutton_masala_clean.png",
-        "desc": "",
-        "mrp": 2.23
-      },
-      {
-        "id": "new_kt_pulinji_pickle",
-        "name": "KERALA TASTE PULINJI PICKLE 400G",
-        "price": 2.65,
-        "unit": "pack",
-        "image": "img/processed/kt_pulinji_pickle_clean.png",
-        "desc": "",
-        "mrp": 2.65
-      },
-      {
-        "id": "new_kt_cut_mango_pickle",
-        "name": "KERALA TASTE CUT MANGO PICKLE 400G",
-        "price": 2.23,
-        "unit": "pack",
-        "image": "img/processed/kerala Taste Cut Mango Pickle.png",
-        "desc": "",
-        "mrp": 2.23
-      },
-      {
-        "id": "new_kt_lime_pickle",
-        "name": "KERALA TASTE LIME PICKLE 400G",
-        "price": 2.51,
-        "unit": "pack",
-        "image": "img/processed/kt_lime_pickle_clean.png",
-        "desc": "",
-        "mrp": 2.51
-      },
-      {
-        "id": "new_kt_hot_sweet_pickle",
-        "name": "KERALA TASTE HOT & SWEET PICKLE 400G",
-        "price": 2.51,
-        "unit": "pack",
-        "image": "img/processed/kt_hot_sweet_pickle_clean.png",
-        "desc": "",
-        "mrp": 2.51
-      },
-      {
-        "id": "new_kt_fish_pickle",
-        "name": "KERALA TASTE FISH PICKLE 400G",
-        "price": 5.59,
-        "unit": "pack",
-        "image": "img/processed/Kerala Taste Fish Pickle.png",
-        "desc": "",
-        "mrp": 5.59
-      },
-      {
-        "id": "new_kt_dates_pickle",
-        "name": "KERALA TASTE DATES PICKLE 400G",
-        "price": 2.65,
-        "unit": "pack",
-        "image": "img/processed/Kerala Taste Dates Pickle.png",
-        "desc": "",
-        "mrp": 2.65
-      },
-      {
-        "id": "new_kt_gooseberry_pickle",
-        "name": "KERALA TASTE GOOSEBERRY PICKLE 400G",
-        "price": 2.23,
-        "unit": "pack",
-        "image": "img/new/Kerala Taste Gooseberry Pickle.jpeg",
-        "desc": "",
-        "mrp": 2.23
-      },
-      {
-        "id": "new_kt_prawn_pickle",
-        "name": "KERALA TASTE PRAWN PICKLE 400G",
-        "price": 5.31,
-        "unit": "pack",
-        "image": "img/new/Kerala Taste Prawn Pickle.jpeg",
-        "desc": "",
-        "mrp": 5.31
-      },
-      {
-        "id": "new_dh_roasted_ragi_powder",
-        "name": "DOUBLE HORSE ROASTED RAGI POWDER 1KG",
-        "price": 2.79,
-        "unit": "pack",
-        "image": "img/processed/Double Horse Ragi Powder.png",
-        "desc": "",
-        "mrp": 2.79
-      },
-      {
-        "id": "new_melam_easy_dosa_mix",
-        "name": "MELAM EASY DOSA MIX 1KG",
-        "price": 3.63,
-        "unit": "pack",
-        "image": "img/new/Melam Easy Dosa Mix.jpeg",
-        "desc": "",
-        "mrp": 3.63
-      },
-      {
         "id": "6a038df684e6de290d44c0d8",
         "name": "Everest Paneer",
         "price": 2.29,
@@ -494,6 +89,24 @@ const PRODUCTS_DATA = [
         "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/6a6ff04bb2446dfb_TRS-Green-Gram-1kg.jpg?width=300",
         "desc": "",
         "mrp": 2.49
+      },
+      {
+        "id": "69f3beb284e6de290d25aa83",
+        "name": "Shankar UnRoasted Rava 1kg",
+        "price": 2.89,
+        "unit": "kilogram",
+        "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/9ea0831e28eea242_Shankar-Unroasted-Rava-1kg.jpg?width=300",
+        "desc": "",
+        "mrp": 2.99
+      },
+      {
+        "id": "69f3be9584e6de290d25a8af",
+        "name": "Shankar Roasted Rava 1kg",
+        "price": 2.89,
+        "unit": "kilogram",
+        "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/9f235d5bb0bae492_Shankar-Roasted-Rava-1kg.jpg?width=300",
+        "desc": "",
+        "mrp": 2.99
       },
       {
         "id": "69f3bab484e6de290d2558e6",
@@ -646,42 +259,6 @@ const PRODUCTS_DATA = [
     "icon": "\ud83d\udce6",
     "items": [
       {
-        "id": "new_kt_achappam",
-        "name": "KERALA TASTE ACHAPPAM 150 G",
-        "price": 1.95,
-        "unit": "pack",
-        "image": "img/processed/Kerala Taste Achappam.png",
-        "desc": "",
-        "mrp": 1.95
-      },
-      {
-        "id": "new_kt_banana_chips",
-        "name": "KERALA TASTE BANANA CHIPS 150 G",
-        "price": 2.09,
-        "unit": "pack",
-        "image": "img/processed/Kerala Taste Banana Chips.png",
-        "desc": "",
-        "mrp": 2.09
-      },
-      {
-        "id": "new_kt_roasted_masala_peanut",
-        "name": "KERALA TASTE ROASTED MASALA PEANUT 200 G",
-        "price": 2.09,
-        "unit": "pack",
-        "image": "img/processed/Kerala Taste Rosted Masala Peanut.png",
-        "desc": "",
-        "mrp": 2.09
-      },
-      {
-        "id": "new_kt_spicy_kerala_mixture",
-        "name": "KERALA TASTE SPICY KERALA MIXTURE 300G",
-        "price": 2.23,
-        "unit": "pack",
-        "image": "img/processed/Kerala Taste Spicy Kerala Mixture.png",
-        "desc": "",
-        "mrp": 2.23
-      },
-      {
         "id": "69f3bd1584e6de290d258db9",
         "name": "Maagi 5 for \u00a32",
         "price": 2,
@@ -733,6 +310,24 @@ const PRODUCTS_DATA = [
     "icon": "\ud83d\udce6",
     "items": [
       {
+        "id": "daawat_ponni_boiled_rice",
+        "name": "Daawat Ponni Boiled Rice",
+        "price": 13.49,
+        "unit": "kilogram",
+        "image": "img/processed/Daawat Ponni Boiled Rice.png",
+        "desc": "",
+        "mrp": 15.0
+      },
+      {
+        "id": "daawat_sona_masoori_rice",
+        "name": "Daawat Sona Masoori Rice",
+        "price": 12.99,
+        "unit": "kilogram",
+        "image": "img/new/Daawat-10kg-Sona-Masoori-gen.png",
+        "desc": "",
+        "mrp": 15.0
+      },
+      {
         "id": "6a04175584e6de290d48dc07",
         "name": "Laila Basmati Rice 10Kg",
         "price": 16.99,
@@ -769,6 +364,15 @@ const PRODUCTS_DATA = [
         "mrp": 12.99
       },
       {
+        "id": "69f3b94b84e6de290d253b5f",
+        "name": "Veetee Mega Basmati Rice 10kg",
+        "price": 19.99,
+        "unit": "kilogram",
+        "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/7e1b2d27bdaaa1a7_Veetee-Mega-Basmati-Rice-10kg.jpg?width=300",
+        "desc": "",
+        "mrp": 25
+      },
+      {
         "id": "69f3b88884e6de290d252ab4",
         "name": "Shankar Sona Masoori Rice 10kg",
         "price": 14.99,
@@ -780,11 +384,38 @@ const PRODUCTS_DATA = [
       {
         "id": "69f3b86884e6de290d252700",
         "name": "Dawaat Extra Long 20kg",
-        "price": 39.99,
+        "price": 34.99,
         "unit": "kilogram",
         "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/d340ebd33485aec5_Dawaat-Extra-Long-20kg.jpg?width=300",
         "desc": "",
         "mrp": 45
+      },
+      {
+        "id": "69f3b83a84e6de290d25212c",
+        "name": "Dawaat Extra Long 10kg",
+        "price": 19.98,
+        "unit": "kilogram",
+        "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/a068f1443193228f_Dawaat-Extra-Long-10kg.jpg?width=300",
+        "desc": "",
+        "mrp": 26
+      },
+      {
+        "id": "69f3b65984e6de290d24f49e",
+        "name": "Dawaat Extra Long 5kg",
+        "price": 9.99,
+        "unit": "kilogram",
+        "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/a0aa09daae0e09f3_Dawaat-Extra-Long-5kg-(Green).jpg?width=300",
+        "desc": "",
+        "mrp": 9.99
+      },
+      {
+        "id": "acp_47",
+        "name": "NILA (NL) PALAKKADAN MATTA RICE 10 KG",
+        "price": 12.59,
+        "unit": "nounit",
+        "image": "img/NILA (NL) PALAKKADAN MATTA RICE 10 KG.webp",
+        "desc": "",
+        "mrp": 12.59
       }
     ]
   },
@@ -1266,33 +897,6 @@ const PRODUCTS_DATA = [
         "mrp": 3.08
       },
       {
-        "id": "6a04175584e6de290d48k",
-        "name": "Mango kesar 6s",
-        "price": 11.99,
-        "unit": "pack",
-        "image": "img/kesar.jpeg",
-        "desc": "",
-        "mrp": 11.99
-      },
-      {
-        "id": "6a04175584e6de290d48a",
-        "name": "Alphonso Mango 6s",
-        "price": 11.99,
-        "unit": "pack",
-        "image": "img/alphonso.jpeg",
-        "desc": "",
-        "mrp": 11.99
-      },
-      {
-        "id": "6a04175584e6de290d48d",
-        "name": "Dominican mango",
-        "price": 10.99,
-        "unit": "pack",
-        "image": "img/dominican.jpeg",
-        "desc": "",
-        "mrp": 10.99
-      },
-      {
         "id": "new_26",
         "name": "Apple 4 pieces",
         "price": 1.0,
@@ -1381,6 +985,15 @@ const PRODUCTS_DATA = [
         "image": "img/Blueberry punnet.jfif",
         "desc": "",
         "mrp": 2.49
+      },
+      {
+        "id": "new_mango_e5e01fb0",
+        "name": "Mangoes",
+        "price": 11.99,
+        "unit": "pack",
+        "image": "img/kesar.jpeg",
+        "desc": "",
+        "mrp": 11.99
       }
     ]
   },
@@ -1405,15 +1018,6 @@ const PRODUCTS_DATA = [
         "image": "img/Yellow plantain each.jfif",
         "desc": "",
         "mrp": 0.89
-      },
-      {
-        "id": "new_arr_3",
-        "name": "Green curry mango 500g",
-        "price": 2.9,
-        "unit": "nounit",
-        "image": "img/Green curry mango.jfif",
-        "desc": "",
-        "mrp": 2.9
       }
     ]
   }

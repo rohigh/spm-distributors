@@ -310,6 +310,24 @@
     "icon": "\ud83d\udce6",
     "items": [
       {
+        "id": "daawat_ponni_boiled_rice",
+        "name": "Daawat Ponni Boiled Rice",
+        "price": 13.49,
+        "unit": "kilogram",
+        "image": "img/processed/Daawat Ponni Boiled Rice.png",
+        "desc": "",
+        "mrp": 15.0
+      },
+      {
+        "id": "daawat_sona_masoori_rice",
+        "name": "Daawat Sona Masoori Rice",
+        "price": 12.99,
+        "unit": "kilogram",
+        "image": "img/new/Daawat-10kg-Sona-Masoori-gen.png",
+        "desc": "",
+        "mrp": 15.0
+      },
+      {
         "id": "6a04175584e6de290d48dc07",
         "name": "Laila Basmati Rice 10Kg",
         "price": 16.99,
@@ -366,7 +384,7 @@
       {
         "id": "69f3b86884e6de290d252700",
         "name": "Dawaat Extra Long 20kg",
-        "price": 39.99,
+        "price": 34.99,
         "unit": "kilogram",
         "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/d340ebd33485aec5_Dawaat-Extra-Long-20kg.jpg?width=300",
         "desc": "",
@@ -879,33 +897,6 @@
         "mrp": 3.08
       },
       {
-        "id": "6a04175584e6de290d48k",
-        "name": "Mango kesar 6s",
-        "price": 11.99,
-        "unit": "pack",
-        "image": "img/kesar.jpeg",
-        "desc": "",
-        "mrp": 11.99
-      },
-      {
-        "id": "6a04175584e6de290d48a",
-        "name": "Alphonso Mango 6s",
-        "price": 11.99,
-        "unit": "pack",
-        "image": "img/alphonso.jpeg",
-        "desc": "",
-        "mrp": 11.99
-      },
-      {
-        "id": "6a04175584e6de290d48d",
-        "name": "Dominican mango",
-        "price": 10.99,
-        "unit": "pack",
-        "image": "img/dominican.jpeg",
-        "desc": "",
-        "mrp": 10.99
-      },
-      {
         "id": "new_26",
         "name": "Apple 4 pieces",
         "price": 1.0,
@@ -994,6 +985,15 @@
         "image": "img/Blueberry punnet.jfif",
         "desc": "",
         "mrp": 2.49
+      },
+      {
+        "id": "new_mango_e5e01fb0",
+        "name": "Mangoes",
+        "price": 11.99,
+        "unit": "pack",
+        "image": "img/kesar.jpeg",
+        "desc": "",
+        "mrp": 11.99
       }
     ]
   },
@@ -1018,15 +1018,6 @@
         "image": "img/Yellow plantain each.jfif",
         "desc": "",
         "mrp": 0.89
-      },
-      {
-        "id": "new_arr_3",
-        "name": "Green curry mango 500g",
-        "price": 2.9,
-        "unit": "nounit",
-        "image": "img/Green curry mango.jfif",
-        "desc": "",
-        "mrp": 2.9
       }
     ]
   }
