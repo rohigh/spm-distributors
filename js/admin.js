@@ -24,7 +24,8 @@ function logout() {
 // Check session on load
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    if (STORE_CONFIG.adminEmails && !STORE_CONFIG.adminEmails.includes(user.email)) {
+    const allowedEmails = STORE_CONFIG.adminEmails ? STORE_CONFIG.adminEmails.map(e => e.toLowerCase().trim()) : [];
+    if (allowedEmails.length > 0 && !allowedEmails.includes(user.email.toLowerCase())) {
       alert("Unauthorized email address.");
       logout();
       return;
