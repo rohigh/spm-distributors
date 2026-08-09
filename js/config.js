@@ -21,7 +21,10 @@ const STORE_CONFIG = {
   currency: "£",
   currencyCode: "GBP",
 
-  // Admin panel password
+  // Authorized Admin Emails
+  adminEmails: ["Info@spmdistributors.co.uk", "17sixesrohigh@gmail.com"],
+
+  // Admin panel password (deprecated, but kept for fallback/reference)
   adminPassword: "spm2026",
 
   // Default delivery day availability

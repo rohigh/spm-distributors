@@ -24,7 +24,12 @@ function logout() {
 // Check session on load
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    // User is signed in
+    if (STORE_CONFIG.adminEmails && !STORE_CONFIG.adminEmails.includes(user.email)) {
+      alert("Unauthorized email address.");
+      logout();
+      return;
+    }
+    // User is signed in and authorized
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('admin-dashboard').style.display = 'block';
     loadOrders();
