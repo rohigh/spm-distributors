@@ -2,26 +2,37 @@
 const formatPrice = (price) => '£' + Number(price).toFixed(2);
 let currentOrders = [];
 
-function login() {
-  const pwd = document.getElementById('admin-pwd').value;
-  if (pwd === STORE_CONFIG.adminPassword) {
-    sessionStorage.setItem(STORE_CONFIG.adminAuthKey, 'true');
+function loginWithGoogle() {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithPopup(provider)
+    .then((result) => {
+      // Logged in successfully. The onAuthStateChanged listener will handle the UI update.
+    }).catch((error) => {
+      console.error(error);
+      alert("Google Sign-In failed: " + error.message);
+    });
+}
+
+function logout() {
+  firebase.auth().signOut().then(() => {
+    // Logged out successfully.
+  }).catch((error) => {
+    alert("Error logging out: " + error.message);
+  });
+}
+
+// Check session on load
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    // User is signed in
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('admin-dashboard').style.display = 'block';
     loadOrders();
     loadSettings();
   } else {
-    alert("Incorrect password");
-  }
-}
-
-// Check session on load
-document.addEventListener('DOMContentLoaded', () => {
-  if (sessionStorage.getItem(STORE_CONFIG.adminAuthKey) === 'true') {
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('admin-dashboard').style.display = 'block';
-    loadOrders();
-    loadSettings();
+    // No user is signed in
+    document.getElementById('login-screen').style.display = 'block';
+    document.getElementById('admin-dashboard').style.display = 'none';
   }
 });
 
