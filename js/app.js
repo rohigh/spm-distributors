@@ -97,18 +97,37 @@ const App = (() => {
 
   async function loadProducts() {
     try {
-      const categories = typeof PRODUCTS_DATA !== 'undefined' ? PRODUCTS_DATA : [];
-      products = categories;
-      allProducts = [];
-      categories.forEach(cat => {
-        categoryEmojis[cat.category] = cat.icon;
-        cat.items.forEach(item => {
-          allProducts.push({ ...item, category: cat.category, icon: cat.icon });
-        });
+      const [catsSnap, prodsSnap] = await Promise.all([
+        db.collection('categories').orderBy('order').get(),
+        db.collection('products').get()
+      ]);
+      
+      const catsMap = {};
+      catsSnap.forEach(doc => {
+        const c = doc.data();
+        categoryEmojis[c.name] = c.icon;
+        catsMap[c.name] = { category: c.name, icon: c.icon, order: c.order, items: [] };
       });
+      
+      allProducts = [];
+      prodsSnap.forEach(doc => {
+        const p = doc.data();
+        p.id = doc.id;
+        allProducts.push(p);
+        if (catsMap[p.category]) {
+          catsMap[p.category].items.push(p);
+        } else {
+          // If category doesn't exist in categories collection, create it on the fly
+          categoryEmojis[p.category] = '📦';
+          catsMap[p.category] = { category: p.category, icon: '📦', order: 99, items: [p] };
+        }
+      });
+      
+      products = Object.values(catsMap).sort((a,b) => a.order - b.order);
     } catch (e) {
+      console.error(e);
       document.getElementById('products-container').innerHTML = `
-        <div class="no-results"><p>Failed to load products</p></div>
+        <div class="no-results"><p>Failed to load products from database</p></div>
       `;
     }
   }

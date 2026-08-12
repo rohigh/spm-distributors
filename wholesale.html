@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wholesale Portal — SPM Distributors</title>
+  <meta name="theme-color" content="#22a660" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .wholesale-container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    .wholesale-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .wholesale-header h1 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .wholesale-header p {
+      color: #666;
+    }
+    .auth-forms {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    @media(min-width: 768px) {
+      .auth-forms {
+        flex-direction: row;
+      }
+    }
+    .auth-section {
+      flex: 1;
+      padding: 20px;
+      border: 1px solid #eee;
+      border-radius: 8px;
+    }
+    .auth-section h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+      border-bottom: 2px solid #22a660;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: inherit;
+    }
+    .auth-btn {
+      width: 100%;
+      padding: 12px;
+      background: #22a660;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .auth-btn:hover {
+      background: #1e8e52;
+    }
+    .form-error {
+      color: #dc3545;
+      font-size: 0.85rem;
+      margin-top: 5px;
+      display: none;
+    }
+    .form-success {
+      color: #28a745;
+      font-size: 0.95rem;
+      margin-bottom: 15px;
+      padding: 10px;
+      background: #d4edda;
+      border-radius: 4px;
+      display: none;
+    }
+    
+    #wholesale-dashboard {
+      display: none;
+    }
+    .wholesale-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1e8e52;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+    .wholesale-nav button {
+      background: white;
+      color: #1e8e52;
+      border: none;
+      padding: 5px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header" id="site-header">
+    <div class="header-inner">
+      <a href="/" class="logo">
+        <div class="logo-text"><span>SPM</span> Distributors</div>
+      </a>
+      <div style="font-weight: bold; color: #22a660;">WHOLESALE PORTAL</div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 80px; min-height: calc(100vh - 150px);">
+    
+    <!-- Auth Screen -->
+    <div id="auth-screen" class="wholesale-container">
+      <div class="wholesale-header">
+        <h1>Wholesale Access</h1>
+        <p>Sign in with your Google account to access or apply for a wholesale account.</p>
+      </div>
+
+      <!-- Google Sign In Button -->
+      <div id="google-login-section" style="text-align: center; padding: 40px 20px;">
+        <div id="login-error" class="form-error" style="margin-bottom:20px;"></div>
+        <button type="button" id="btn-google-login" class="auth-btn" style="max-width: 300px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: white; color: #333; border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0,0,0,0.1); cursor: pointer;">
+          <svg width="20" height="20" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/>
+            <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/>
+            <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/>
+            <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/>
+          </svg>
+          Sign in with Google
+        </button>
+      </div>
+
+      <!-- Complete Application Form (Hidden initially) -->
+      <div id="complete-application-section" style="display: none; padding: 20px; border: 1px solid #eee; border-radius: 8px; max-width: 600px; margin: 0 auto;">
+        <h2 style="margin-top: 0; margin-bottom: 20px; font-size: 1.2rem; border-bottom: 2px solid #22a660; display: inline-block; padding-bottom: 5px;">Complete Wholesale Application</h2>
+        <p style="color: #666; margin-bottom: 20px;">Please provide your business details to complete your application.</p>
+        
+        <div id="register-success" class="form-success">
+          Your wholesale application has been submitted successfully. Our team will review your application and contact you before approving your account.
+        </div>
+        <div id="register-error" class="form-error" style="margin-bottom:10px;"></div>
+        
+        <form id="register-form">
+          <div class="form-group">
+            <label for="reg-name">Full Name *</label>
+            <input type="text" id="reg-name" required readonly style="background: #f9f9f9; cursor: not-allowed;">
+          </div>
+          <div class="form-group">
+            <label for="reg-email">Email Address *</label>
+            <input type="email" id="reg-email" required readonly style="background: #f9f9f9; cursor: not-allowed;">
+          </div>
+          <div class="form-group">
+            <label for="reg-company">Business/Company Name *</label>
+            <input type="text" id="reg-company" required>
+          </div>
+          <div class="form-group">
+            <label for="reg-phone">Phone Number *</label>
+            <input type="tel" id="reg-phone" required>
+          </div>
+          <div class="form-group">
+            <label for="reg-address">Business Address *</label>
+            <textarea id="reg-address" rows="2" required></textarea>
+          </div>
+          <div class="form-group" style="display:flex; gap:10px;">
+            <div style="flex:1">
+              <label for="reg-city">City *</label>
+              <input type="text" id="reg-city" required>
+            </div>
+            <div style="flex:1">
+              <label for="reg-postcode">Postcode *</label>
+              <input type="text" id="reg-postcode" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="reg-business-type">Business Type</label>
+            <select id="reg-business-type">
+              <option value="Restaurant">Restaurant</option>
+              <option value="Retail Store">Retail Store</option>
+              <option value="Caterer">Caterer</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <button type="submit" class="auth-btn">Submit Application</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Wholesale Dashboard (Shown after approval login) -->
+    <div id="wholesale-dashboard">
+      <div class="wholesale-nav">
+        <div>
+          Welcome, <span id="ws-user-name"></span> | Category: <strong id="ws-user-category"></strong>
+        </div>
+        <button onclick="Wholesale.logout()">Log Out</button>
+      </div>
+      
+      <!-- Wholesale Category Tabs -->
+      <nav class="category-nav" style="margin-bottom: 20px;">
+        <div class="category-tabs" id="ws-category-tabs">
+          <!-- Rendered by JS -->
+        </div>
+      </nav>
+
+      <!-- Wholesale Products Grid -->
+      <div id="wholesale-products-container" class="products-section">
+        <div class="loading-spinner" id="ws-loading"><div class="spinner"></div></div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ========== FLOATING CART BAR ========== -->
+  <div class="floating-cart" id="ws-floating-cart" style="display:none;" onclick="Wholesale.openCart()">
+    <div class="floating-cart-left">
+      <div class="floating-cart-icon">🛒</div>
+      <div class="floating-cart-info">
+        <div class="fc-items" id="ws-fc-items">0 items</div>
+        <div class="fc-total" id="ws-fc-total">£0.00</div>
+      </div>
+    </div>
+    <div class="floating-cart-right">
+      View Cart
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ========== CART DRAWER ========== -->
+  <div class="cart-overlay" id="ws-cart-overlay" onclick="Wholesale.closeCart()"></div>
+  <aside class="cart-drawer" id="ws-cart-drawer">
+    <div class="cart-drawer-header">
+      <h2>🛒 Your Cart</h2>
+      <button class="cart-close-btn" onclick="Wholesale.closeCart()" aria-label="Close cart">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="cart-items" id="ws-cart-items">
+      <!-- Rendered by JS -->
+    </div>
+    <div class="cart-footer" id="ws-cart-footer" style="display: none;">
+      <div class="cart-summary">
+        <div class="cart-summary-row total">
+          <span>Total</span>
+          <span id="ws-cart-total">£0.00</span>
+        </div>
+      </div>
+      <button class="checkout-btn" onclick="Wholesale.openCheckout()">
+        Proceed to Checkout
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ========== CHECKOUT MODAL ========== -->
+  <div class="checkout-overlay" id="ws-checkout-overlay">
+    <div class="checkout-modal">
+      <div class="checkout-modal-header">
+        <h2>📋 Complete Your Wholesale Order</h2>
+        <button class="cart-close-btn" onclick="Wholesale.closeCheckout()" aria-label="Close checkout">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="checkout-modal-body">
+        <form id="ws-checkout-form" onsubmit="event.preventDefault(); Wholesale.submitOrder();">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" id="ws-chk-name" required>
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" id="ws-chk-phone" required>
+          </div>
+          <div class="form-group">
+            <label>Delivery Address</label>
+            <textarea id="ws-chk-address" rows="3" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>Preferred Delivery Date</label>
+            <input type="date" id="ws-chk-date" required>
+          </div>
+          <div class="form-group">
+            <label>Additional Notes</label>
+            <textarea id="ws-chk-notes" rows="2"></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%; padding: 12px; font-size:1.1rem; margin-top:10px;">Confirm Order</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== PRODUCT DETAILS MODAL ========== -->
+  <div class="product-modal-overlay" id="ws-product-modal-overlay">
+    <div class="product-modal">
+      <button class="cart-close-btn" onclick="Wholesale.closeProductModal()" aria-label="Close product details">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="product-modal-body" id="ws-product-modal-body">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      &copy; 2026 SPM Distributors Ltd. All rights reserved. |
+      <a href="admin.html" style="color: var(--neutral-500);">Admin Dashboard</a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-init.js?v=2"></script>
+  <script src="js/config.js?v=2"></script>
+  <script src="js/products.js?v=2"></script>
+  <script src="js/wholesale.js?v=2"></script>
+</body>
+</html>
