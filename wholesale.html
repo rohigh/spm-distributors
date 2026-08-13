@@ -219,12 +219,12 @@
         <button onclick="Wholesale.logout()">Log Out</button>
       </div>
       
-      <!-- Wholesale Category Tabs -->
-      <nav class="category-nav" style="margin-bottom: 20px;">
-        <div class="category-tabs" id="ws-category-tabs">
+      <!-- Wholesale Category Filter -->
+      <div class="category-filter-container" style="margin-bottom: 20px; max-width: 600px; margin-left: auto; margin-right: auto;">
+        <select id="ws-category-select" onchange="Wholesale.filterCategory(this.value)" style="width: 100%; padding: 12px 15px; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; outline: none; background: white; cursor: pointer; color: #333; font-weight: 500;">
           <!-- Rendered by JS -->
-        </div>
-      </nav>
+        </select>
+      </div>
 
       <!-- Wholesale Search -->
       <div class="search-container" style="position: relative; margin-bottom: 20px; max-width: 600px; margin-left: auto; margin-right: auto;">

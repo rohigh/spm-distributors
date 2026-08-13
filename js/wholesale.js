@@ -324,25 +324,23 @@ const Wholesale = {
 
   renderProducts() {
     const container = document.getElementById('ws-products-container');
-    const tabsContainer = document.getElementById('ws-category-tabs');
+    const selectContainer = document.getElementById('ws-category-select');
     
-    if (!container || !tabsContainer) return;
+    if (!container || !selectContainer) return;
 
     if (this.wholesaleProducts.length === 0) {
       container.innerHTML = '<p style="text-align:center; padding: 40px;">No wholesale products available.</p>';
-      tabsContainer.innerHTML = '';
+      selectContainer.innerHTML = '<option value="all">No categories</option>';
       return;
     }
 
-    // Render Tabs
-    tabsContainer.innerHTML = `
-      <button class="category-tab ${this.activeCategory === 'all' ? 'active' : ''}" onclick="Wholesale.filterCategory('all')">
-        <span class="tab-icon">🏪</span> All
-      </button>
+    // Render Options
+    selectContainer.innerHTML = `
+      <option value="all" ${this.activeCategory === 'all' ? 'selected' : ''}>🏪 All Categories</option>
       ${this.wholesaleCategories.map(cat => `
-        <button class="category-tab ${this.activeCategory === cat.name ? 'active' : ''}" onclick="Wholesale.filterCategory('${cat.name.replace(/'/g, "\\'")}')">
-          <span class="tab-icon">${cat.icon || '📦'}</span> ${cat.name}
-        </button>
+        <option value="${cat.name.replace(/"/g, '&quot;')}" ${this.activeCategory === cat.name ? 'selected' : ''}>
+          ${cat.icon || '📦'} ${cat.name}
+        </option>
       `).join('')}
     `;
 
