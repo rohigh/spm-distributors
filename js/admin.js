@@ -530,3 +530,89 @@ async function migrateWholesaleCatalog() {
     alert("Error migrating wholesale products: " + err.message);
   }
 }
+
+// Category Normalization
+window.normalizeWholesaleCategories = async function() {
+  if (!confirm("This will normalize all wholesale categories into high-level groups. Proceed?")) return;
+  try {
+    const productsSnap = await db.collection("wholesale_products").get();
+    let batch = db.batch();
+    let opCount = 0;
+    const newCategoriesSet = new Set();
+    let updatedCount = 0;
+
+    function getHighLevelCategory(oldCat) {
+      if (!oldCat) return "Miscellaneous";
+      const cat = oldCat.toLowerCase();
+      
+      const produce = ["fruit", "veg", "salad", "apple", "banana", "melon", "berry", "potato", "onion", "mushroom", "carrot", "cabbage", "broccoli", "lettuce", "tomato", "cress", "endive", "roquette", "asparagus", "aubergine", "bean", "beetroot", "celeriac", "ginger", "leek", "mooli", "okra", "parsnip", "pumpkin", "shallot", "squash", "swede", "garlic", "chilli", "herb", "thyme", "rosemary", "radish", "sprout"];
+      if (produce.some(p => cat.includes(p))) {
+        if (cat.includes("frozen")) return "Frozen Foods";
+        if (cat.includes("juice")) return "Beverages";
+        return "Fresh Produce";
+      }
+      if (cat.includes("cheese") || cat.includes("dairy") || cat.includes("egg") || cat.includes("milk") || cat.includes("cream") || cat.includes("yogurt") || cat.includes("yoghurt") || cat.includes("butter") || cat.includes("british")) {
+        return "Dairy & Eggs";
+      }
+      if (cat.includes("fish") || cat.includes("seafood") || cat.includes("meat") || cat.includes("poultry") || cat.includes("beef") || cat.includes("pork") || cat.includes("chicken") || cat.includes("turkey") || cat.includes("sausage") || cat.includes("burger") || cat.includes("prawn") || cat.includes("crustacean") || cat.includes("mollusc")) {
+        if (cat.includes("frozen")) return "Frozen Foods";
+        return "Meat & Seafood";
+      }
+      if (cat.includes("frozen") || cat.includes("ice cream")) return "Frozen Foods";
+      if (cat.includes("drink") || cat.includes("mix")) return "Beverages";
+      if (cat.includes("snack") || cat.includes("bread")) return "Snacks & Bakery";
+      if (cat.includes("packaging") || cat.includes("film") || cat.includes("foil")) return "Packaging & Non-Food";
+      if (cat.includes("sauce") || cat.includes("spice") || cat.includes("dry") || cat.includes("sugar") || cat.includes("vinegar") || cat.includes("oil") || cat.includes("rice") || cat.includes("paste") || cat.includes("pickle") || cat.includes("seasoning") || cat.includes("gravy") || cat.includes("colouring") || cat.includes("flavouring") || cat.includes("nut") || cat.includes("seed") || cat.includes("lentil") || cat.includes("basmati") || cat.includes("mayonnaise") || cat.includes("accompaniment")) return "Pantry & Dry Goods";
+      
+      return "Miscellaneous";
+    }
+
+    const commitBatchIfNeeded = async () => {
+      if (opCount >= 400) {
+        await batch.commit();
+        batch = db.batch();
+        opCount = 0;
+      }
+    };
+
+    for (let i = 0; i < productsSnap.docs.length; i++) {
+      const doc = productsSnap.docs[i];
+      const data = doc.data();
+      const newCat = getHighLevelCategory(data.category);
+      newCategoriesSet.add(newCat);
+      batch.update(doc.ref, { category: newCat });
+      opCount++;
+      updatedCount++;
+      await commitBatchIfNeeded();
+    }
+    
+    if (opCount > 0) { await batch.commit(); batch = db.batch(); opCount = 0; }
+    
+    const catsSnap = await db.collection("wholesale_categories").get();
+    for (let i = 0; i < catsSnap.docs.length; i++) {
+      batch.delete(catsSnap.docs[i].ref);
+      opCount++;
+      await commitBatchIfNeeded();
+    }
+    if (opCount > 0) { await batch.commit(); batch = db.batch(); opCount = 0; }
+    
+    let order = 0;
+    const icons = {
+      "Fresh Produce": "🥬", "Dairy & Eggs": "🥚", "Meat & Seafood": "🥩", "Frozen Foods": "❄️", "Beverages": "🥤", "Snacks & Bakery": "🍞", "Packaging & Non-Food": "🥡", "Pantry & Dry Goods": "🥫", "Miscellaneous": "📦"
+    };
+
+    for (const catName of newCategoriesSet) {
+      const catId = catName.replace(/[^a-zA-Z0-9]/g, "_").toLowerCase();
+      const catRef = db.collection("wholesale_categories").doc(catId);
+      batch.set(catRef, { id: catId, name: catName, icon: icons[catName] || "📦", order: order++ });
+      opCount++;
+      await commitBatchIfNeeded();
+    }
+    if (opCount > 0) { await batch.commit(); }
+    
+    alert("Successfully normalized " + updatedCount + " products into " + newCategoriesSet.size + " categories!");
+  } catch (error) {
+    console.error(error);
+    alert("Error normalizing categories: " + error.message);
+  }
+};
