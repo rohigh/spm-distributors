@@ -760,6 +760,15 @@
         "icon": "\ud83d\udce6",
         "items": [
             {
+                "id": "new_indian_taste_matta_rice",
+                "name": "Indian Taste Matta Rice",
+                "price": 9.99,
+                "unit": "pack",
+                "image": "img/Indian Taste Matta Rice.jpeg",
+                "desc": "",
+                "mrp": 9.99
+            },
+            {
                 "id": "daawat_ponni_boiled_rice",
                 "name": "Daawat Ponni Boiled Rice",
                 "price": 13.49,
