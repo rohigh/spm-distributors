@@ -450,17 +450,10 @@ const Wholesale = {
   renderProductCard(product) {
     const cartItem = this.cart.find(item => item.id === product.id);
     const qty = cartItem ? cartItem.qty : 0;
-    const hasImage = product.image && product.image.length > 0;
     const price = product.wholesalePrice || 0;
 
     return `
       <div class="product-card" id="ws-product-${product.id}">
-        <div class="product-image" onclick="Wholesale.openProductModal('${product.id}')" style="cursor: pointer;">
-          ${hasImage
-            ? `<img src="${product.image}" alt="${product.name}" loading="lazy" />`
-            : `<span class="placeholder-icon">🛒</span>`
-          }
-        </div>
         <div class="product-info">
           <div class="product-name" onclick="Wholesale.openProductModal('${product.id}')" style="cursor: pointer;">${product.name}</div>
           <div class="product-unit">per ${product.unit}</div>
@@ -594,7 +587,6 @@ const Wholesale = {
 
     itemsContainer.innerHTML = this.cart.map(item => `
       <div class="cart-item">
-        ${item.image ? `<img src="${item.image}" alt="${item.name}">` : `<div style="width:60px; height:60px; background:#eee; border-radius:4px; display:flex; align-items:center; justify-content:center; margin-right:15px; font-size:1.5rem;">🛒</div>`}
         <div class="cart-item-info">
           <h4>${item.name}</h4>
           <div class="price">£${item.price.toFixed(2)}</div>
@@ -644,13 +636,8 @@ const Wholesale = {
     const body = document.getElementById('ws-product-modal-body');
     const overlay = document.getElementById('ws-product-modal-overlay');
     if (!body || !overlay) return;
-
-    const hasImage = product.image && product.image.length > 0;
     
     body.innerHTML = `
-      <div class="pm-images">
-        ${hasImage ? `<img src="${product.image}" alt="${product.name}" />` : '<div style="padding: 40px; text-align:center; background:#eee; width:100%;">No image available</div>'}
-      </div>
       <h2 class="pm-title">${product.name}</h2>
       ${product.desc ? `<div class="pm-desc" style="text-align: left; padding: 10px; background: #f9f9f9; border-radius: 8px; margin: 15px 0;">${product.desc}</div>` : ''}
       <div class="pm-price-wrap">
