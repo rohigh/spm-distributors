@@ -77,7 +77,8 @@ const Wholesale = {
       document.getElementById('auth-screen').style.display = 'none';
       document.getElementById('wholesale-dashboard').style.display = 'block';
       document.getElementById('ws-user-name').innerText = userData.fullName;
-      document.getElementById('ws-user-category').innerText = userData.category || 'N/A';
+      const catEl = document.getElementById('ws-user-category');
+      if (catEl) catEl.innerText = userData.category || 'N/A';
       // Load products later
       this.loadWholesaleProducts(userData.category);
     } else if (userData.status === 'PENDING') {
