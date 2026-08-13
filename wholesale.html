@@ -227,8 +227,26 @@
       </nav>
 
       <!-- Wholesale Search -->
-      <div style="margin-bottom: 20px;">
-        <input type="text" id="ws-search-input" placeholder="Search products..." style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;" oninput="Wholesale.handleSearch(this.value)">
+      <div class="search-container" style="position: relative; margin-bottom: 20px; max-width: 600px; margin-left: auto; margin-right: auto;">
+        <div class="search-input-wrapper" style="position: relative; display: flex; align-items: center; background: white; border: 1px solid #ccc; border-radius: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.05); overflow: hidden;">
+          <div style="padding-left: 15px; display: flex; align-items: center;">
+            <svg style="color: #777; width: 18px; height: 18px;" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          </div>
+          <input type="text" id="ws-search-input" placeholder="Search products..." style="flex: 1; padding: 12px 15px; border: none; font-size: 1rem; outline: none; background: transparent;" oninput="Wholesale.handleSearch(this.value)" autocomplete="off">
+          <div id="ws-search-clear" onclick="Wholesale.clearSearch()" style="padding-right: 15px; display: none; cursor: pointer; display: flex; align-items: center;">
+            <svg style="color: #777; width: 20px; height: 20px;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </div>
+        </div>
+        
+        <!-- Suggestions Dropdown -->
+        <div id="ws-search-suggestions" style="position: absolute; top: 100%; left: 0; right: 0; background: white; border: 1px solid #ddd; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.15); z-index: 100; display: none; max-height: 350px; overflow-y: auto; margin-top: 5px; padding: 8px 0;">
+          <!-- Rendered by JS -->
+        </div>
+        <style>
+          .search-suggestion-item:hover {
+            background-color: #f1f1f1;
+          }
+        </style>
       </div>
 
       <!-- Wholesale Products Grid -->

@@ -19,6 +19,17 @@ const Wholesale = {
         this.submitApplication();
       });
     }
+
+    // Close suggestions on outside click
+    document.addEventListener('click', (e) => {
+      const searchContainer = document.querySelector('.search-container');
+      if (searchContainer && !searchContainer.contains(e.target)) {
+        const suggestionsBox = document.getElementById('ws-search-suggestions');
+        if (suggestionsBox) suggestionsBox.style.display = 'none';
+        const inputWrapper = document.querySelector('.search-input-wrapper');
+        if (inputWrapper) inputWrapper.style.borderRadius = '24px';
+      }
+    });
   },
 
   checkAuthState() {
@@ -188,7 +199,88 @@ const Wholesale = {
 
   handleSearch(query) {
     this.searchQuery = query.toLowerCase().trim();
+    
+    const clearBtn = document.getElementById('ws-search-clear');
+    if (this.searchQuery.length > 0) {
+      if (clearBtn) clearBtn.style.display = 'flex';
+    } else {
+      if (clearBtn) clearBtn.style.display = 'none';
+    }
+
+    this.renderSuggestions();
     this.renderProducts();
+  },
+
+  clearSearch() {
+    const input = document.getElementById('ws-search-input');
+    if (input) input.value = '';
+    this.handleSearch('');
+    const inputWrapper = document.querySelector('.search-input-wrapper');
+    if (inputWrapper) inputWrapper.style.borderRadius = '24px';
+  },
+
+  renderSuggestions() {
+    const suggestionsBox = document.getElementById('ws-search-suggestions');
+    const inputWrapper = document.querySelector('.search-input-wrapper');
+    if (!suggestionsBox) return;
+
+    if (!this.searchQuery) {
+      suggestionsBox.style.display = 'none';
+      if (inputWrapper) inputWrapper.style.borderRadius = '24px';
+      return;
+    }
+
+    const matches = this.wholesaleProducts.filter(p => p.name.toLowerCase().includes(this.searchQuery));
+    
+    if (matches.length === 0) {
+      suggestionsBox.style.display = 'none';
+      if (inputWrapper) inputWrapper.style.borderRadius = '24px';
+      return;
+    }
+
+    // Adjust borders for dropdown effect like Youtube
+    if (inputWrapper) {
+      inputWrapper.style.borderBottomLeftRadius = '0px';
+      inputWrapper.style.borderBottomRightRadius = '0px';
+    }
+
+    const topMatches = matches.slice(0, 8);
+
+    suggestionsBox.innerHTML = topMatches.map(p => {
+      const name = p.name;
+      const lowerName = name.toLowerCase();
+      const startIndex = lowerName.indexOf(this.searchQuery);
+      
+      let highlightedName = name;
+      if (startIndex >= 0) {
+        const prefix = name.substring(0, startIndex);
+        const match = name.substring(startIndex, startIndex + this.searchQuery.length);
+        const suffix = name.substring(startIndex + this.searchQuery.length);
+        // Youtube style: the un-typed text is bold
+        highlightedName = `<strong>${prefix}</strong>${match}<strong>${suffix}</strong>`;
+      }
+
+      return `
+        <div class="search-suggestion-item" onclick="Wholesale.selectSuggestion('${name.replace(/'/g, "\\'")}')" style="padding: 10px 15px; display: flex; align-items: center; cursor: pointer; gap: 15px;">
+          <svg style="color: #999; width: 18px; height: 18px; min-width: 18px;" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <span style="font-size: 0.95rem; color: #111;">${highlightedName}</span>
+        </div>
+      `;
+    }).join('');
+
+    suggestionsBox.style.display = 'block';
+  },
+
+  selectSuggestion(name) {
+    const input = document.getElementById('ws-search-input');
+    if (input) input.value = name;
+    this.handleSearch(name);
+    
+    const suggestionsBox = document.getElementById('ws-search-suggestions');
+    if (suggestionsBox) suggestionsBox.style.display = 'none';
+    
+    const inputWrapper = document.querySelector('.search-input-wrapper');
+    if (inputWrapper) inputWrapper.style.borderRadius = '24px';
   },
 
   async loadWholesaleProducts(category) {
