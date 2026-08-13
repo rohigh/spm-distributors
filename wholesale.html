@@ -226,6 +226,11 @@
         </div>
       </nav>
 
+      <!-- Wholesale Search -->
+      <div style="margin-bottom: 20px;">
+        <input type="text" id="ws-search-input" placeholder="Search products..." style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem;" oninput="Wholesale.handleSearch(this.value)">
+      </div>
+
       <!-- Wholesale Products Grid -->
       <div id="ws-products-container" class="products-section">
         <div class="loading-spinner" id="ws-loading"><div class="spinner"></div></div>

@@ -184,6 +184,12 @@ const Wholesale = {
   wholesaleProducts: [],
   wholesaleCategories: [],
   activeCategory: 'all',
+  searchQuery: '',
+
+  handleSearch(query) {
+    this.searchQuery = query.toLowerCase().trim();
+    this.renderProducts();
+  },
 
   async loadWholesaleProducts(category) {
     // category here was the user's tier, but now we don't need to load different collections for tiers.
@@ -250,7 +256,10 @@ const Wholesale = {
     // Group products by category
     let filtered = this.wholesaleProducts;
     if (this.activeCategory !== 'all') {
-      filtered = this.wholesaleProducts.filter(p => p.category === this.activeCategory);
+      filtered = filtered.filter(p => p.category === this.activeCategory);
+    }
+    if (this.searchQuery) {
+      filtered = filtered.filter(p => p.name.toLowerCase().includes(this.searchQuery));
     }
 
     const grouped = {};
