@@ -532,24 +532,6 @@
                 "mrp": 2.49
             },
             {
-                "id": "69f3beb284e6de290d25aa83",
-                "name": "Shankar UnRoasted Rava 1kg",
-                "price": 2.89,
-                "unit": "kilogram",
-                "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/9ea0831e28eea242_Shankar-Unroasted-Rava-1kg.jpg?width=300",
-                "desc": "",
-                "mrp": 2.99
-            },
-            {
-                "id": "69f3be9584e6de290d25a8af",
-                "name": "Shankar Roasted Rava 1kg",
-                "price": 2.89,
-                "unit": "kilogram",
-                "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/9f235d5bb0bae492_Shankar-Roasted-Rava-1kg.jpg?width=300",
-                "desc": "",
-                "mrp": 2.99
-            },
-            {
                 "id": "69f3bab484e6de290d2558e6",
                 "name": "TRS Red Peanuts 1.5kg",
                 "price": 6.49,
@@ -805,15 +787,6 @@
                 "mrp": 19.0
             },
             {
-                "id": "69f3c11384e6de290d25d4b3",
-                "name": "Ajmi Kaima 5kg",
-                "price": 15.99,
-                "unit": "kilogram",
-                "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/ef92dbb163575584_Ajmi-Kaima-5kg.jpg?width=300",
-                "desc": "",
-                "mrp": 15.99
-            },
-            {
                 "id": "69f3beff84e6de290d25b0e3",
                 "name": "Shankar Matta Rice 10kg",
                 "price": 13.99,
@@ -823,24 +796,6 @@
                 "mrp": 13.99
             },
             {
-                "id": "69f3b96984e6de290d253da0",
-                "name": "Shankar Idly Rice 10kg",
-                "price": 12.99,
-                "unit": "nounit",
-                "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/68cb0c356b37ff82_Shankar-Idly-Rice-10kg.jpg?width=300",
-                "desc": "",
-                "mrp": 12.99
-            },
-            {
-                "id": "69f3b94b84e6de290d253b5f",
-                "name": "Veetee Mega Basmati Rice 10kg",
-                "price": 19.99,
-                "unit": "kilogram",
-                "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/7e1b2d27bdaaa1a7_Veetee-Mega-Basmati-Rice-10kg.jpg?width=300",
-                "desc": "",
-                "mrp": 25
-            },
-            {
                 "id": "69f3b86884e6de290d252700",
                 "name": "Dawaat Extra Long 20kg",
                 "price": 34.99,
@@ -848,15 +803,6 @@
                 "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/d340ebd33485aec5_Dawaat-Extra-Long-20kg.jpg?width=300",
                 "desc": "",
                 "mrp": 45
-            },
-            {
-                "id": "acp_47",
-                "name": "NILA (NL) PALAKKADAN MATTA RICE 10 KG",
-                "price": 12.59,
-                "unit": "nounit",
-                "image": "img/NILA (NL) PALAKKADAN MATTA RICE 10 KG.webp",
-                "desc": "",
-                "mrp": 12.59
             }
         ]
     },
