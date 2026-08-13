@@ -616,3 +616,80 @@ window.normalizeWholesaleCategories = async function() {
     alert("Error normalizing categories: " + error.message);
   }
 };
+
+window.assignWholesaleImages = async function() {
+  if (!confirm("This will auto-assign local images to wholesale products based on name matching. Proceed?")) return;
+  const mappings = {
+    "8556534": "img/Apple 4 pieces.jfif",
+    "7990135": "img/Red grapes punnet.jfif",
+    "8273161": "img/Drumstick leaves packet.jfif",
+    "7437705": "img/Carrots 500g.jfif",
+    "10831457": "img/red onion.jfif",
+    "8191290": "img/Green grapes punnet.jfif",
+    "9686884": "img/Apple 4 pieces.jfif",
+    "9552289": "img/Apple 4 pieces.jfif",
+    "9229398": "img/Baby leaf each.jfif",
+    "301752": "img/Apple 4 pieces.jfif",
+    "885653": "img/TRS Fennel seeds 1kg.jfif",
+    "199182": "img/tomatoes.jfif",
+    "194805": "img/TRS Red Lentills 2kg.webp",
+    "779909": "img/TRS Garam Masala 1kg.jfif",
+    "3964614": "img/TRS Chilli Powder 1kg.jfif",
+    "4534282": "img/coriander and mint.png",
+    "8802098": "img/TRS Chilli Powder 1kg.jfif",
+    "6792540": "img/TRS Cardomom Green 750g.jfif",
+    "4752084": "img/TRS Turmeric Powder 1kg.jfif",
+    "250022": "img/Aubergine each.jfif",
+    "353265": "img/Banana 5 pieces.jfif",
+    "305436": "img/Blueberry punnet.jfif",
+    "198019": "img/image.png",
+    "8807261": "img/Mandarin 4 pieces.jfif",
+    "198021": "img/Mandarin 4 pieces.jfif",
+    "8015577": "img/Honeydew each.jfif",
+    "8807241": "img/Cantaloupe each.jfif",
+    "198121": "img/Pineapple each.jfif",
+    "198176": "img/Strawberry punnet.jfif",
+    "635568": "img/coriander and mint.png",
+    "3265074": "img/ginger.jpg",
+    "200957": "img/Cucumber each.jfif",
+    "205823": "img/red onion.jfif",
+    "696835": "img/tomatoes.jfif",
+    "545698": "img/tomatoes.jfif",
+    "220871": "img/tomatoes.jfif",
+    "275788": "img/tomatoes.jfif",
+    "8652345": "img/Aubergine each.jfif",
+    "353267": "img/Carrots 500g.jfif",
+    "252869": "img/Cauliflower each.jfif",
+    "200784": "img/ginger.jpg",
+    "200841": "img/Parsnips kg.jfif",
+    "213296": "img/Parsnips kg.jfif",
+    "362093": "img/Swede.jfif",
+    "8213349": "img/Aubergine each.jfif",
+    "2140764": "img/Baby spinach packet.jfif",
+    "2338608": "img/garlic.jpg"
+  };
+
+  try {
+    let batch = db.batch();
+    let opCount = 0;
+    
+    for (const pid in mappings) {
+      const ref = db.collection('wholesale_products').doc(pid);
+      batch.update(ref, { image: mappings[pid] });
+      opCount++;
+      if(opCount >= 400) {
+        await batch.commit();
+        batch = db.batch();
+        opCount = 0;
+      }
+    }
+    
+    if(opCount > 0) {
+      await batch.commit();
+    }
+    alert("Successfully assigned " + Object.keys(mappings).length + " images to wholesale products!");
+  } catch(e) {
+    console.error(e);
+    alert("Error updating images: " + e.message);
+  }
+};
