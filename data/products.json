@@ -841,15 +841,6 @@
                 "mrp": 25
             },
             {
-                "id": "69f3b88884e6de290d252ab4",
-                "name": "Shankar Sona Masoori Rice 10kg",
-                "price": 14.99,
-                "unit": "kilogram",
-                "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/cc4b79e2edc9f3b7_Shankar-Sona-Masoori-Rice-10kg.jpg?width=300",
-                "desc": "",
-                "mrp": 14.99
-            },
-            {
                 "id": "69f3b86884e6de290d252700",
                 "name": "Dawaat Extra Long 20kg",
                 "price": 34.99,
@@ -857,24 +848,6 @@
                 "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/d340ebd33485aec5_Dawaat-Extra-Long-20kg.jpg?width=300",
                 "desc": "",
                 "mrp": 45
-            },
-            {
-                "id": "69f3b83a84e6de290d25212c",
-                "name": "Dawaat Extra Long 10kg",
-                "price": 19.98,
-                "unit": "kilogram",
-                "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/a068f1443193228f_Dawaat-Extra-Long-10kg.jpg?width=300",
-                "desc": "",
-                "mrp": 26
-            },
-            {
-                "id": "69f3b65984e6de290d24f49e",
-                "name": "Dawaat Extra Long 5kg",
-                "price": 9.99,
-                "unit": "kilogram",
-                "image": "https://d1mzjggyz5012h.cloudfront.net/quickzu.com/products/a0aa09daae0e09f3_Dawaat-Extra-Long-5kg-(Green).jpg?width=300",
-                "desc": "",
-                "mrp": 9.99
             },
             {
                 "id": "acp_47",

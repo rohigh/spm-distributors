@@ -133,9 +133,23 @@ const Cart = (() => {
     const totalItems = items.reduce((sum, item) => sum + item.qty, 0);
     const subtotal = items.reduce((sum, item) => sum + item.totalPrice, 0);
     
-    // 10% Launch Discount on subtotal
-    const discount = subtotal * 0.10;
+    const excludedFromDiscount = [
+      "Veetee Mega Basmati Rice 10kg",
+      "Shankar Idly Rice 10kg",
+      "Ajmi Kaima 5kg",
+      "NILA (NL) PALAKKADAN MATTA RICE 10 KG",
+      "Shankar UnRoasted Rava 1kg",
+      "Shankar Roasted Rava 1kg"
+    ];
+    let discountableSubtotal = 0;
+    items.forEach(item => {
+      if (!excludedFromDiscount.includes(item.name)) {
+        discountableSubtotal += item.totalPrice;
+      }
+    });
     
+    // 10% Launch Discount on eligible subtotal
+    const discount = discountableSubtotal * 0.10;
     const taxes = calculateTaxes(subtotal - discount);
     const deliveryFee = calculateDeliveryFee(subtotal);
     
