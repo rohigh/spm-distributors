@@ -693,3 +693,48 @@ window.assignWholesaleImages = async function() {
     alert("Error updating images: " + e.message);
   }
 };
+
+window.restoreWholesaleSubcategories = async function() {
+  if (!confirm("This will restore the original granular categories to the 'subcategory' field from the catalogue data. Proceed?")) return;
+  if (typeof WHOLESALE_CATALOG === 'undefined') {
+    alert("WHOLESALE_CATALOG not found. Make sure catalogue-data.js is loaded.");
+    return;
+  }
+  
+  try {
+    const subcatMap = {};
+    WHOLESALE_CATALOG.forEach(item => {
+      subcatMap[String(item["PID"])] = item["Tertiary Category"] || "Uncategorized";
+    });
+
+    const productsSnap = await db.collection("wholesale_products").get();
+    let batch = db.batch();
+    let opCount = 0;
+    let updatedCount = 0;
+
+    for (let i = 0; i < productsSnap.docs.length; i++) {
+      const doc = productsSnap.docs[i];
+      const pid = doc.id;
+      const subcat = subcatMap[pid] || "Uncategorized";
+      
+      batch.update(doc.ref, { subcategory: subcat });
+      opCount++;
+      updatedCount++;
+      
+      if (opCount >= 400) {
+        await batch.commit();
+        batch = db.batch();
+        opCount = 0;
+      }
+    }
+    
+    if (opCount > 0) {
+      await batch.commit();
+    }
+    
+    alert(`Successfully restored subcategories for ${updatedCount} products!`);
+  } catch (error) {
+    console.error(error);
+    alert("Error restoring subcategories: " + error.message);
+  }
+};

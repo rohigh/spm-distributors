@@ -220,11 +220,36 @@
       </div>
       
       <!-- Wholesale Category Filter -->
-      <div class="category-filter-container" style="margin-bottom: 20px; max-width: 600px; margin-left: auto; margin-right: auto;">
-        <select id="ws-category-select" onchange="Wholesale.filterCategory(this.value)" style="width: 100%; padding: 12px 15px; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; outline: none; background: white; cursor: pointer; color: #333; font-weight: 500;">
-          <!-- Rendered by JS -->
-        </select>
+      <div class="category-filter-container" style="margin-bottom: 20px; max-width: 600px; margin-left: auto; margin-right: auto; position: relative;" id="ws-category-container">
+        <!-- Rendered by JS -->
       </div>
+      <style>
+        .custom-dropdown-btn {
+          width: 100%; padding: 12px 15px; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem; outline: none; background: white; cursor: pointer; color: #333; font-weight: 500; text-align: left; display: flex; justify-content: space-between; align-items: center;
+        }
+        .custom-dropdown-menu {
+          position: absolute; top: 100%; left: 0; width: 100%; background: white; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 8px 16px rgba(0,0,0,0.15); z-index: 100; margin-top: 5px; list-style: none; padding: 0; display: none; max-height: 400px; overflow-y: visible;
+        }
+        .custom-dropdown-menu.show { display: block; }
+        .dropdown-item {
+          padding: 10px 15px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; position: relative; border-bottom: 1px solid #f1f1f1;
+        }
+        .dropdown-item:last-child { border-bottom: none; }
+        .dropdown-item:hover { background-color: #f9f9f9; }
+        .dropdown-item.active { background-color: #e3f2fd; font-weight: bold; }
+        
+        .has-submenu { position: relative; }
+        .has-submenu::after { content: '▶'; font-size: 0.8rem; color: #888; margin-left: 10px; }
+        
+        .submenu {
+          position: absolute; top: 0; left: 100%; min-width: 200px; background: white; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 8px 16px rgba(0,0,0,0.15); list-style: none; padding: 0; display: none; margin-left: -5px; z-index: 101; max-height: 400px; overflow-y: auto;
+        }
+        
+        /* Only show submenu on hover if it's a desktop or we hover on it */
+        .dropdown-item.has-submenu:hover > .submenu {
+          display: block;
+        }
+      </style>
 
       <!-- Wholesale Search -->
       <div class="search-container" style="position: relative; margin-bottom: 20px; max-width: 600px; margin-left: auto; margin-right: auto;">

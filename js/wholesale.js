@@ -20,14 +20,22 @@ const Wholesale = {
       });
     }
 
-    // Close suggestions on outside click
+    // Close suggestions and category dropdown on outside click
     document.addEventListener('click', (e) => {
+      // Close search suggestions
       const searchContainer = document.querySelector('.search-container');
       if (searchContainer && !searchContainer.contains(e.target)) {
         const suggestionsBox = document.getElementById('ws-search-suggestions');
         if (suggestionsBox) suggestionsBox.style.display = 'none';
         const inputWrapper = document.querySelector('.search-input-wrapper');
         if (inputWrapper) inputWrapper.style.borderRadius = '24px';
+      }
+      
+      // Close custom category dropdown
+      const categoryContainer = document.getElementById('ws-category-container');
+      if (categoryContainer && !categoryContainer.contains(e.target)) {
+        const menu = document.getElementById('ws-custom-dropdown-menu');
+        if (menu) menu.classList.remove('show');
       }
     });
   },
@@ -317,31 +325,81 @@ const Wholesale = {
     }
   },
 
-  filterCategory(catName) {
+  activeSubcategory: null,
+
+  toggleCategoryDropdown() {
+    const menu = document.getElementById('ws-custom-dropdown-menu');
+    if (menu) menu.classList.toggle('show');
+  },
+
+  filterCategory(catName, subCatName = null) {
     this.activeCategory = catName;
+    this.activeSubcategory = subCatName;
+    
+    // Close dropdown
+    const menu = document.getElementById('ws-custom-dropdown-menu');
+    if (menu) menu.classList.remove('show');
+    
     this.renderProducts();
   },
 
   renderProducts() {
     const container = document.getElementById('ws-products-container');
-    const selectContainer = document.getElementById('ws-category-select');
+    const selectContainer = document.getElementById('ws-category-container');
     
     if (!container || !selectContainer) return;
 
     if (this.wholesaleProducts.length === 0) {
       container.innerHTML = '<p style="text-align:center; padding: 40px;">No wholesale products available.</p>';
-      selectContainer.innerHTML = '<option value="all">No categories</option>';
+      selectContainer.innerHTML = '<button class="custom-dropdown-btn">No categories</button>';
       return;
     }
 
-    // Render Options
+    // Pre-calculate subcategories for each main category
+    const subcatsMap = {};
+    this.wholesaleProducts.forEach(p => {
+      if (p.category && p.subcategory) {
+        if (!subcatsMap[p.category]) subcatsMap[p.category] = new Set();
+        subcatsMap[p.category].add(p.subcategory);
+      }
+    });
+
+    let activeLabel = '🏪 All Categories';
+    if (this.activeCategory !== 'all') {
+      const catObj = this.wholesaleCategories.find(c => c.name === this.activeCategory);
+      activeLabel = catObj ? `${catObj.icon || '📦'} ${catObj.name}` : this.activeCategory;
+      if (this.activeSubcategory) {
+        activeLabel += ` > ${this.activeSubcategory}`;
+      }
+    }
+
+    // Render Custom Dropdown
     selectContainer.innerHTML = `
-      <option value="all" ${this.activeCategory === 'all' ? 'selected' : ''}>🏪 All Categories</option>
-      ${this.wholesaleCategories.map(cat => `
-        <option value="${cat.name.replace(/"/g, '&quot;')}" ${this.activeCategory === cat.name ? 'selected' : ''}>
-          ${cat.icon || '📦'} ${cat.name}
-        </option>
-      `).join('')}
+      <button class="custom-dropdown-btn" onclick="Wholesale.toggleCategoryDropdown()">
+        <span>${activeLabel}</span>
+        <svg style="width: 20px; height: 20px; color: #666;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+      </button>
+      <ul class="custom-dropdown-menu" id="ws-custom-dropdown-menu">
+        <li class="dropdown-item ${this.activeCategory === 'all' ? 'active' : ''}" onclick="Wholesale.filterCategory('all')">
+          <span>🏪 All Categories</span>
+        </li>
+        ${this.wholesaleCategories.map(cat => {
+          const subcats = subcatsMap[cat.name] ? Array.from(subcatsMap[cat.name]).sort() : [];
+          const hasSub = subcats.length > 0;
+          return `
+            <li class="dropdown-item ${this.activeCategory === cat.name && !this.activeSubcategory ? 'active' : ''} ${hasSub ? 'has-submenu' : ''}" onclick="${hasSub ? '' : `Wholesale.filterCategory('${cat.name.replace(/'/g, "\\'")}')`}">
+              <span onclick="Wholesale.filterCategory('${cat.name.replace(/'/g, "\\'")}')" style="flex:1;">${cat.icon || '📦'} ${cat.name}</span>
+              ${hasSub ? `
+                <ul class="submenu">
+                  ${subcats.map(sub => `
+                    <li class="dropdown-item ${this.activeSubcategory === sub ? 'active' : ''}" onclick="event.stopPropagation(); Wholesale.filterCategory('${cat.name.replace(/'/g, "\\'")}', '${sub.replace(/'/g, "\\'")}')">${sub}</li>
+                  `).join('')}
+                </ul>
+              ` : ''}
+            </li>
+          `;
+        }).join('')}
+      </ul>
     `;
 
     // Group products by category
@@ -349,6 +407,10 @@ const Wholesale = {
     if (this.activeCategory !== 'all') {
       filtered = filtered.filter(p => p.category === this.activeCategory);
     }
+    if (this.activeSubcategory) {
+      filtered = filtered.filter(p => p.subcategory === this.activeSubcategory);
+    }
+    
     if (this.searchQuery) {
       filtered = filtered.filter(p => p.name.toLowerCase().includes(this.searchQuery));
     }
