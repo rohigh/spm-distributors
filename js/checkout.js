@@ -277,8 +277,7 @@ const Checkout = (() => {
     const orderDocId = orderRef.id;
     const readableOrderId = '#' + Math.floor(100000 + Math.random() * 900000);
 
-    const baseUrl = window.location.href.replace('index.html', '').split('?')[0];
-    const receiptUrl = baseUrl + (baseUrl.endsWith('/') ? '' : '/') + 'receipt.html?id=' + orderDocId;
+    const receiptUrl = 'https://www.spmdistributors.co.uk/receipt.html?id=' + orderDocId;
 
     message += `\n🧾 *Invoice/Receipt:* ${receiptUrl}\n`;
 

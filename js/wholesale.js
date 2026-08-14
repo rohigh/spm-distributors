@@ -825,7 +825,7 @@ const Wholesale = {
     const selectedDayName = days[this.selectedDay].dayName;
 
     const orderId = 'WS-' + Math.floor(100000 + Math.random() * 900000);
-    const receiptUrl = `https://spm-distributors.vercel.app/receipt.html?orderId=${orderId}`;
+    const receiptUrl = `https://www.spmdistributors.co.uk/receipt.html?orderId=${orderId}`;
     
     // Build WhatsApp message
     let message = `🛒 *New Wholesale Order — SPM Distributors*
