@@ -62,8 +62,9 @@ const Wholesale = {
           }
         } catch (error) {
           console.error("Error fetching user data:", error);
-          this.showError('login', 'Error verifying account status.');
-          this.logout();
+          this.showError('login', 'Error verifying account status: ' + error.message);
+          // Do not auto-logout on error so user can see it
+          // this.logout();
         }
       } else {
         // Not logged in
@@ -102,7 +103,8 @@ const Wholesale = {
       document.getElementById('wholesale-dashboard').style.display = 'none';
       
       this.showError('login', 'Your account is currently pending approval. Our team will contact you soon.');
-      firebase.auth().signOut(); // Don't keep them fully logged in if pending
+      // Do not auto-logout to avoid UX confusion
+      // firebase.auth().signOut();
     } else if (userData.status === 'SUSPENDED') {
       this.showError('login', 'Your wholesale account has been suspended. Please contact support.');
       this.logout(false);
