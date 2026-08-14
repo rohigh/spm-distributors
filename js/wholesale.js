@@ -622,16 +622,133 @@ const Wholesale = {
     if (overlay) overlay.classList.remove('active');
   },
 
+    getUpcomingDays() {
+    const days = [];
+    const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const today = new Date();
+
+    for (let i = 1; i <= 7; i++) {
+      const d = new Date(today);
+      d.setDate(today.getDate() + i);
+      const dayName = dayNames[d.getDay()];
+      days.push({
+        dayName,
+        date: d,
+        dateStr: d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }),
+        available: true // Always available for wholesale
+      });
+    }
+    return days;
+  },
+
+  selectDay(index) {
+    this.selectedDay = index;
+    const options = document.querySelectorAll('#ws-day-grid .day-option');
+    options.forEach((opt, i) => opt.classList.toggle('selected', i === index));
+  },
+
   openCheckout() {
     this.closeCart();
-    document.getElementById('ws-checkout-overlay').style.display = 'flex';
+    this.selectedDay = null;
+    const overlay = document.getElementById('ws-checkout-overlay');
+    const body = document.getElementById('ws-checkout-body');
+    if (!overlay || !body) return;
+
+    const days = this.getUpcomingDays();
+    const subtotal = this.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    const user = firebase.auth().currentUser;
+
+    body.innerHTML = `
+      <div class="order-summary">
+        <h3>📦 Order Summary (Wholesale Delivery)</h3>
+        ${this.cart.map(item => `
+          <div class="order-summary-item">
+            <span>${item.name} × ${item.qty}</span>
+            <span>£${(item.price * item.qty).toFixed(2)}</span>
+          </div>
+        `).join('')}
+        
+        <div style="border-top: 1px dashed #ccc; margin-top: 10px; padding-top: 10px;">
+          <div class="order-summary-item" style="color: #666;">
+            <span>Subtotal</span>
+            <span>£${subtotal.toFixed(2)}</span>
+          </div>
+          <div class="order-summary-item" style="color: #666;">
+            <span>Delivery Fee</span>
+            <span>Free</span>
+          </div>
+          <div class="order-summary-total" style="margin-top: 5px;">
+            <span>Total</span>
+            <span>£${subtotal.toFixed(2)}</span>
+          </div>
+        </div>
+        <div class="payment-method-section" style="margin-top: 15px; padding: 15px; background: #f9f9f9; border: 1px solid #eee; border-radius: 8px;">
+          <h4 style="margin: 0 0 10px 0; font-size: 1rem; color: #333;">💵 Payment Method</h4>
+          <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; cursor: pointer;">
+            <input type="radio" name="ws_payment_method" value="Cash on Delivery" checked style="accent-color: #22a660; width: 18px; height: 18px;" />
+            <span>Cash on Delivery</span>
+          </label>
+          <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+            <input type="radio" name="ws_payment_method" value="Card on Delivery" style="accent-color: #22a660; width: 18px; height: 18px;" />
+            <span>Card on Delivery</span>
+          </label>
+          <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+            <input type="radio" name="ws_payment_method" value="Invoice / Bank Transfer" style="accent-color: #22a660; width: 18px; height: 18px;" />
+            <span>Invoice / Bank Transfer</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="slot-section">
+        <h3><span class="section-icon">📅</span> Choose Delivery Day</h3>
+        <div class="day-grid" id="ws-day-grid">
+          ${days.map((day, i) => `
+            <div class="day-option"
+                 data-day-index="${i}"
+                 data-day-name="${day.dayName}"
+                 data-day-date="${day.dateStr}"
+                 onclick="Wholesale.selectDay(${i})">
+              <div class="day-name">${day.dayName.slice(0, 3)}</div>
+              <div class="day-date">${day.dateStr}</div>
+              <div class="day-status">Available</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="slot-section">
+        <h3><span class="section-icon">👤</span> Your Details</h3>
+        <div class="form-group" id="ws-fg-name">
+          <label for="ws-customer-name">Full Name *</label>
+          <input type="text" id="ws-customer-name" value="${document.getElementById('ws-user-name').innerText}" placeholder="Enter your full name" />
+        </div>
+        <div class="form-group" id="ws-fg-phone">
+          <label for="ws-customer-phone">Phone Number * (10 digits)</label>
+          <input type="tel" id="ws-customer-phone" placeholder="e.g. 07xxx xxxxxx" maxlength="10" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,10)" />
+        </div>
+        <div class="form-group" id="ws-fg-address">
+          <label for="ws-customer-address">Full Address *</label>
+          <textarea id="ws-customer-address" placeholder="Enter your full delivery address including postcode"></textarea>
+        </div>
+        <div class="form-group" id="ws-fg-notes">
+          <label for="ws-customer-notes">Order Notes (optional)</label>
+          <textarea id="ws-customer-notes" placeholder="Any special instructions?" rows="2"></textarea>
+        </div>
+      </div>
+
+      <button class="whatsapp-btn" id="ws-whatsapp-order-btn" onclick="Wholesale.submitOrder()">
+        Send Order via WhatsApp
+      </button>
+    `;
+
+    overlay.style.display = 'flex';
   },
 
   closeCheckout() {
     document.getElementById('ws-checkout-overlay').style.display = 'none';
   },
 
-  openProductModal(id) {
+  openProductModal(id) {openProductModal(id) {
     const product = this.wholesaleProducts.find(p => p.id === id);
     if (!product) return;
     
@@ -663,33 +780,118 @@ const Wholesale = {
   async submitOrder() {
     if (this.cart.length === 0) return;
     
+    let valid = true;
+    
+    if (this.selectedDay === null) {
+      const grid = document.getElementById('ws-day-grid');
+      grid.style.outline = '2px solid var(--error)';
+      setTimeout(() => { grid.style.outline = ''; }, 2000);
+      valid = false;
+    }
+    
+    const name = document.getElementById('ws-customer-name').value.trim();
+    if (!name) { document.getElementById('ws-fg-name').classList.add('error'); valid = false; }
+    else document.getElementById('ws-fg-name').classList.remove('error');
+
+    const phone = document.getElementById('ws-customer-phone').value.trim();
+    const phoneDigits = phone.replace(/[^0-9]/g, '');
+    if (!phone || phoneDigits.length !== 10) {
+      document.getElementById('ws-fg-phone').classList.add('error');
+      valid = false;
+    } else {
+      document.getElementById('ws-fg-phone').classList.remove('error');
+    }
+
+    const address = document.getElementById('ws-customer-address').value.trim();
+    if (!address) { document.getElementById('ws-fg-address').classList.add('error'); valid = false; }
+    else document.getElementById('ws-fg-address').classList.remove('error');
+
+    if (!valid) return;
+    
     const user = firebase.auth().currentUser;
     if (!user) return;
     
-    const btn = document.querySelector('#ws-checkout-form button');
+    const btn = document.getElementById('ws-whatsapp-order-btn');
     btn.disabled = true;
     btn.innerText = 'Processing...';
     
+    const subtotal = this.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    const notes = document.getElementById('ws-customer-notes').value.trim();
+    const paymentMethodEl = document.querySelector('input[name="ws_payment_method"]:checked');
+    const paymentMethod = paymentMethodEl ? paymentMethodEl.value : 'Cash on Delivery';
+    
+    const days = this.getUpcomingDays();
+    const selectedDateStr = days[this.selectedDay].dateStr;
+    const selectedDayName = days[this.selectedDay].dayName;
+
+    const orderId = 'WS-' + Math.floor(100000 + Math.random() * 900000);
+    const receiptUrl = `https://spm-distributors.vercel.app/receipt.html?orderId=${orderId}`;
+    
+    // Build WhatsApp message
+    let message = `🛒 *New Wholesale Order — SPM Distributors*
+`;
+    message += `📦 *Items:*
+`;
+    this.cart.forEach(item => {
+      message += `🔹 ${item.name} - ${item.qty} × £${item.price.toFixed(2)} = £${(item.price * item.qty).toFixed(2)}
+`;
+    });
+    
+    message += `
+💰 *Order Summary:*
+`;
+    message += `Subtotal: £${subtotal.toFixed(2)}
+`;
+    message += `Delivery Fee: Free
+`;
+    message += `Total: £${subtotal.toFixed(2)}
+`;
+    
+    message += `
+🚚 *Delivery Details:*
+`;
+    message += `Date: ${selectedDayName}, ${selectedDateStr}
+`;
+    message += `Name: ${name}
+`;
+    message += `Phone: ${phone}
+`;
+    message += `Address: ${address}
+`;
+    if (notes) message += `Notes: ${notes}
+`;
+    message += `Payment Method: ${paymentMethod}
+`;
+    message += `
+🧾 *Invoice:* ${receiptUrl}
+`;
+    
     const orderData = {
-      orderId: 'WS-' + Math.floor(100000 + Math.random() * 900000),
+      orderId: orderId,
       orderType: 'wholesale',
       userId: user.uid,
-      customerName: document.getElementById('ws-chk-name').value,
-      customerPhone: document.getElementById('ws-chk-phone').value,
-      address: document.getElementById('ws-chk-address').value,
-      deliveryDate: document.getElementById('ws-chk-date').value,
-      notes: document.getElementById('ws-chk-notes').value,
+      customerName: name,
+      customerPhone: phone,
+      address: address,
+      deliveryDate: `${selectedDayName}, ${selectedDateStr}`,
+      notes: notes,
+      paymentMethod: paymentMethod,
       items: this.cart,
-      subtotal: this.cart.reduce((sum, item) => sum + (item.price * item.qty), 0),
+      subtotal: subtotal,
       deliveryFee: 0,
-      finalTotal: this.cart.reduce((sum, item) => sum + (item.price * item.qty), 0),
+      finalTotal: subtotal,
       status: 'pending',
       date: new Date().toISOString()
     };
     
     try {
       await db.collection('orders').add(orderData);
-      alert('Order placed successfully! Order ID: ' + orderData.orderId);
+      
+      const encoded = encodeURIComponent(message);
+      // Use STORE_CONFIG.whatsappNumber if config.js is loaded, else fallback
+      const waNumber = typeof STORE_CONFIG !== 'undefined' ? STORE_CONFIG.whatsappNumber : "447423545011";
+      window.open(`https://wa.me/${waNumber}?text=${encoded}`, '_blank');
+      
       this.cart = [];
       this.saveCart();
       this.closeCheckout();
@@ -698,7 +900,7 @@ const Wholesale = {
       alert('Error placing order: ' + err.message);
     } finally {
       btn.disabled = false;
-      btn.innerText = 'Confirm Order';
+      btn.innerText = 'Send Order via WhatsApp';
     }
   }
 };
