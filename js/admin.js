@@ -45,44 +45,55 @@ firebase.auth().onAuthStateChanged((user) => {
 });
 
 function loadOrders() {
-  db.collection('orders').orderBy('date', 'desc').onSnapshot((snapshot) => {
-    currentOrders = [];
-    const tbody = document.getElementById('orders-tbody');
-    tbody.innerHTML = '';
-    
-    if (snapshot.empty) {
-      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No orders found.</td></tr>';
-      return;
-    }
-
-    snapshot.forEach((doc) => {
-      const order = doc.data();
-      order.id = doc.id;
-      currentOrders.push(order);
+    db.collection('orders').orderBy('date', 'desc').onSnapshot((snapshot) => {
+      currentOrders = [];
+      const retailTbody = document.getElementById('orders-tbody');
+      const wsTbody = document.getElementById('wholesale-orders-tbody');
       
-      const statusClass = `status-${order.status || 'pending'}`;
+      retailTbody.innerHTML = '';
+      if(wsTbody) wsTbody.innerHTML = '';
       
-      tbody.innerHTML += `
-        <tr>
-          <td><strong>${order.orderId || '#---'}</strong></td>
-          <td>${new Date(order.date).toLocaleDateString()}</td>
-          <td>${order.customerName || 'N/A'}<br><small>${order.customerPhone || ''}</small></td>
-          <td>${formatPrice(order.finalTotal)}</td>
-          <td><span class="status-badge ${statusClass}">${order.status || 'pending'}</span></td>
-          <td>
-            ${(order.status === 'pending' || !order.status) ? `
-              <button class="btn-action btn-approve" onclick="updateStatus('${doc.id}', 'approved')">Approve</button>
-              <button class="btn-action btn-reject" onclick="updateStatus('${doc.id}', 'rejected')">Reject</button>
-            ` : ''}
-            <a href="receipt.html?id=${doc.id}" target="_blank" class="btn-action btn-view">View Invoice</a>
-          </td>
-        </tr>
-      `;
+      if (snapshot.empty) {
+        retailTbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No retail orders found.</td></tr>';
+        if(wsTbody) wsTbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No wholesale orders found.</td></tr>';
+        return;
+      }
+  
+      snapshot.forEach((doc) => {
+        const order = doc.data();
+        order.id = doc.id;
+        currentOrders.push(order);
+        
+        const statusClass = `status-${order.status || 'pending'}`;
+        const isWholesale = order.orderId && order.orderId.startsWith('WS-');
+        
+        const rowHTML = `
+          <tr>
+            <td><strong>${order.orderId || '#---'}</strong></td>
+            <td>${new Date(order.date).toLocaleDateString()}</td>
+            <td>${order.customerName || 'N/A'}<br><small>${order.customerPhone || ''}</small></td>
+            <td>${formatPrice(order.finalTotal)}</td>
+            <td><span class="status-badge ${statusClass}">${order.status || 'pending'}</span></td>
+            <td>
+              ${(order.status === 'pending' || !order.status) ? `
+                <button class="btn-action btn-approve" onclick="updateStatus('${doc.id}', 'approved')">Approve</button>
+                <button class="btn-action btn-reject" onclick="updateStatus('${doc.id}', 'rejected')">Reject</button>
+              ` : ''}
+              <a href="receipt.html?id=${doc.id}" target="_blank" class="btn-action btn-view">View Invoice</a>
+            </td>
+          </tr>
+        `;
+        
+        if (isWholesale && wsTbody) {
+            wsTbody.innerHTML += rowHTML;
+        } else {
+            retailTbody.innerHTML += rowHTML;
+        }
+      });
+    }, err => {
+      console.error("Error loading orders:", err);
+      document.getElementById('orders-tbody').innerHTML = '<tr><td colspan="6" style="text-align:center; color:red;">Error loading data</td></tr>';
     });
-  }, err => {
-    console.error("Error loading orders:", err);
-    document.getElementById('orders-tbody').innerHTML = '<tr><td colspan="6" style="text-align:center; color:red;">Error loading data</td></tr>';
-  });
 }
 
 function updateStatus(id, newStatus) {
