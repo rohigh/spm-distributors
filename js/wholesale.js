@@ -748,7 +748,7 @@ const Wholesale = {
     document.getElementById('ws-checkout-overlay').style.display = 'none';
   },
 
-  openProductModal(id) {openProductModal(id) {
+  openProductModal(id) {
     const product = this.wholesaleProducts.find(p => p.id === id);
     if (!product) return;
     
