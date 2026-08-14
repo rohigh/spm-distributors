@@ -33,10 +33,11 @@ firebase.auth().onAuthStateChanged((user) => {
     // User is signed in and authorized
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('admin-dashboard').style.display = 'block';
-    loadOrders();
-    loadSettings();
-    loadWholesaleUsers();
-    loadRetailCatalog();
+      loadOrders();
+      loadSettings();
+      loadWholesaleUsers();
+      loadWholesaleProducts();
+      loadRetailCatalog();
   } else {
     // No user is signed in
     document.getElementById('login-screen').style.display = 'block';
@@ -752,3 +753,96 @@ window.restoreWholesaleSubcategories = async function() {
     alert("Error restoring subcategories: " + error.message);
   }
 };
+
+// Retail Catalog Logic
+function loadRetailCatalog() {
+  db.collection('products').onSnapshot(snapshot => {
+    const tbody = document.getElementById('retail-products-tbody');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+    if (snapshot.empty) {
+      tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No retail products found in DB.</td></tr>';
+      return;
+    }
+    
+    let products = [];
+    snapshot.forEach(doc => { products.push({id: doc.id, ...doc.data()}); });
+    products.sort((a,b) => ((a.category||'') + (a.name||'')).localeCompare((b.category||'') + (b.name||'')));
+    
+    products.forEach(p => {
+      tbody.innerHTML += `
+        <tr>
+          <td><img src="${p.image}" alt="${p.name}" style="width:40px; height:40px; object-fit:cover; border-radius:4px;"></td>
+          <td><strong>${p.name}</strong></td>
+          <td>${p.category}</td>
+          <td>£${p.price}</td>
+          <td>
+            <button class="btn-action btn-approve" onclick="editRetailProduct('${p.id}')">Edit</button>
+            <button class="btn-action btn-reject" onclick="deleteRetailProduct('${p.id}')">Delete</button>
+          </td>
+        </tr>
+      `;
+    });
+  });
+}
+
+function deleteRetailProduct(id) {
+  if(confirm("Are you sure you want to delete this product?")) {
+    db.collection('products').doc(id).delete().catch(err => alert(err));
+  }
+}
+
+function showAddProductModal() {
+  document.getElementById('prod-id').value = '';
+  document.getElementById('prod-name').value = '';
+  document.getElementById('prod-category').value = '';
+  document.getElementById('prod-unit').value = 'item';
+  document.getElementById('prod-price').value = '';
+  document.getElementById('prod-image').value = '';
+  document.getElementById('product-modal-title').innerText = "Add Retail Product";
+  
+  document.getElementById('product-modal-overlay').classList.add('active');
+}
+
+function closeProductModal() {
+  document.getElementById('product-modal-overlay').classList.remove('active');
+}
+
+function editRetailProduct(id) {
+  db.collection('products').doc(id).get().then(doc => {
+    if (doc.exists) {
+      const p = doc.data();
+      document.getElementById('prod-id').value = doc.id;
+      document.getElementById('prod-name').value = p.name || '';
+      document.getElementById('prod-category').value = p.category || '';
+      document.getElementById('prod-unit').value = p.unit || 'item';
+      document.getElementById('prod-price').value = p.price || '';
+      document.getElementById('prod-image').value = p.image || '';
+      
+      document.getElementById('product-modal-title').innerText = "Edit Retail Product";
+      document.getElementById('product-modal-overlay').classList.add('active');
+    }
+  });
+}
+
+async function saveProduct() {
+  const id = document.getElementById('prod-id').value;
+  const name = document.getElementById('prod-name').value.trim();
+  const category = document.getElementById('prod-category').value.trim();
+  const unit = document.getElementById('prod-unit').value.trim();
+  const price = parseFloat(document.getElementById('prod-price').value);
+  const image = document.getElementById('prod-image').value.trim();
+
+  if (!name || !category || isNaN(price)) {
+    return alert("Please fill required fields (Name, Category, Price).");
+  }
+
+  const data = { name, category, unit, price, image };
+
+  if (id) {
+    await db.collection('products').doc(id).update(data);
+  } else {
+    await db.collection('products').add(data);
+  }
+  closeProductModal();
+}
