@@ -224,228 +224,108 @@ function updateWholesaleCategory(uid, category) {
 }
 
 // Wholesale Pricing Logic
-let flatProductsList = [];
+  let currentWholesaleProductsData = [];
 
-async function loadWholesaleProducts() {
-  const tbody = document.getElementById('ws-pricing-tbody');
-  tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">Fetching prices...</td></tr>';
-
-  try {
-    const [productsSnap, doverSnap, kentSnap, longDistSnap] = await Promise.all([
-      db.collection('products').get(),
-      db.collection('prices_dover').get(),
-      db.collection('prices_kent').get(),
-      db.collection('prices_long_distance').get()
-    ]);
-
-    flatProductsList = [];
-    productsSnap.forEach(doc => {
-      const p = doc.data();
-      p.id = doc.id;
-      flatProductsList.push(p);
-    });
-    
-    // Sort products by category then name
-    flatProductsList.sort((a,b) => (a.category + a.name).localeCompare(b.category + b.name));
-
-    const doverPrices = {};
-    const kentPrices = {};
-    const longDistPrices = {};
-
-    doverSnap.forEach(doc => { doverPrices[doc.id] = doc.data().price; });
-    kentSnap.forEach(doc => { kentPrices[doc.id] = doc.data().price; });
-    longDistSnap.forEach(doc => { longDistPrices[doc.id] = doc.data().price; });
-
-    tbody.innerHTML = '';
-    
-    if (flatProductsList.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No products found in database. Run migration first.</td></tr>';
-      return;
-    }
-
-    flatProductsList.forEach(p => {
-      const dPrice = doverPrices[p.id] !== undefined ? doverPrices[p.id] : '';
-      const kPrice = kentPrices[p.id] !== undefined ? kentPrices[p.id] : '';
-      const lPrice = longDistPrices[p.id] !== undefined ? longDistPrices[p.id] : '';
-
-      tbody.innerHTML += `
-        <tr data-pid="${p.id}">
-          <td><img src="${p.image}" alt="${p.name}" style="width:40px; height:40px; object-fit:cover; border-radius:4px;"></td>
-          <td>${p.name}<br><small style="color:#666;">${p.category}</small></td>
-          <td>£${p.price}</td>
-          <td><input type="number" step="0.01" class="price-input price-dover" value="${dPrice}"></td>
-          <td><input type="number" step="0.01" class="price-input price-kent" value="${kPrice}"></td>
-          <td><input type="number" step="0.01" class="price-input price-long" value="${lPrice}"></td>
-        </tr>
-      `;
-    });
-  } catch (err) {
-    console.error(err);
-    tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:red;">Error loading wholesale prices.</td></tr>';
-  }
-}
-
-// Retail Catalog Logic
-function loadRetailCatalog() {
-  db.collection('products').onSnapshot(snapshot => {
-    const tbody = document.getElementById('retail-products-tbody');
-    tbody.innerHTML = '';
-    if (snapshot.empty) {
-      tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No retail products found in DB. Click Migrate Products to DB.</td></tr>';
-      return;
-    }
-    
-    let products = [];
-    snapshot.forEach(doc => { products.push({id: doc.id, ...doc.data()}); });
-    products.sort((a,b) => (a.category + a.name).localeCompare(b.category + b.name));
-    
-    products.forEach(p => {
-      tbody.innerHTML += `
-        <tr>
-          <td><img src="${p.image}" alt="${p.name}" style="width:40px; height:40px; object-fit:cover; border-radius:4px;"></td>
-          <td><strong>${p.name}</strong></td>
-          <td>${p.category}</td>
-          <td>£${p.price}</td>
-          <td>
-            <button class="btn-action btn-reject" onclick="deleteRetailProduct('${p.id}')">Delete</button>
-          </td>
-        </tr>
-      `;
-    });
-    
-    // Also load wholesale prices since we might switch to that tab
-    loadWholesaleProducts();
-  });
-}
-
-function deleteRetailProduct(id) {
-  if(confirm("Are you sure you want to delete this product?")) {
-    db.collection('products').doc(id).delete().catch(err => alert(err));
-  }
-}
-
-function showAddProductModal() {
-  document.getElementById('prod-name').value = '';
-  document.getElementById('prod-category').value = '';
-  document.getElementById('prod-unit').value = 'item';
-  document.getElementById('prod-price').value = '';
-  document.getElementById('prod-image').value = '';
-  document.getElementById('product-modal-title').innerText = "Add Retail Product";
-  
-  document.getElementById('product-modal-overlay').classList.add('active');
-}
-
-function closeProductModal() {
-  document.getElementById('product-modal-overlay').classList.remove('active');
-}
-
-async function saveProduct() {
-  const name = document.getElementById('prod-name').value.trim();
-  const category = document.getElementById('prod-category').value.trim();
-  const unit = document.getElementById('prod-unit').value.trim();
-  const price = parseFloat(document.getElementById('prod-price').value);
-  const image = document.getElementById('prod-image').value.trim();
-  
-  if (!name || !category || isNaN(price)) {
-    alert("Please fill in Name, Category, and Price.");
-    return;
-  }
-  
-  const id = 'prod_' + Math.random().toString(36).substring(2, 9);
-  
-  try {
-    await db.collection('products').doc(id).set({
-      name,
-      category,
-      unit,
-      price,
-      mrp: price,
-      image,
-      desc: ''
-    });
-    closeProductModal();
-  } catch (err) {
-    alert("Error saving: " + err.message);
-  }
-}
-
-// Migration Script
-async function migrateRetailProducts() {
-  if (!confirm("This will read PRODUCTS_DATA from js/products.js and upload all categories and products to Firestore. Proceed?")) return;
-  
-  if (typeof PRODUCTS_DATA === 'undefined') {
-    alert("PRODUCTS_DATA not found. Make sure products.js is loaded.");
-    return;
-  }
-  
-  try {
-    const batch = db.batch();
-    let count = 0;
-    
-    PRODUCTS_DATA.forEach((cat, index) => {
-      // Create category doc
-      const catRef = db.collection('categories').doc(cat.category.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase());
-      batch.set(catRef, {
-        name: cat.category,
-        icon: cat.icon,
-        order: index
-      });
+  function loadWholesaleProducts() {
+    db.collection('wholesale_products').onSnapshot(snapshot => {
+      const tbody = document.getElementById('ws-pricing-tbody');
+      tbody.innerHTML = '';
+      currentWholesaleProductsData = [];
       
-      // Create product docs
-      cat.items.forEach(item => {
-        const prodRef = db.collection('products').doc(item.id);
-        batch.set(prodRef, {
-          name: item.name,
-          price: item.price,
-          mrp: item.mrp || item.price,
-          unit: item.unit || 'item',
-          image: item.image,
-          desc: item.desc || '',
-          category: cat.category
-        });
-        count++;
+      if (snapshot.empty) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align: center;">No wholesale products found.</td></tr>';
+        return;
+      }
+
+      snapshot.forEach(doc => {
+        const p = doc.data();
+        p.id = doc.id;
+        currentWholesaleProductsData.push(p);
+      });
+
+      // Sort by category then name
+      currentWholesaleProductsData.sort((a,b) => ((a.category || '') + (a.name || '')).localeCompare((b.category || '') + (b.name || '')));
+
+      currentWholesaleProductsData.forEach(p => {
+        const imageHtml = p.image ? `<img src="${p.image}" alt="Product" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">` : 'No Image';
+        const wPrice = p.wholesalePrice ? p.wholesalePrice : (p.price || 0);
+
+        tbody.innerHTML += `
+          <tr>
+            <td>${imageHtml}</td>
+            <td><strong>${p.name}</strong><br><small>${p.subcategory || ''}</small></td>
+            <td>${p.category}</td>
+            <td>£${Number(wPrice).toFixed(2)}</td>
+            <td>
+              <button class="btn-action btn-approve" onclick="editWholesaleProduct('${p.id}')">Edit</button>
+              <button class="btn-action btn-reject" onclick="deleteWholesaleProduct('${p.id}')">Delete</button>
+            </td>
+          </tr>
+        `;
       });
     });
-    
-    await batch.commit();
-    alert(`Successfully migrated ${PRODUCTS_DATA.length} categories and ${count} products to Firestore!`);
-  } catch (err) {
-    console.error(err);
-    alert("Error migrating products: " + err.message);
   }
-}
-
-async function saveAllWholesalePrices() {
-  const rows = document.querySelectorAll('#ws-pricing-tbody tr[data-pid]');
-  const batch = db.batch();
   
-  rows.forEach(row => {
-    const pid = row.getAttribute('data-pid');
-    const doverVal = row.querySelector('.price-dover').value;
-    const kentVal = row.querySelector('.price-kent').value;
-    const longVal = row.querySelector('.price-long').value;
-
-    const doverRef = db.collection('prices_dover').doc(pid);
-    if (doverVal !== '') batch.set(doverRef, { price: parseFloat(doverVal) });
-    else batch.delete(doverRef);
-
-    const kentRef = db.collection('prices_kent').doc(pid);
-    if (kentVal !== '') batch.set(kentRef, { price: parseFloat(kentVal) });
-    else batch.delete(kentRef);
-
-    const longRef = db.collection('prices_long_distance').doc(pid);
-    if (longVal !== '') batch.set(longRef, { price: parseFloat(longVal) });
-    else batch.delete(longRef);
-  });
-
-  try {
-    await batch.commit();
-    alert('All wholesale prices updated successfully!');
-  } catch (err) {
-    console.error(err);
-    alert('Error saving prices: ' + err.message);
+  function showAddWholesaleProductModal() {
+    document.getElementById('ws-prod-id').value = '';
+    document.getElementById('ws-prod-name').value = '';
+    document.getElementById('ws-prod-category').value = '';
+    document.getElementById('ws-prod-subcategory').value = '';
+    document.getElementById('ws-prod-unit').value = 'item';
+    document.getElementById('ws-prod-price').value = '';
+    document.getElementById('ws-prod-image').value = '';
+    
+    document.getElementById('ws-product-modal-title').innerText = "Add Wholesale Product";
+    document.getElementById('ws-product-modal-overlay').classList.add('active');
   }
-}
+
+  function closeWsProductModal() {
+    document.getElementById('ws-product-modal-overlay').classList.remove('active');
+  }
+
+  function editWholesaleProduct(id) {
+    const p = currentWholesaleProductsData.find(prod => prod.id === id);
+    if (!p) return;
+    document.getElementById('ws-prod-id').value = p.id;
+    document.getElementById('ws-prod-name').value = p.name || '';
+    document.getElementById('ws-prod-category').value = p.category || '';
+    document.getElementById('ws-prod-subcategory').value = p.subcategory || '';
+    document.getElementById('ws-prod-unit').value = p.unit || 'item';
+    const wPrice = p.wholesalePrice ? p.wholesalePrice : (p.price || '');
+    document.getElementById('ws-prod-price').value = wPrice;
+    document.getElementById('ws-prod-image').value = p.image || '';
+    
+    document.getElementById('ws-product-modal-title').innerText = "Edit Wholesale Product";
+    document.getElementById('ws-product-modal-overlay').classList.add('active');
+  }
+
+  async function saveWholesaleProduct() {
+    const id = document.getElementById('ws-prod-id').value;
+    const name = document.getElementById('ws-prod-name').value.trim();
+    const category = document.getElementById('ws-prod-category').value.trim();
+    const subcategory = document.getElementById('ws-prod-subcategory').value.trim();
+    const unit = document.getElementById('ws-prod-unit').value.trim();
+    const price = parseFloat(document.getElementById('ws-prod-price').value);
+    const image = document.getElementById('ws-prod-image').value.trim();
+
+    if (!name || !category || !price) return alert("Please fill required fields.");
+
+    const data = { name, category, subcategory, unit, wholesalePrice: price, image };
+
+    if (id) {
+      await db.collection('wholesale_products').doc(id).update(data);
+    } else {
+      await db.collection('wholesale_products').add(data);
+    }
+    closeWsProductModal();
+  }
+
+  function deleteWholesaleProduct(id) {
+    if(confirm("Are you sure you want to delete this wholesale product?")) {
+      db.collection('wholesale_products').doc(id).delete().catch(err => alert(err));
+    }
+  }
+
 
 // Wholesale Migration Script
 async function migrateWholesaleCatalog() {

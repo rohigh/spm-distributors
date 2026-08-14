@@ -68,11 +68,12 @@
     </div>
 
     <div class="admin-tabs">
-      <button class="tab-btn active" id="btn-tab-orders" onclick="switchTab('orders')">Retail Orders & Settings</button>
-      <button class="tab-btn" id="btn-tab-customers" onclick="switchTab('customers')">👥 Wholesale Customers</button>
-      <button class="tab-btn" id="btn-tab-pricing" onclick="switchTab('pricing')">💰 Wholesale Pricing</button>
-      <button class="tab-btn" id="btn-tab-retail" onclick="switchTab('retail')">🛒 Retail Catalog</button>
-      <hr style="border:0; border-top:1px solid rgba(255,255,255,0.2); margin:20px 0;">
+        <button class="tab-btn active" id="btn-tab-orders" onclick="switchTab('orders')">🛒 Retail Orders</button>
+        <button class="tab-btn" id="btn-tab-wholesale-orders" onclick="switchTab('wholesale-orders')">📦 Wholesale Orders</button>
+        <button class="tab-btn" id="btn-tab-customers" onclick="switchTab('customers')">👥 Wholesale Customers</button>
+        <button class="tab-btn" id="btn-tab-pricing" onclick="switchTab('pricing')">💰 Wholesale Pricing</button>
+        <button class="tab-btn" id="btn-tab-retail" onclick="switchTab('retail')">🏷️ Retail Pricing</button>
+        <hr style="border:0; border-top:1px solid rgba(255,255,255,0.2); margin:20px 0;">
       <button class="tab-btn" style="background:#ff9800;" onclick="migrateRetailProducts()">🚀 Migrate Products to DB</button>
       <button class="tab-btn" style="background:#00bcd4; color:white;" onclick="migrateWholesaleCatalog()">📦 Import Wholesale Catalog</button>
       <div style="flex: 1;"></div>
@@ -162,31 +163,30 @@
     </div>
 
     <!-- Wholesale Pricing Tab -->
-    <div id="tab-pricing" class="admin-tab">
-      <h3>Wholesale Pricing Management</h3>
-      <div style="margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
-        <p style="color: #666; font-size: 14px; margin:0;">Set custom wholesale prices per category. Leave blank if not available for that category.</p>
-        <button class="btn-primary" onclick="saveAllWholesalePrices()">Save All Prices</button>
+      <div id="tab-pricing" class="admin-tab">
+        <div class="admin-header">
+          <h2>💰 Wholesale Pricing</h2>
+          <button class="btn-primary" onclick="showAddWholesaleProductModal()">+ Add Product</button>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Product Name</th>
+                <th>Category</th>
+                <th>Wholesale Price</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="ws-pricing-tbody">
+              <tr><td colspan="5" style="text-align: center;">Loading products...</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-      
-      <table>
-        <thead>
-          <tr>
-            <th>Product Image</th>
-            <th>Product Name</th>
-            <th>Retail Price</th>
-            <th>Dover Price (£)</th>
-            <th>Kent Price (£)</th>
-            <th>Long Dist. Price (£)</th>
-          </tr>
-        </thead>
-        <tbody id="ws-pricing-tbody">
-          <tr><td colspan="6" style="text-align: center;">Loading products...</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Retail Catalog Tab -->
+  
+      <!-- Retail Catalog Tab -->
     <div id="tab-retail" class="admin-tab">
       <div class="admin-header">
         <h2>🛒 Retail Catalog</h2>
@@ -243,6 +243,48 @@
         <button class="btn-action" onclick="closeProductModal()" style="background:#666;">Cancel</button>
         <button class="btn-primary" onclick="saveProduct()">Save Product</button>
       </div>
+    </div>
+  </div>
+
+  
+  <!-- Add/Edit Wholesale Product Modal -->
+  <div id="ws-product-modal-overlay" class="modal-overlay">
+    <div class="modal-content">
+      <h3 id="ws-product-modal-title">Add Wholesale Product</h3>
+      <form id="ws-product-form" onsubmit="event.preventDefault(); saveWholesaleProduct();">
+        <input type="hidden" id="ws-prod-id" />
+        <input type="hidden" id="prod-id" />
+        <div class="form-group">
+          <label>Product Name</label>
+          <input type="text" id="ws-prod-name" required />
+        </div>
+        <div class="form-group">
+          <label>Category (e.g. Fresh Produce, Dairy & Eggs)</label>
+          <input type="text" id="ws-prod-category" required />
+        </div>
+        <div class="form-group">
+          <label>Subcategory (Optional)</label>
+          <input type="text" id="ws-prod-subcategory" />
+        </div>
+        <div class="form-group-inline">
+          <div class="form-group" style="flex:1;">
+            <label>Unit (e.g. Kg, Box)</label>
+            <input type="text" id="ws-prod-unit" value="item" required />
+          </div>
+          <div class="form-group" style="flex:1;">
+            <label>Wholesale Price (£)</label>
+            <input type="number" step="0.01" id="ws-prod-price" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Image URL</label>
+          <input type="text" id="ws-prod-image" placeholder="https://..." required />
+        </div>
+        <div style="display:flex; gap:10px; margin-top:20px;">
+          <button type="submit" class="btn-primary" style="flex:1;">Save Product</button>
+          <button type="button" class="btn-action" onclick="closeWsProductModal()" style="background:#666; padding: 10px 20px; color: white;">Cancel</button>
+        </div>
+      </form>
     </div>
   </div>
 
