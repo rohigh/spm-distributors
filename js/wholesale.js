@@ -741,11 +741,11 @@ const Wholesale = {
       </button>
     `;
 
-    overlay.style.display = 'flex';
+    overlay.classList.add('open');
   },
 
   closeCheckout() {
-    document.getElementById('ws-checkout-overlay').style.display = 'none';
+    document.getElementById('ws-checkout-overlay').classList.remove('open');
   },
 
   openProductModal(id) {
