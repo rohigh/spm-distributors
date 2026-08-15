@@ -454,8 +454,15 @@ const Wholesale = {
     const qty = cartItem ? cartItem.qty : 0;
     const price = product.wholesalePrice || 0;
 
+    const hasImage = product.image && product.image.length > 0;
     return `
       <div class="product-card" id="ws-product-${product.id}">
+        <div class="product-image" onclick="Wholesale.openProductModal('${product.id}')" style="cursor: pointer;">
+          ${hasImage
+            ? `<img src="${product.image}" alt="${product.name}" loading="lazy" />`
+            : `<span class="placeholder-icon">📦</span>`
+          }
+        </div>
         <div class="product-info">
           <div class="product-name" onclick="Wholesale.openProductModal('${product.id}')" style="cursor: pointer;">${product.name}</div>
           <div class="product-unit">per ${product.unit}</div>
