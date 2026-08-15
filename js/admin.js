@@ -23,6 +23,9 @@ function logout() {
 
 // Check session on load
 firebase.auth().onAuthStateChanged((user) => {
+  const loadingScreen = document.getElementById('loading-screen');
+  if (loadingScreen) loadingScreen.style.display = 'none';
+
   if (user) {
     const allowedEmails = STORE_CONFIG.adminEmails ? STORE_CONFIG.adminEmails.map(e => e.toLowerCase().trim()) : [];
     if (allowedEmails.length > 0 && !allowedEmails.includes(user.email.toLowerCase())) {
