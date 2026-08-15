@@ -14,3 +14,4 @@ if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 }
 const db = firebase.firestore();
+const storage = firebase.storage();

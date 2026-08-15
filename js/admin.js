@@ -289,6 +289,8 @@ function updateWholesaleCategory(uid, category) {
     document.getElementById('ws-prod-unit').value = 'item';
     document.getElementById('ws-prod-price').value = '';
     document.getElementById('ws-prod-image').value = '';
+    document.getElementById('ws-prod-image-file').value = '';
+    document.getElementById('ws-prod-image-upload-status').innerText = '';
     
     document.getElementById('ws-product-modal-title').innerText = "Add Wholesale Product";
     document.getElementById('ws-product-modal-overlay').classList.add('active');
@@ -309,30 +311,57 @@ function updateWholesaleCategory(uid, category) {
     const wPrice = p.wholesalePrice ? p.wholesalePrice : (p.price || '');
     document.getElementById('ws-prod-price').value = wPrice;
     document.getElementById('ws-prod-image').value = p.image || '';
+    document.getElementById('ws-prod-image-file').value = '';
+    document.getElementById('ws-prod-image-upload-status').innerText = '';
     
     document.getElementById('ws-product-modal-title').innerText = "Edit Wholesale Product";
     document.getElementById('ws-product-modal-overlay').classList.add('active');
   }
 
   async function saveWholesaleProduct() {
-    const id = document.getElementById('ws-prod-id').value;
-    const name = document.getElementById('ws-prod-name').value.trim();
-    const category = document.getElementById('ws-prod-category').value.trim();
-    const subcategory = document.getElementById('ws-prod-subcategory').value.trim();
-    const unit = document.getElementById('ws-prod-unit').value.trim();
-    const price = parseFloat(document.getElementById('ws-prod-price').value);
-    const image = document.getElementById('ws-prod-image').value.trim();
+    const btn = document.querySelector('#ws-product-form button[type="submit"]');
+    const oldBtnText = btn ? btn.innerText : "Save Product";
+    if (btn) { btn.innerText = "Saving..."; btn.disabled = true; }
 
-    if (!name || !category || !price) return alert("Please fill required fields.");
+    try {
+      const id = document.getElementById('ws-prod-id').value;
+      const name = document.getElementById('ws-prod-name').value.trim();
+      const category = document.getElementById('ws-prod-category').value.trim();
+      const subcategory = document.getElementById('ws-prod-subcategory').value.trim();
+      const unit = document.getElementById('ws-prod-unit').value.trim();
+      const price = parseFloat(document.getElementById('ws-prod-price').value);
+      let image = document.getElementById('ws-prod-image').value.trim();
+      const fileInput = document.getElementById('ws-prod-image-file');
 
-    const data = { name, category, subcategory, unit, wholesalePrice: price, image };
+      if (!name || !category || isNaN(price)) {
+        alert("Please fill required fields.");
+        return;
+      }
 
-    if (id) {
-      await db.collection('wholesale_products').doc(id).update(data);
-    } else {
-      await db.collection('wholesale_products').add(data);
+      if (fileInput && fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        const statusEl = document.getElementById('ws-prod-image-upload-status');
+        if (statusEl) statusEl.innerText = "Uploading image...";
+        const storageRef = storage.ref(`products/${Date.now()}_${file.name}`);
+        await storageRef.put(file);
+        image = await storageRef.getDownloadURL();
+        if (statusEl) statusEl.innerText = "";
+      }
+
+      const data = { name, category, subcategory, unit, wholesalePrice: price, image };
+
+      if (id) {
+        await db.collection('wholesale_products').doc(id).update(data);
+      } else {
+        await db.collection('wholesale_products').add(data);
+      }
+      closeWsProductModal();
+    } catch (err) {
+      console.error(err);
+      alert("Error saving: " + err.message);
+    } finally {
+      if (btn) { btn.innerText = oldBtnText; btn.disabled = false; }
     }
-    closeWsProductModal();
   }
 
   function deleteWholesaleProduct(id) {
@@ -802,6 +831,8 @@ function showAddProductModal() {
   document.getElementById('prod-unit').value = 'item';
   document.getElementById('prod-price').value = '';
   document.getElementById('prod-image').value = '';
+  document.getElementById('prod-image-file').value = '';
+  document.getElementById('prod-image-upload-status').innerText = '';
   document.getElementById('product-modal-title').innerText = "Add Retail Product";
   
   document.getElementById('product-modal-overlay').classList.add('active');
@@ -821,6 +852,8 @@ function editRetailProduct(id) {
       document.getElementById('prod-unit').value = p.unit || 'item';
       document.getElementById('prod-price').value = p.price || '';
       document.getElementById('prod-image').value = p.image || '';
+      document.getElementById('prod-image-file').value = '';
+      document.getElementById('prod-image-upload-status').innerText = '';
       
       document.getElementById('product-modal-title').innerText = "Edit Retail Product";
       document.getElementById('product-modal-overlay').classList.add('active');
@@ -829,23 +862,46 @@ function editRetailProduct(id) {
 }
 
 async function saveProduct() {
-  const id = document.getElementById('prod-id').value;
-  const name = document.getElementById('prod-name').value.trim();
-  const category = document.getElementById('prod-category').value.trim();
-  const unit = document.getElementById('prod-unit').value.trim();
-  const price = parseFloat(document.getElementById('prod-price').value);
-  const image = document.getElementById('prod-image').value.trim();
+  const btn = document.querySelector('#product-modal-overlay button.btn-primary');
+  const oldBtnText = btn ? btn.innerText : "Save Product";
+  if (btn) { btn.innerText = "Saving..."; btn.disabled = true; }
 
-  if (!name || !category || isNaN(price)) {
-    return alert("Please fill required fields (Name, Category, Price).");
+  try {
+    const id = document.getElementById('prod-id').value;
+    const name = document.getElementById('prod-name').value.trim();
+    const category = document.getElementById('prod-category').value.trim();
+    const unit = document.getElementById('prod-unit').value.trim();
+    const price = parseFloat(document.getElementById('prod-price').value);
+    let image = document.getElementById('prod-image').value.trim();
+    const fileInput = document.getElementById('prod-image-file');
+
+    if (!name || !category || isNaN(price)) {
+      alert("Please fill required fields (Name, Category, Price).");
+      return;
+    }
+
+    if (fileInput && fileInput.files.length > 0) {
+      const file = fileInput.files[0];
+      const statusEl = document.getElementById('prod-image-upload-status');
+      if (statusEl) statusEl.innerText = "Uploading image...";
+      const storageRef = storage.ref(`products/${Date.now()}_${file.name}`);
+      await storageRef.put(file);
+      image = await storageRef.getDownloadURL();
+      if (statusEl) statusEl.innerText = "";
+    }
+
+    const data = { name, category, unit, price, image };
+
+    if (id) {
+      await db.collection('products').doc(id).update(data);
+    } else {
+      await db.collection('products').add(data);
+    }
+    closeProductModal();
+  } catch(err) {
+    console.error(err);
+    alert("Error saving: " + err.message);
+  } finally {
+    if (btn) { btn.innerText = oldBtnText; btn.disabled = false; }
   }
-
-  const data = { name, category, unit, price, image };
-
-  if (id) {
-    await db.collection('products').doc(id).update(data);
-  } else {
-    await db.collection('products').add(data);
-  }
-  closeProductModal();
 }

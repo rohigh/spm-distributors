@@ -230,10 +230,15 @@
           <label>Retail Price (£)</label>
           <input type="number" step="0.01" id="prod-price" placeholder="10.00">
         </div>
-        <div class="form-group" style="flex:1;">
-          <label>Image URL</label>
-          <input type="text" id="prod-image" placeholder="img/banana.jpg">
+      <div class="form-group">
+        <label>Image</label>
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <input type="file" id="prod-image-file" accept="image/*" style="flex: 1;" />
+          <span style="font-size: 14px; color: #666;">OR</span>
+          <input type="text" id="prod-image" placeholder="Image URL (e.g. https://...)" style="flex: 2; margin-bottom: 0;" />
         </div>
+        <div id="prod-image-upload-status" style="font-size: 12px; color: #28a745; margin-top: 5px;"></div>
+      </div>
       </div>
       <div style="margin-top: 20px; text-align: right;">
         <button class="btn-action" onclick="closeProductModal()" style="background:#666;">Cancel</button>
@@ -273,8 +278,13 @@
           </div>
         </div>
         <div class="form-group">
-          <label>Image URL</label>
-          <input type="text" id="ws-prod-image" placeholder="https://..." required />
+          <label>Image</label>
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <input type="file" id="ws-prod-image-file" accept="image/*" style="flex: 1;" />
+            <span style="font-size: 14px; color: #666;">OR</span>
+            <input type="text" id="ws-prod-image" placeholder="Image URL (e.g. https://...)" style="flex: 2; margin-bottom: 0;" />
+          </div>
+          <div id="ws-prod-image-upload-status" style="font-size: 12px; color: #28a745; margin-top: 5px;"></div>
         </div>
         <div style="display:flex; gap:10px; margin-top:20px;">
           <button type="submit" class="btn-primary" style="flex:1;">Save Product</button>
@@ -300,6 +310,7 @@
   <!-- Scripts -->
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
   <script src="js/firebase-init.js?v=1786706657"></script>
   <script src="js/config.js?v=1786706657"></script>
