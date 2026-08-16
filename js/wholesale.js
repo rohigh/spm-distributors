@@ -42,6 +42,9 @@ const Wholesale = {
 
   checkAuthState() {
     firebase.auth().onAuthStateChanged(async (user) => {
+      const loadingScreen = document.getElementById('loading-screen');
+      if (loadingScreen) loadingScreen.style.display = 'none';
+      
       if (user) {
         // User is logged in, check their wholesale status
         try {
