@@ -896,7 +896,7 @@ const Wholesale = {
       
       const encoded = encodeURIComponent(message);
       // Use STORE_CONFIG.whatsappNumber if config.js is loaded, else fallback
-      const waNumber = typeof STORE_CONFIG !== 'undefined' ? STORE_CONFIG.whatsappNumber : "447423545011";
+      const waNumber = typeof STORE_CONFIG !== 'undefined' ? STORE_CONFIG.whatsappNumber : "447466885371";
       window.open(`https://wa.me/${waNumber}?text=${encoded}`, '_blank');
       
       this.cart = [];

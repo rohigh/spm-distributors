@@ -15,7 +15,7 @@ const STORE_CONFIG = {
   shopStatus: "open", // 'open' or 'closed'
 
   // WhatsApp number (with country code, no spaces)
-  whatsappNumber: "447423545011",
+  whatsappNumber: "447466885371",
 
   // Currency settings
   currency: "£",
