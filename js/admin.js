@@ -342,10 +342,26 @@ function updateWholesaleCategory(uid, category) {
         const file = fileInput.files[0];
         const statusEl = document.getElementById('ws-prod-image-upload-status');
         if (statusEl) statusEl.innerText = "Uploading image...";
-        const storageRef = storage.ref(`products/${Date.now()}_${file.name}`);
-        await storageRef.put(file);
-        image = await storageRef.getDownloadURL();
-        if (statusEl) statusEl.innerText = "";
+        
+        const formData = new FormData();
+        formData.append('image', file);
+        
+        try {
+          const response = await fetch('https://api.imgbb.com/1/upload?key=ccbee88c035d521c705c87d04c8d3489', {
+            method: 'POST',
+            body: formData
+          });
+          const result = await response.json();
+          if (result.success) {
+            image = result.data.url;
+            if (statusEl) statusEl.innerText = "";
+          } else {
+            throw new Error(result.error ? result.error.message : "Image upload failed");
+          }
+        } catch (uploadError) {
+          if (statusEl) statusEl.innerText = "Upload failed!";
+          throw uploadError;
+        }
       }
 
       const data = { name, category, subcategory, unit, wholesalePrice: price, image };
