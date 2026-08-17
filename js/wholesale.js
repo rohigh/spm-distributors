@@ -392,7 +392,7 @@ const Wholesale = {
           const subcats = subcatsMap[cat.name] ? Array.from(subcatsMap[cat.name]).sort() : [];
           const hasSub = subcats.length > 0;
           return `
-            <li class="dropdown-item ${this.activeCategory === cat.name && !this.activeSubcategory ? 'active' : ''} ${hasSub ? 'has-submenu' : ''}" onclick="${hasSub ? '' : `Wholesale.filterCategory('${cat.name.replace(/'/g, "\\'")}')`}">
+            <li class="dropdown-item ${this.activeCategory === cat.name && !this.activeSubcategory ? 'active' : ''} ${hasSub ? 'has-submenu' : ''}" onclick="${hasSub ? `this.classList.toggle('open')` : `Wholesale.filterCategory('${cat.name.replace(/'/g, "\\'")}')`}">
               <span onclick="Wholesale.filterCategory('${cat.name.replace(/'/g, "\\'")}')" style="flex:1;">${cat.icon || '📦'} ${cat.name}</span>
               ${hasSub ? `
                 <ul class="submenu">

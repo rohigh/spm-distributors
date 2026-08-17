@@ -250,14 +250,16 @@
           position: absolute; top: 0; left: 100%; min-width: 200px; background: white; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 8px 16px rgba(0,0,0,0.15); list-style: none; padding: 0; display: none; margin-left: -5px; z-index: 101; max-height: 400px; overflow-y: auto;
         }
         
-        /* Only show submenu on hover if it's a desktop or we hover on it */
-        .dropdown-item.has-submenu:hover > .submenu {
+        /* Show submenu on hover (desktop) or when .open class is added (mobile tap) */
+        .dropdown-item.has-submenu:hover > .submenu,
+        .dropdown-item.has-submenu.open > .submenu {
           display: block;
         }
 
         @media (max-width: 768px) {
           .custom-dropdown-menu { overflow-y: auto; }
-          .dropdown-item.has-submenu:hover::after { transform: rotate(90deg); }
+          .dropdown-item.has-submenu:hover::after,
+          .dropdown-item.has-submenu.open::after { transform: rotate(90deg); }
           .submenu {
             position: static;
             width: 100%;
